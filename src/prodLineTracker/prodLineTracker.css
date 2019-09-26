@@ -13,10 +13,6 @@
   -fx-background-color: linear-gradient(#2A5058, #61a2b1);
   -fx-text-fill: white;
 }
-/*Modifies the tableView background*/
-#tableView {
-  -fx-background-color: black;
-}
 
 /*Modifies the Product Name column in the Table View*/
 .table-view #productNameColumn {
@@ -31,4 +27,24 @@
 /*Modifies the Item Type column in the Table View*/
 .table-view #itemTypeColumn {
   -fx-alignment: center;
+}
+
+/*Modifies the tableView background*/
+#tableView {
+  -fx-background-color: black;
+}
+
+/*Modifies the Product Name Label*/
+#productNameLabel {
+
+}
+
+/*Modifies the Manufacturer Label*/
+#manufacturerLabel {
+
+}
+
+/*Modifies the Item Type Label*/
+#itemTypeLabel {
+
 }

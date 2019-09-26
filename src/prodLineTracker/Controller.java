@@ -1,5 +1,7 @@
 package prodLineTracker;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,7 +28,7 @@ public class Controller {
   private TableView<String> tableView;
 
   @FXML
-  private ComboBox<Integer> prodAmtCbox;
+  private ComboBox<String> productAmtComboBox;
 
   @FXML
   private Button recBtn;
@@ -34,25 +36,28 @@ public class Controller {
 
   /**
    * The method that handles events for the "Add Product" button in the "Product Line" tab.
-   * @param event the event that tells the user that the button was pressed.
    * @return nothing
    */
   @FXML
-  void handleEventAddProduct(ActionEvent event) {
+  void handleEventAddProduct() {
       Main DB = new Main();
       DB.initializeDB();
-    System.out.println("Button pressed: " + event.toString());
+      String prodName = prodNameTA.getText();
+      String prodManufacturer = manufacturerTA.getText();
+      String itemType = itemTypeCbox.getValue();
+      System.out.println("\nProduct name: " + prodName + "\nManufacturer: " + prodManufacturer
+    + "\nItem Type: " + itemType);
     }
 
   /**
    * The method that handles events for the "Record Production" button in the "Product Record"
    * tab.
-   * @param event the event that tells the user that the button was pressed.
    * @return nothing
    */
   @FXML
   void handleEventRecordProduction(ActionEvent event) {
-    System.out.println("Button pressed: " + event.toString());
+    String prodQuantity = productAmtComboBox.getValue();
+    System.out.println(prodQuantity);
   }
 
   /**
@@ -61,12 +66,25 @@ public class Controller {
    * @return nothing
    */
   public void initialize() {
-    //Adds numbers 1-10 in the ComboBox as a list in the "Product Record" tab
-    prodAmtCbox.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
+    //Observable List of items that is added in the ComboBox in the "Product Record" tab.
+    ObservableList<String> productQuantityList = FXCollections.observableArrayList(
+      "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+    );
+    // Adds numbers 1-10 in the ComboBox as a list in the "Product Record" tab
+    productAmtComboBox.setItems(productQuantityList);
     //Allows users to enter other values in the ComboBox in the "Product Record" tab
-    prodAmtCbox.setEditable(true);
+    productAmtComboBox.setEditable(true);
     //Shows a default value in the ComboBox in the "Product Record" tab
-    prodAmtCbox.getSelectionModel().selectFirst();
+    productAmtComboBox.getSelectionModel().selectFirst();
     //Adds item types in the item type ChoiceBox in the "Product Line" tab
     itemTypeCbox.getItems().addAll("Audio",
         "AudioMobile",

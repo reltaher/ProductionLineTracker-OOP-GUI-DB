@@ -39,7 +39,7 @@
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <Label layoutX="51.0" layoutY="17.0" text="Product Name:" />
+                                    <Label fx:id="productNameLabel" layoutX="51.0" layoutY="17.0" text="Product Name:" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -49,7 +49,7 @@
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="170.0" GridPane.rowIndex="1">
                                  <children>
-                                    <Label layoutX="57.0" layoutY="16.0" text="Manufacturer:" />
+                                    <Label fx:id="manufacturerLabel" layoutX="57.0" layoutY="16.0" text="Manufacturer:" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -59,7 +59,7 @@
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                                  <children>
-                                    <Label layoutX="81.0" layoutY="16.0" text="Item Type:" />
+                                    <Label fx:id="itemTypeLabel" layoutX="81.0" layoutY="16.0" text="Item Type:" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -107,7 +107,7 @@
                         <Label layoutX="271.0" layoutY="14.0" text="Choose Product:" />
                         <ListView layoutX="225.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0" />
                         <Label layoutX="268.0" layoutY="255.0" text="Choose Quantity:" />
-                        <ComboBox fx:id="prodAmtCbox" layoutX="250.0" layoutY="276.0" prefWidth="150.0" />
+                        <ComboBox fx:id="productAmtComboBox" layoutX="250.0" layoutY="276.0" prefWidth="150.0" />
                         <Button fx:id="recBtn" layoutX="253.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleEventRecordProduction" text="Record Production" />
                      </children></AnchorPane>
             </content>
