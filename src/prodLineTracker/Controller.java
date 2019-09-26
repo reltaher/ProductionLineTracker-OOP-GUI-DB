@@ -2,12 +2,9 @@ package prodLineTracker;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class Controller {
@@ -22,17 +19,7 @@ public class Controller {
   private ChoiceBox<String> itemTypeCbox;
 
   @FXML
-  private Button addProduct;
-
-  @FXML
-  private TableView<String> tableView;
-
-  @FXML
   private ComboBox<String> productAmtComboBox;
-
-  @FXML
-  private Button recBtn;
-
 
   /**
    * The method that handles events for the "Add Product" button in the "Product Line" tab.
@@ -55,7 +42,7 @@ public class Controller {
    * @return nothing
    */
   @FXML
-  void handleEventRecordProduction(ActionEvent event) {
+  void handleEventRecordProduction() {
     String prodQuantity = productAmtComboBox.getValue();
     System.out.println(prodQuantity);
   }
