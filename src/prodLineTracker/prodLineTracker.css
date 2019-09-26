@@ -31,7 +31,7 @@
 
 /*Modifies the tableView background*/
 #tableView {
-  -fx-background-color: black;
+  -fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }
 
 /*Modifies the Product Name Label*/
