@@ -1,0 +1,34 @@
+/*Modifies the background of the program*/
+.root {
+  -fx-background-image: url("background.jpg");
+}
+
+/*Modifies the buttons when hovered*/
+.button:hover {
+  -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+  -fx-text-fill: white;
+}
+/*Modifies the tabs when hovered*/
+.tab:hover {
+  -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+  -fx-text-fill: white;
+}
+/*Modifies the tableView background*/
+#tableView {
+  -fx-background-color: black;
+}
+
+/*Modifies the Product Name column in the Table View*/
+.table-view #productNameColumn {
+  -fx-alignment: center;
+}
+
+/*Modifies the Manufacturer column in the Table View*/
+.table-view #manufacturerColumn {
+  -fx-alignment: center;
+}
+
+/*Modifies the Item Type column in the Table View*/
+.table-view #itemTypeColumn {
+  -fx-alignment: center;
+}

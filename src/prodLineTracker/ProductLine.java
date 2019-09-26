@@ -1,16 +1,20 @@
-package sample;
+package prodLineTracker;
 
 import javafx.beans.property.SimpleStringProperty;
 
 public class ProductLine {
-  private final SimpleStringProperty name;
-  private final SimpleStringProperty type;
-  private final SimpleStringProperty manufacturer;
+  private final SimpleStringProperty name = new SimpleStringProperty("");
+  private final SimpleStringProperty type = new SimpleStringProperty("");
+  private final SimpleStringProperty manufacturer = new SimpleStringProperty("");
 
-  private ProductLine(String pName, String pType, String pManufacturer) {
-    this.name = new SimpleStringProperty(pName);
-    this.type = new SimpleStringProperty(pType);
-    this.manufacturer = new SimpleStringProperty(pManufacturer);
+  public ProductLine() {
+    this("", "", "");
+  }
+
+  public ProductLine(String pName, String pType, String pManufacturer) {
+    setName(pName);
+    setType(pType);
+    setManufacturer(pManufacturer);
   }
 
   public String getName() {

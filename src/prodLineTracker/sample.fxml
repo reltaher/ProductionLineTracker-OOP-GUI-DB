@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -17,8 +15,10 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-
-<GridPane alignment="center" hgap="10" prefHeight="470.0" prefWidth="650.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<?import prodLineTracker.ProductLine?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.collections.*?>
+<GridPane alignment="center" hgap="10" prefHeight="470.0" prefWidth="650.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prodLineTracker.Controller">
    <children>
       <TabPane prefHeight="470.0" prefWidth="657.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -65,14 +65,6 @@
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
                                     <ChoiceBox fx:id="itemTypeCbox" layoutX="14.0" layoutY="11.0" prefHeight="21.0" prefWidth="115.0">
-                                      <items>
-                                        <FXCollections fx:factory="observableArrayList">
-                                          <String fx:value="Audio" />
-                                          <String fx:value="AudioMobile" />
-                                          <String fx:value="Visual" />
-                                          <String fx:value="VisualMobile" />
-                                        </FXCollections>
-                                      </items>
                                     </ChoiceBox>
                                  </children>
                               </AnchorPane>
@@ -82,10 +74,28 @@
                         <Label layoutX="10.0" layoutY="190.0" text="Existing Products" />
                         <TableView fx:id="tableView" layoutX="10.0" layoutY="211.0" prefHeight="200.0" prefWidth="629.0">
                           <columns>
-                            <TableColumn prefWidth="197.0" text="Product Name" />
-                            <TableColumn prefWidth="235.0" text="Manufacturer" />
-                              <TableColumn minWidth="0.0" prefWidth="196.0" text="Item Type" />
+                            <TableColumn fx:id="productNameColumn" text="Product Name" prefWidth="210">
+                              <cellValueFactory>
+                                <PropertyValueFactory property="name"/>
+                              </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn fx:id="manufacturerColumn" text="Manufacturer" prefWidth="210">
+                              <cellValueFactory>
+                                <PropertyValueFactory property="manufacturer" />
+                              </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn fx:id="itemTypeColumn" text="Item Type" prefWidth="210">
+                              <cellValueFactory>
+                                <PropertyValueFactory property="type" />
+                              </cellValueFactory>
+                            </TableColumn>
                           </columns>
+                          <items>
+                            <FXCollections fx:factory="observableArrayList">
+                              <ProductLine name="iPod" manufacturer="Apple" type = "Audio"/>
+                            </FXCollections>
+                          </items>
+
                         </TableView>
                      </children></AnchorPane>
             </content>
