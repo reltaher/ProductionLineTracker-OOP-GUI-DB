@@ -35,7 +35,7 @@ public class Main extends Application {
     Parent root = FXMLLoader.load(getClass().getResource("productlinetracker.fxml"));
     primaryStage.setTitle("Production Line Tracker");
     primaryStage.setScene(new Scene(root, 657, 470));
-    root.getStylesheets().add("prodLineTracker/productlinetracker.css");
+    root.getStylesheets().add("productlinetracker/productlinetracker.css");
     primaryStage.show();
   }
 

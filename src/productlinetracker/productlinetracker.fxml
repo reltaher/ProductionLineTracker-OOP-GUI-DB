@@ -27,7 +27,7 @@
     <RowConstraints/>
   </rowConstraints>
   <TabPane styleClass="tab" prefHeight="470.0" prefWidth="657.0" tabClosingPolicy="UNAVAILABLE">
-    <Tab styleClass="tab-label" fx:id="productLineTab" text="Product Line">
+    <Tab styleClass="tab-label" text="Product Line">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
         <GridPane layoutX="128.0" layoutY="8.0" prefHeight="141.0" prefWidth="323.0">
           <columnConstraints>
@@ -40,7 +40,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
           </rowConstraints>
           <AnchorPane prefHeight="200.0" prefWidth="200.0">
-            <Label styleClass="label" fx:id="productNameLabel" layoutX="51.0" layoutY="17.0"
+            <Label styleClass="label" layoutX="51.0" layoutY="17.0"
               text="Product Name:"/>
           </AnchorPane>
           <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -48,7 +48,7 @@
               prefWidth="117.0"/>
           </AnchorPane>
           <AnchorPane prefHeight="200.0" prefWidth="170.0" GridPane.rowIndex="1">
-            <Label styleClass="label" fx:id="manufacturerLabel" layoutX="57.0" layoutY="16.0"
+            <Label styleClass="label" layoutX="57.0" layoutY="16.0"
               text="Manufacturer:"/>
           </AnchorPane>
           <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
@@ -57,7 +57,7 @@
               prefHeight="30.0" prefWidth="117.0"/>
           </AnchorPane>
           <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-            <Label styleClass="label" fx:id="itemTypeLabel" layoutX="81.0" layoutY="16.0" text="Item Type:"/>
+            <Label styleClass="label" layoutX="81.0" layoutY="16.0" text="Item Type:"/>
           </AnchorPane>
           <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
             GridPane.rowIndex="2">
@@ -66,24 +66,24 @@
             </ChoiceBox>
           </AnchorPane>
         </GridPane>
-        <Button styleClass="button" fx:id="addProduct" layoutX="206.0" layoutY="159.0" mnemonicParsing="false"
+        <Button styleClass="button" layoutX="206.0" layoutY="159.0" mnemonicParsing="false"
           onAction="#handleEventAddProduct" prefHeight="31.0" prefWidth="213.0"
           text="Add Product"/>
         <Label layoutX="10.0" layoutY="190.0" text="Existing Products"/>
-        <TableView fx:id="tableView" layoutX="10.0" layoutY="211.0" prefHeight="200.0"
+        <TableView styleClass="tableView" layoutX="10.0" layoutY="211.0" prefHeight="200.0"
           prefWidth="629.0">
           <columns>
-            <TableColumn fx:id="productNameColumn" text="Product Name" prefWidth="210">
+            <TableColumn text="Product Name" prefWidth="210">
               <cellValueFactory>
                 <PropertyValueFactory property="name"/>
               </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="manufacturerColumn" text="Manufacturer" prefWidth="210">
+            <TableColumn text="Manufacturer" prefWidth="210">
               <cellValueFactory>
                 <PropertyValueFactory property="manufacturer"/>
               </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="itemTypeColumn" text="Item Type" prefWidth="210">
+            <TableColumn text="Item Type" prefWidth="210">
               <cellValueFactory>
                 <PropertyValueFactory property="type"/>
               </cellValueFactory>
@@ -97,14 +97,14 @@
         </TableView>
       </AnchorPane>
     </Tab>
-    <Tab styleClass="tab-label" fx:id="productRecordTab" text="Product Record">
+    <Tab styleClass="tab-label" text="Product Record">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
         <Label layoutX="271.0" layoutY="14.0" text="Choose Product:"/>
         <ListView layoutX="225.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0"/>
         <Label layoutX="268.0" layoutY="255.0" text="Choose Quantity:"/>
         <ComboBox fx:id="productAmtComboBox" layoutX="250.0" layoutY="276.0"
           prefWidth="150.0"/>
-        <Button fx:id="recBtn" layoutX="253.0" layoutY="340.0" mnemonicParsing="false"
+        <Button layoutX="253.0" layoutY="340.0" mnemonicParsing="false"
           onAction="#handleEventRecordProduction" text="Record Production"/>
       </AnchorPane>
     </Tab>

@@ -33,14 +33,14 @@
   -fx-text-fill: white;
 }
 
-/*Modifies the background of the tab*/
+/*Modifies the background of the tab, and the background  of the scene that the tab is in*/
 .tab {
-  -fx-background-color: #0B0C10;
+  -fx-background-color: #1F2833;
 }
 
-/*Modifies the tabs when hovered*/
+/*Modifies the tab/scene of tab when hovered*/
 .tab:hover {
-  -fx-background-color: #1F2833;
+  -fx-background-color: #0B0C10;
 }
 
 /*Modifies the text in a tab label*/
@@ -79,16 +79,21 @@
   -fx-text-fill: white;
 }
 
-/*Modifies the Table View tabs when hovered*/
+/*Modifies the Table View columns when hovered*/
 .table-view .label:hover {
   -fx-background-color: #0B0C10;
   -fx-text-fill: white;
 }
 
 /*Modifies the tableView background*/
-#tableView {
-  -fx-background-color: #1F2833;
+.tableView {
+  -fx-background-color: #0B0C10;
   -fx-border-color: #66FCF1;
+}
+
+/*Modifies the Table View background when hovered*/
+.tableView:hover {
+  -fx-background-color: #1F2833;
 }
 
 /*Modifies the Product Name Column in the Table*/
