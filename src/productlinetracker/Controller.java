@@ -26,7 +26,12 @@ public class Controller {
   @FXML private ComboBox<String> productAmtComboBox;
 
   /**
-   * The method that handles events for the "Add Product" button in the "Product Line" tab.
+   * @brief The method that handles events for the "Add Product" button in the "Product Line" tab.
+   *
+   * When the "Add Product" button it clicks, the program accesses the database from the main class
+   * and launches it. If launch was successful, it will then attempt to execute a query that was
+   * instructed. If successful, the statement will execute the query, and a message will print
+   * afterwards stating that it was successful.
    *
    * @return nothing
    */
@@ -53,7 +58,11 @@ public class Controller {
   }
 
   /**
-   * The method that handles events for the "Record Production" button in the "Product Record" tab.
+   * @brief The method that handles events for the "Record Production" button in the
+   * "Product Record" tab.
+   *
+   * When the "Record Production" button is clicked, the program will output the number that is
+   * selected from the Combo Box. This button will have more functions in the future.
    *
    * @return nothing
    */
@@ -66,8 +75,11 @@ public class Controller {
   }
 
   /**
-   * The initialize method populates values in the "productAmtComboBox" ComboBox and has an option
-   * to enter other values.
+   * @brief Method which handles the ComboBox and the ChoiceBox methods within the program.
+   *
+   * The initialize method populates values in the "productAmtComboBox" ComboBox, which also has the
+   * ability to enter other values, and the method populates theaswell as the "itemTypeChoiceBox"
+   * ChoiceBox aswell.
    *
    * @return nothing
    */

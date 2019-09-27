@@ -40,6 +40,8 @@ public class Main extends Application {
   }
 
   /**
+   * @brief connects to H2 database and executes a query.
+   *
    * The initializeDB method connects to the H2 Database made within the IDE. Once connected, a
    * statement is created and a SQL command is executed. If the query is successfully executed, a
    * message will state that the product record has been inserted into the database.
@@ -51,8 +53,7 @@ public class Main extends Application {
 
     final String DB_URL = "jdbc:h2:./res/ProductLineDB";
 
-    //  Database credentials
-
+    //  Database credentials (Username/Password are temporary)
     final String USER = "";
 
     final String PASS = "";
@@ -88,9 +89,12 @@ public class Main extends Application {
   }
 
   /**
+   * @brief starts program.
+   *
    * The main method, which will launch the args parameter, allowing the program to start.
    *
    * @param args String variable which contains everything.
+   * @return nothing
    */
   public static void main(String[] args) {
     launch(args);
