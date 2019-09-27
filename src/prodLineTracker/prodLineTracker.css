@@ -1,50 +1,108 @@
 /*Modifies the background of the program*/
 .root {
-  -fx-background-image: url("background.jpg");
+  -fx-background-color: #0B0C10;
+}
+
+/*Modifies the contents of a button*/
+.button {
+  -fx-background-color: #1F2833;
+  -fx-text-fill: #C5C6C7;
+  -fx-font-weight: bold;
+  -fx-border-color: #66FCF1;
 }
 
 /*Modifies the buttons when hovered*/
 .button:hover {
-  -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+  -fx-background-color: #0B0C10;
   -fx-text-fill: white;
 }
+
+/*Modifies the buttons when clicked*/
+.button:focused {
+  -fx-background-color: #1F2833;
+  -fx-text-fill: white;
+}
+/*Modifies the contents within a label*/
+.label {
+  -fx-font-weight: bold;
+  -fx-text-fill: #66FCF1;
+}
+
+.label:hover {
+  -fx-background-color: #1F2833;
+  -fx-text-fill: white;
+}
+/*Modifies the background of the tab*/
+.tab {
+  -fx-background-color: #1F2833;
+}
+
 /*Modifies the tabs when hovered*/
 .tab:hover {
-  -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+  -fx-background-color: #1F2833;
   -fx-text-fill: white;
 }
 
-/*Modifies the Product Name column in the Table View*/
-.table-view #productNameColumn {
-  -fx-alignment: center;
+/*Modifies the text in a tab label*/
+.tab-label {
+  -fx-text-fill: #66FCF1;
+  -fx-font-weight: bold;
 }
 
-/*Modifies the Manufacturer column in the Table View*/
-.table-view #manufacturerColumn {
-  -fx-alignment: center;
+/*Modifies the contents of the tab text when hovered*/
+.tab-label:hover {
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
 }
 
-/*Modifies the Item Type column in the Table View*/
-.table-view #itemTypeColumn {
-  -fx-alignment: center;
+/*Modifies the contents of the tab header area and background*/
+.tab-pane .tab-header-area .tab-header-background {
+  -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+/*Modifies the content in a choice box*/
+.choice-box .label {
+  -fx-text-fill: black;
+}
+
+/*Modifies the content in a choice box when hovered*/
+.choice-box .label:hover {
+  -fx-background-color: #1F2833;
+  -fx-text-fill: white;
+}
+
+.table-view .label {
+  -fx-text-alignment: center;
+  -fx-background-color: #1F2833;
+  -fx-text-fill: white;
+}
+
+/*Modifies the Table View tabs when hovered*/
+.table-view .label:hover {
+  -fx-background-color: #0B0C10;
+  -fx-text-fill: white;
 }
 
 /*Modifies the tableView background*/
 #tableView {
-  -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+  -fx-background-color: #1F2833;
+  -fx-border-color: #66FCF1;
 }
 
-/*Modifies the Product Name Label*/
-#productNameLabel {
-
+/*Modifies the Product Name Column in the Table*/
+#productNameColumn {
+  -fx-background-color: #1F2833;
+  -fx-border-color: #45A29E;
 }
 
-/*Modifies the Manufacturer Label*/
-#manufacturerLabel {
-
+/*Modifies the Manufacturer Column in the Table*/
+#manufacturerColumn {
+  -fx-background-color: #1F2833;
+  -fx-border-color: #45A29E;
 }
 
-/*Modifies the Item Type Label*/
-#itemTypeLabel {
-
+/*Modifies the Item Type Column in the Table*/
+#itemTypeColumn {
+  -fx-background-color: #1F2833;
+  -fx-border-color: #45A29E;
 }
