@@ -17,17 +17,17 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.collections.*?>
-<GridPane alignment="center" hgap="10" prefHeight="470.0" prefWidth="650.0" vgap="10"
+<GridPane styleClass="tab-header-background" alignment="center" hgap="10" prefHeight="470.0" prefWidth="650.0" vgap="10"
   xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-  fx:controller="prodLineTracker.Controller">
+  fx:controller="productlinetracker.Controller">
   <columnConstraints>
     <ColumnConstraints/>
   </columnConstraints>
   <rowConstraints>
     <RowConstraints/>
   </rowConstraints>
-  <TabPane prefHeight="470.0" prefWidth="657.0" tabClosingPolicy="UNAVAILABLE">
-    <Tab fx:id="productLineTab" text="Product Line">
+  <TabPane styleClass="tab" prefHeight="470.0" prefWidth="657.0" tabClosingPolicy="UNAVAILABLE">
+    <Tab styleClass="tab-label" fx:id="productLineTab" text="Product Line">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
         <GridPane layoutX="128.0" layoutY="8.0" prefHeight="141.0" prefWidth="323.0">
           <columnConstraints>
@@ -40,7 +40,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
           </rowConstraints>
           <AnchorPane prefHeight="200.0" prefWidth="200.0">
-            <Label fx:id="productNameLabel" layoutX="51.0" layoutY="17.0"
+            <Label styleClass="label" fx:id="productNameLabel" layoutX="51.0" layoutY="17.0"
               text="Product Name:"/>
           </AnchorPane>
           <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -48,7 +48,7 @@
               prefWidth="117.0"/>
           </AnchorPane>
           <AnchorPane prefHeight="200.0" prefWidth="170.0" GridPane.rowIndex="1">
-            <Label fx:id="manufacturerLabel" layoutX="57.0" layoutY="16.0"
+            <Label styleClass="label" fx:id="manufacturerLabel" layoutX="57.0" layoutY="16.0"
               text="Manufacturer:"/>
           </AnchorPane>
           <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
@@ -57,16 +57,16 @@
               prefHeight="30.0" prefWidth="117.0"/>
           </AnchorPane>
           <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-            <Label fx:id="itemTypeLabel" layoutX="81.0" layoutY="16.0" text="Item Type:"/>
+            <Label styleClass="label" fx:id="itemTypeLabel" layoutX="81.0" layoutY="16.0" text="Item Type:"/>
           </AnchorPane>
           <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
             GridPane.rowIndex="2">
-            <ChoiceBox fx:id="itemTypeCbox" layoutX="14.0" layoutY="11.0"
+            <ChoiceBox fx:id="itemTypeChoiceBox" layoutX="14.0" layoutY="11.0"
               prefHeight="21.0" prefWidth="115.0">
             </ChoiceBox>
           </AnchorPane>
         </GridPane>
-        <Button fx:id="addProduct" layoutX="206.0" layoutY="159.0" mnemonicParsing="false"
+        <Button styleClass="button" fx:id="addProduct" layoutX="206.0" layoutY="159.0" mnemonicParsing="false"
           onAction="#handleEventAddProduct" prefHeight="31.0" prefWidth="213.0"
           text="Add Product"/>
         <Label layoutX="10.0" layoutY="190.0" text="Existing Products"/>
@@ -97,7 +97,7 @@
         </TableView>
       </AnchorPane>
     </Tab>
-    <Tab fx:id="productRecordTab" text="Product Record">
+    <Tab styleClass="tab-label" fx:id="productRecordTab" text="Product Record">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
         <Label layoutX="271.0" layoutY="14.0" text="Choose Product:"/>
         <ListView layoutX="225.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0"/>
@@ -108,7 +108,7 @@
           onAction="#handleEventRecordProduction" text="Record Production"/>
       </AnchorPane>
     </Tab>
-    <Tab text="Production Log">
+    <Tab styleClass="tab-label" text="Production Log">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
         <TextArea layoutX="40.0" layoutY="41.0" prefHeight="354.0" prefWidth="568.0"/>
       </AnchorPane>

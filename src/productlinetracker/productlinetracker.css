@@ -1,7 +1,4 @@
 /*Modifies the background of the program*/
-.root {
-  -fx-background-color: #0B0C10;
-}
 
 /*Modifies the contents of a button*/
 .button {
@@ -30,20 +27,20 @@
   -fx-text-fill: #66FCF1;
 }
 
+/*Modifies the contents within a label when hovered*/
 .label:hover {
-  -fx-background-color: #1F2833;
+  -fx-background-color: #0B0C10;
   -fx-text-fill: white;
 }
 
 /*Modifies the background of the tab*/
 .tab {
-  -fx-background-color: #1F2833;
+  -fx-background-color: #0B0C10;
 }
 
 /*Modifies the tabs when hovered*/
 .tab:hover {
   -fx-background-color: #1F2833;
-  -fx-text-fill: white;
 }
 
 /*Modifies the text in a tab label*/
@@ -72,6 +69,7 @@
 .choice-box .label:hover {
   -fx-background-color: #1F2833;
   -fx-text-fill: white;
+  -fx-border-color: white;
 }
 
 /*Modifies the columns in the Table View*/

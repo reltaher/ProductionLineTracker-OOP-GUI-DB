@@ -1,4 +1,4 @@
-package prodLineTracker;
+package productlinetracker;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +12,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+/**
+ * @author Ramzy El-Taher
+ */
 public class Controller {
 
   public Tab productLineTab;
@@ -30,7 +33,7 @@ public class Controller {
 
   @FXML private TextField manufacturerTA;
 
-  @FXML private ChoiceBox<String> itemTypeCbox;
+  @FXML private ChoiceBox<String> itemTypeChoiceBox;
 
   @FXML private ComboBox<String> productAmtComboBox;
 
@@ -50,7 +53,7 @@ public class Controller {
     //Gets text from Manufacturer text area in Product Line tab.
     String prodManufacturer = manufacturerTA.getText();
     //Gets text from Item Type Choice Box in Product Line tab.
-    String itemType = itemTypeCbox.getValue();
+    String itemType = itemTypeChoiceBox.getValue();
     //Prints the values from each input
     System.out.println(
         "\nProduct name: "
@@ -75,8 +78,8 @@ public class Controller {
   }
 
   /**
-   * The initialize method populates values in the "prodAmtCbox" ComboBox and has an option to enter
-   * other values.
+   * The initialize method populates values in the "productAmtComboBox" ComboBox and has an option
+   * to enter other values.
    *
    * @return nothing
    */
@@ -91,8 +94,8 @@ public class Controller {
     // Shows a default value in the ComboBox in the "Product Record" tab
     productAmtComboBox.getSelectionModel().selectFirst();
     // Adds item types in the item type ChoiceBox in the "Product Line" tab
-    itemTypeCbox.getItems().addAll("Audio", "AudioMobile", "Visual", "VisualMobile");
+    itemTypeChoiceBox.getItems().addAll("Audio", "AudioMobile", "Visual", "VisualMobile");
     // shows the first value in the item type Choice Box in the "Product Line" tab
-    itemTypeCbox.getSelectionModel().selectFirst();
+    itemTypeChoiceBox.getSelectionModel().selectFirst();
   }
 }

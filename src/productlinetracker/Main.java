@@ -1,4 +1,4 @@
-package prodLineTracker;
+package productlinetracker;
 
 import java.sql.Connection;
 
@@ -13,7 +13,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/** @author Ramzy El-Taher */
+/**
+ * Represents the author of the program.
+ * @author Ramzy El-Taher
+ *
+ */
 public class Main extends Application {
 
   /**
@@ -25,17 +29,17 @@ public class Main extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
 
-    Parent root = FXMLLoader.load(getClass().getResource("prodLineTracker.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("productlinetracker.fxml"));
     primaryStage.setTitle("Production Line Tracker");
     primaryStage.setScene(new Scene(root, 657, 470));
-    root.getStylesheets().add("prodLineTracker/prodLineTracker.css");
+    root.getStylesheets().add("prodLineTracker/productlinetracker.css");
     primaryStage.show();
   }
 
   /**
    * The initializeDB method connects to the H2 Database made within the IDE. Once connected, a
    * statement is created and a SQL command is executed. If the query is successfully executed, a
-   * message will state that the product record has been inserted into the datatbase.
+   * message will state that the product record has been inserted into the database.
    *
    * @return nothing
    */
