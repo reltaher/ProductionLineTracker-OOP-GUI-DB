@@ -13,7 +13,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 /**
+ * Represents the author of the program.
+ *
  * @author Ramzy El-Taher
+ *     <p>The program is a software made in JavaFX where it tracks the number and types of products
+ *     being made.
  */
 public class Controller {
 
@@ -44,17 +48,17 @@ public class Controller {
    */
   @FXML
   void handleEventAddProduct() {
-    //Main class object is made to access the database method
+    // Main class object is made to access the database method
     Main DB = new Main();
-    //Allows button to initialize the database through the Main class
+    // Allows button to initialize the database through the Main class
     DB.initializeDB();
-    //Gets text from Product Name text area in Product Line tab.
+    // Gets text from Product Name text area in Product Line tab.
     String prodName = prodNameTA.getText();
-    //Gets text from Manufacturer text area in Product Line tab.
+    // Gets text from Manufacturer text area in Product Line tab.
     String prodManufacturer = manufacturerTA.getText();
-    //Gets text from Item Type Choice Box in Product Line tab.
+    // Gets text from Item Type Choice Box in Product Line tab.
     String itemType = itemTypeChoiceBox.getValue();
-    //Prints the values from each input
+    // Prints the values from each input
     System.out.println(
         "\nProduct name: "
             + prodName
@@ -71,9 +75,9 @@ public class Controller {
    */
   @FXML
   void handleEventRecordProduction() {
-    //Gets the value from the Product Quantity Combobox in Product Record tab.
+    // Gets the value from the Product Quantity Combobox in Product Record tab.
     String prodQuantity = productAmtComboBox.getValue();
-    //Prints value that was obtained from prodQuantity
+    // Prints value that was obtained from prodQuantity
     System.out.println(prodQuantity);
   }
 

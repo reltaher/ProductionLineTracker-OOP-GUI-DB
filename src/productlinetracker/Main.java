@@ -15,15 +15,18 @@ import javafx.stage.Stage;
 
 /**
  * Represents the author of the program.
- * @author Ramzy El-Taher
  *
+ * @author Ramzy El-Taher
+ *     <p>The program is a software made in JavaFX where it tracks the number and types of products
+ *     being made.
  */
 public class Main extends Application {
 
   /**
    * The start method is the starting point of a JavaFX program. This start method sets the title.
    *
-   * @param primaryStage The primary stage.
+   * @param primaryStage The primary stage, which sets the title, scene, and ability to show the
+   *     program.
    * @throws Exception Any problem with the code.
    */
   @Override
@@ -66,14 +69,14 @@ public class Main extends Application {
       System.out.println("Successfully connected to Database.");
       // STEP 3: Execute a query
       System.out.println("Inserting Product records into table...");
-      //Statement used to execute queries
+      // Statement used to execute queries
       Statement stmt = conn.createStatement();
-      //SQL query stored in a string
+      // SQL query stored in a string
       String sql =
           "INSERT INTO Product(type, manufacturer, name) " + "VALUES ( 'AUDIO', 'Apple', 'iPod' )";
-      //Executes a SQL database query
+      // Executes a SQL database query
       stmt.executeUpdate(sql);
-      //If execution was successful, this message will print.
+      // If execution was successful, this message will print.
       System.out.println("Product record has been inserted successfully.");
     } catch (SQLException e) {
       System.out.println("Error: SQL Exception.");
