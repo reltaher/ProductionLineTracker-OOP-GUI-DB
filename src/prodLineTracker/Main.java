@@ -63,22 +63,22 @@ public class Main extends Application {
       // STEP 3: Execute a query
       System.out.println("Inserting Product records into table...");
       Statement stmt = conn.createStatement();
-        String sql =
-            "INSERT INTO Product(type, manufacturer, name) " + "VALUES ( 'AUDIO', 'Apple', 'iPod' )";
-        stmt.executeUpdate(sql);
-        System.out.println("Product record has been inserted successfully.");
+      String sql =
+          "INSERT INTO Product(type, manufacturer, name) " + "VALUES ( 'AUDIO', 'Apple', 'iPod' )";
+      stmt.executeUpdate(sql);
+      System.out.println("Product record has been inserted successfully.");
     } catch (SQLException e) {
       System.out.println("Error: SQL Exception.");
       e.printStackTrace();
     } catch (ClassNotFoundException e) {
       System.out.println("Error: Class Not Found.");
       e.printStackTrace();
-
     }
   }
 
   /**
    * The main method, which will launch the args parameter, allowing the program to start.
+   *
    * @param args String variable which contains everything.
    */
   public static void main(String[] args) {
