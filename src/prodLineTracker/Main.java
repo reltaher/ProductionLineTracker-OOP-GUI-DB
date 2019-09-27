@@ -62,10 +62,14 @@ public class Main extends Application {
       System.out.println("Successfully connected to Database.");
       // STEP 3: Execute a query
       System.out.println("Inserting Product records into table...");
+      //Statement used to execute queries
       Statement stmt = conn.createStatement();
+      //SQL query stored in a string
       String sql =
           "INSERT INTO Product(type, manufacturer, name) " + "VALUES ( 'AUDIO', 'Apple', 'iPod' )";
+      //Executes a SQL database query
       stmt.executeUpdate(sql);
+      //If execution was successful, this message will print.
       System.out.println("Product record has been inserted successfully.");
     } catch (SQLException e) {
       System.out.println("Error: SQL Exception.");
