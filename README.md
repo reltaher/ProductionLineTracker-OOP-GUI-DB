@@ -56,7 +56,7 @@ Ramzy El-Taher
 
 -The entire GUI structure of the program was assembled with different features, each tab having its own AnchorPane. The following was added to each tab:
 
-##### Product Line:
+#### Product Line:
 
 -2x3 GridPane added to the AnchorPane
 
