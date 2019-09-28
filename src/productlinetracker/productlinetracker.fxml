@@ -97,7 +97,7 @@
         </TableView>
       </AnchorPane>
     </Tab>
-    <Tab styleClass="tab-label" text="Product Record">
+    <Tab styleClass="tab-label" text="Produce">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
         <Label layoutX="271.0" layoutY="14.0" text="Choose Product:"/>
         <ListView layoutX="225.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0"/>
