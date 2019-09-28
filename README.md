@@ -10,6 +10,8 @@ The Production Line Tracker is a program that will manage tracking inventory of 
 
 ## Diagrams
 
+![Sprint 1 Class Diagram](diagrams/Class_Diagram_Sprint1.pdf)
+
 
 ## Getting Started
 
