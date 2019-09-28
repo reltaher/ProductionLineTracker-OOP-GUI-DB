@@ -54,7 +54,7 @@ Ramzy El-Taher
 
 #### Week 3 (Sept 1 - Sept 7):
 
--The entire GUI structure of the program was assembled with different features, each tab having its own AnchorPane. The following was added to each tab:
+-The entire GUI structure of the program was assembled with different features, each tab having its own AnchorPane. Each TextAreas, ComboBox, and ChoiceBox were given fx:ids which creates fields for them in the Controller Class which are used to obtain information from these containers. Each Button made within SceneBuilder is also given an "On Action" id which creates methods for them in the Controller class, which then allows the button to execute a block of code. The following was added to each tab:
 
 #### Product Line:
 
@@ -74,7 +74,7 @@ Ramzy El-Taher
 
 -Label with the text "Choose Product:" and a ListView below the label added to the AnchorPane.
 
--Below the ListView, a Label with the text "Choose Quantity:" and an editable ComboBox with a String datatype and values 1-10 populated in it were added to the AnchorPane.
+-Below the ListView, a Label with the text "Choose Quantity:" and a ComboBox with a String datatype were added to the AnchorPane.
 
 -A button with the text "Record Production" was added to the AnchorPane. For now, this button just prints the selected value from the ComboBox to the console.
 
@@ -93,6 +93,14 @@ Ramzy El-Taher
 
 #### Week 5 (Sept 22 - Sept 28):
 
+-Within SceneBuilder, a skeleton Controller class is automatically made. I simply copy pasted that class into my own Controller class to use. 
 
+-For the "Add Product" button in the Product Line tab, I added code to the button event handler so that it was able to access the database and insert a product into it. The Button is accessing the "intializeDB" method in the main class, which then executes the following SQL query: "INSERT INTO Product(type, manufacturer, name) VALUES ( 'AUDIO', 'Apple', 'iPod' );"
+
+-For the ComboBox in the produce tab, I made a method in the Controller class classed "initialize". Within this method, I populated the ComboBox with values "1-10" which are read as a String. I called the method "setEditable(true)" so that users are able to enter their own values into the combo box. I also called the "getSelectionModel().selectFirst()" method to show a default value, which in this case would be 1.
+
+-Within the same "initialize" method, I populated the Item Type Choice Box in the "Product Line" tab with the string values "Audio", "AudioMobile", "Visual", and "VisualMobile". I also called the method where it shows a default value for the choice box, in which the value here would be "Audio".
+
+-After everything was complete for this sprint, I made sure that the Quality, Style, and Documentation expectations met the satisfactory requirements before submission. I also added a Sprint 1 Diagram to the Repository, and I added information about the project into the README.
 
 ## Key Programming Concepts Utilized
