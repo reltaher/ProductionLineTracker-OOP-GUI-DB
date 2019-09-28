@@ -18,7 +18,8 @@ import javafx.stage.Stage;
  *
  * @author Ramzy El-Taher
  *     <p>The program is a software made in JavaFX where it tracks the number and types of products
- *     being made.
+ *     being made. This file is the Main class, where the program is launched and executed.
+ *     <p>Date: 09/26/19
  */
 public class Main extends Application {
 

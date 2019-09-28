@@ -1,3 +1,12 @@
+/**
+ * Represents the author of the program.
+ *
+ * @author Ramzy El-Taher
+ *     <p>The program is a software made in JavaFX where it tracks the number and types of products
+ *     being made. This file is the CSS, where the look of the GUI is changed.
+ *     <p>Date: 09/26/19
+ */
+
 /*Modifies the contents of a button*/
 .button {
   -fx-background-color: #1F2833;
