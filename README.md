@@ -24,6 +24,7 @@ The Production Line Tracker is a program that will manage tracking inventory of 
 
 ## Author
 
+Ramzy El-Taher
 
 ## License
 
@@ -33,14 +34,32 @@ The Production Line Tracker is a program that will manage tracking inventory of 
 
 ## History
 
-### Week 1 (Aug 19 - Aug 24):
+### Sprint 1 (GUI, Basic Database)
 
-### Week 2 (Aug 25 - Aug 31):
+#### Week 1 (Aug 19 - Aug 24):
 
-### Week 3 (Sept 1 - Sept 7):
+-Started the project on IntelliJ as a JavaFX Project
 
-### Week 4 (Sept 15 - Sept 21):
+-Created a private repository on GitHub through IntelliJ and shared it
 
-### Week 5 (Sept 22 - Sept 28):
+-Created a README on the GitHub Repository
+
+#### Week 2 (Aug 25 - Aug 31):
+
+-Created the structure of the GUI on SceneBuilder. The structure includes a tab view with three tabs.
+
+-Named each tab "Product Line", "Produce", and "Production Log".
+
+#### Week 3 (Sept 1 - Sept 7):
+
+
+
+#### Week 4 (Sept 15 - Sept 21):
+
+
+
+#### Week 5 (Sept 22 - Sept 28):
+
+
 
 ## Key Programming Concepts Utilized
