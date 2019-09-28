@@ -85,7 +85,11 @@ Ramzy El-Taher
 
 #### Week 4 (Sept 15 - Sept 21):
 
+-H2 DataBase was created within IntelliJ. A res folder was made to store database information.
 
+-Within the Database, two tables were made: Product, and ProductionRecord. Both tables have different "fields" with different types of information that will be used later on. A unique index with the name "Product_id_uindex" was also made.
+
+-Code to connect to the database was created in the Main Class within the method "initializeDB".
 
 #### Week 5 (Sept 22 - Sept 28):
 
