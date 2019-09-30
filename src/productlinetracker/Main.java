@@ -38,6 +38,7 @@ public class Main extends Application {
     primaryStage.setScene(new Scene(root, 657, 470));
     root.getStylesheets().add("productlinetracker/productlinetracker.css");
     primaryStage.show();
+
   }
 
   /**

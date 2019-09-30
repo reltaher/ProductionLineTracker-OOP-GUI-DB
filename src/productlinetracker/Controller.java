@@ -87,8 +87,11 @@ public class Controller {
     productAmtComboBox.setEditable(true);
     // Shows a default value in the ComboBox in the "Product Record" tab
     productAmtComboBox.getSelectionModel().selectFirst();
-    // Adds item types in the item type ChoiceBox in the "Product Line" tab
-    itemTypeChoiceBox.getItems().addAll("Audio", "AudioMobile", "Visual", "VisualMobile");
+    // Loops through each enum, gets their string value, and adds them into itemTypeChoiceBox
+    for (itemType i : itemType.values()) {
+      itemTypeChoiceBox.getItems().addAll(i.getCode());
+    }
+    //itemTypeChoiceBox.getItems().addAll("Audio", "AudioMobile", "Visual", "VisualMobile");
     // shows the first value in the item type Choice Box in the "Product Line" tab
     itemTypeChoiceBox.getSelectionModel().selectFirst();
   }
