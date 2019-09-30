@@ -93,8 +93,8 @@ public class Controller {
     // Shows a default value in the ComboBox in the "Product Record" tab
     productAmtComboBox.getSelectionModel().selectFirst();
     // Loops through each enum, gets their string value, and adds them into itemTypeChoiceBox
-    for (ItemType i : ItemType.values()) {
-      itemTypeChoiceBox.getItems().addAll(i.getCode());
+    for (ItemType items : ItemType.values()) {
+      itemTypeChoiceBox.getItems().addAll(items.getCode());
     }
     // shows the first value in the item type Choice Box in the "Product Line" tab
     itemTypeChoiceBox.getSelectionModel().selectFirst();
