@@ -4,9 +4,11 @@ The Production Line Tracker is a program that will manage tracking inventory of 
 
 ## Demonstration
 
+N/A
 
 ## Documentation
 
+N/A. All of the documentation are currently in the program as JavaDoc style comments.
 
 ## Diagrams
 
@@ -15,12 +17,15 @@ The Production Line Tracker is a program that will manage tracking inventory of 
 
 ## Getting Started
 
+N/A
 
 ## Built With
 
+IntelliJ IDEA.
 
 ## Contributing
 
+N/A
 
 ## Author
 
@@ -28,9 +33,11 @@ Ramzy El-Taher
 
 ## License
 
+N/A
 
 ## Acknowledgments
 
+Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 
 ## History
 
@@ -104,3 +111,9 @@ Ramzy El-Taher
 -After everything was complete for this sprint, I made sure that the Quality, Style, and Documentation expectations met the satisfactory requirements before submission. I also added a Sprint 1 Diagram to the Repository, and I added information about the project into the README.
 
 ## Key Programming Concepts Utilized
+
+-Using SceneBuilder to create a JavaFX GUI Structure
+
+-Connecting to Database by registering JDBC driver, opening a connection, and executing a query using statements.
+
+-Creating UML Diagrams within IntelliJ Ultimate Edition withing a package (Right Click Package -> Diagrams -> Show Diagram)
