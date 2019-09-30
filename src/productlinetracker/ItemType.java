@@ -9,7 +9,7 @@ package productlinetracker;
  *     created, along with a String value of code which each enum carries with them.
  *     <p>Date: 09/30/19
  */
-public enum itemType {
+public enum ItemType {
   AUDIO("AU"), VISUAL("VI"), AUDIOMOBILE("AM"), VISUALMOBILE("VM");
 
   private String code;
@@ -20,7 +20,7 @@ public enum itemType {
    *
    * @param code, which are the String values of each enum.
    */
-  itemType(String code) {
+  ItemType(String code) {
     this.code = code;
   }
 

@@ -26,6 +26,8 @@ public class Controller {
   @FXML private ComboBox<String> productAmtComboBox;
 
   /**
+   * Method to handle a button event.
+   *
    * @brief The method that handles events for the "Add Product" button in the "Product Line" tab.
    *     <p>When the "Add Product" button it clicks, the program accesses the database from the main
    *     class and launches it. If launch was successful, it will then attempt to execute a query
@@ -36,9 +38,9 @@ public class Controller {
   @FXML
   void handleEventAddProduct() {
     // Main class object is made to access the database method
-    Main DB = new Main();
+    Main database = new Main();
     // Allows button to initialize the database through the Main class
-    DB.initializeDB();
+    database.initializeDB();
     // Gets text from Product Name text area in Product Line tab.
     String prodName = prodNameTA.getText();
     // Gets text from Manufacturer text area in Product Line tab.
@@ -56,6 +58,8 @@ public class Controller {
   }
 
   /**
+   * Method to handle a button event.
+   *
    * @brief The method that handles events for the "Record Production" button in the "Product
    *     Record" tab.
    *     <p>When the "Record Production" button is clicked, the program will output the number that
@@ -71,11 +75,12 @@ public class Controller {
   }
 
   /**
+   * Method to manipulate ComboBox and ChoiceBox.
+   *
    * @brief Method which handles the ComboBox and the ChoiceBox methods within the program.
    *     <p>The initialize method populates values in the "productAmtComboBox" ComboBox, which also
    *     has the ability to enter other values, and the method populates theaswell as the
    *     "itemTypeChoiceBox" ChoiceBox aswell.
-   * @return nothing
    */
   public void initialize() {
     // Observable List of items that is added in the ComboBox in the "Product Record" tab.
@@ -88,10 +93,9 @@ public class Controller {
     // Shows a default value in the ComboBox in the "Product Record" tab
     productAmtComboBox.getSelectionModel().selectFirst();
     // Loops through each enum, gets their string value, and adds them into itemTypeChoiceBox
-    for (itemType i : itemType.values()) {
+    for (ItemType i : ItemType.values()) {
       itemTypeChoiceBox.getItems().addAll(i.getCode());
     }
-    //itemTypeChoiceBox.getItems().addAll("Audio", "AudioMobile", "Visual", "VisualMobile");
     // shows the first value in the item type Choice Box in the "Product Line" tab
     itemTypeChoiceBox.getSelectionModel().selectFirst();
   }
