@@ -28,7 +28,7 @@
     <RowConstraints/>
   </rowConstraints>
   <TabPane styleClass="tab" prefHeight="470.0" prefWidth="657.0" tabClosingPolicy="UNAVAILABLE">
-    <Tab styleClass="tab-label" text="Product Line">
+    <Tab styleClass="product-tab" text="Product Line">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
         <GridPane layoutX="128.0" layoutY="8.0" prefHeight="141.0" prefWidth="323.0">
           <columnConstraints>
@@ -98,7 +98,7 @@
         </TableView>
       </AnchorPane>
     </Tab>
-    <Tab styleClass="tab-label" text="Produce">
+    <Tab styleClass="product-tab" text="Produce">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
         <Label layoutX="271.0" layoutY="14.0" text="Choose Product:"/>
         <ListView layoutX="225.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0"/>
@@ -109,7 +109,7 @@
           onAction="#handleEventRecordProduction" text="Record Production"/>
       </AnchorPane>
     </Tab>
-    <Tab styleClass="tab-label" text="Production Log">
+    <Tab styleClass="product-tab" text="Production Log">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
         <TextArea layoutX="40.0" layoutY="41.0" prefHeight="354.0" prefWidth="568.0"/>
       </AnchorPane>

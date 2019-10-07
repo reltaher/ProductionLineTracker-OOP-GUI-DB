@@ -9,8 +9,8 @@
 
 /*Modifies the contents of a button*/
 .button {
-  -fx-background-color: #1F2833;
-  -fx-text-fill: #C5C6C7;
+  -fx-background-color: linear-gradient(white, #61a2b1);
+  -fx-text-fill: black;
   -fx-font-weight: bold;
   -fx-border-color: #66FCF1;
 }
@@ -43,11 +43,24 @@
 /*Modifies the background of the tab, and the background  of the scene that the tab is in*/
 .tab {
   -fx-background-color: #1F2833;
+  -fx-font-weight: bold;
+  -fx-border-color: #66FCF1;
+  -fx-focus-color: transparent;
 }
 
-/*Modifies the tab/scene of tab when hovered*/
-.tab:hover {
+/*Modifies each tab when hovered*/
+.product-tab:hover {
   -fx-background-color: #0B0C10;
+}
+
+/*Modifies each tab when selected*/
+.product-tab:selected {
+  -fx-background-color: linear-gradient(white, #61a2b1);
+}
+
+/*Modifies the text of the tab when selected*/
+.product-tab:selected .tab-label {
+  -fx-text-fill: #1F2833;
 }
 
 /*Modifies the text in a tab label*/
@@ -66,6 +79,8 @@
 .tab-pane .tab-header-area .tab-header-background {
   -fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }
+
+
 
 /*Modifies the content in a choice box*/
 .choice-box .label {
