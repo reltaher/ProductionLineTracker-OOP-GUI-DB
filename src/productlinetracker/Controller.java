@@ -41,21 +41,12 @@ public class Controller {
     Main database = new Main();
     // Allows button to initialize the database through the Main class
     database.initializeDB();
-    // Gets text from Product Name text area in Product Line tab.
-    String prodName = prodNameTA.getText();
-    // Gets text from Manufacturer text area in Product Line tab.
-    String prodManufacturer = manufacturerTA.getText();
-    // Gets text from Item Type Choice Box in Product Line tab.
-    String itemType = itemTypeChoiceBox.getValue();
-    // Prints the values from each input
-    System.out.println(
-        "\nProduct name: "
-            + prodName
-            + "\nManufacturer: "
-            + prodManufacturer
-            + "\nItem Type: "
-            + itemType);
-  }
+    // Creates a Widget object which passes text obtained from product, manufacturer, and itemType
+    Product product =
+        new Widget(prodNameTA.getText(), manufacturerTA.getText(), itemTypeChoiceBox.getValue());
+    // Prints the returned string method from Product which contains the constructors
+    System.out.println(product.toString());
+    }
 
   /**
    * Method to handle a button event.
