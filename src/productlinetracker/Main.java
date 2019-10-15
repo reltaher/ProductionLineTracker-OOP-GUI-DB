@@ -44,56 +44,6 @@ public class Main extends Application {
     primaryStage.show();
   }
 
-  /**
-   * Method to Initialize Database.
-   *
-   * @brief Connects to H2 database and executes a query.
-   *     <p>The initializeDB method connects to the H2 Database made within the IDE. Once connected,
-   *     a statement is created and a SQL command is executed. If the query is successfully
-   *     executed, a message will state that the product record has been inserted into the database.
-   * @return nothing
-   */
-  void initializeDB() {
-    final String JDBC_DRIVER = "org.h2.Driver";
-
-    final String DB_URL = "jdbc:h2:./res/ProductLineDB";
-
-    //  Database credentials (Username/Password are temporary)
-    final String USER = "";
-
-    final String PASS = "";
-
-    Connection conn;
-    try {
-      // STEP 1: Register JDBC driver
-
-      Class.forName(JDBC_DRIVER);
-
-      // STEP 2: Open a connection
-      System.out.println("Connecting to Database...");
-      conn = DriverManager.getConnection(DB_URL, USER, PASS);
-      System.out.println("Successfully connected to Database.");
-      // STEP 3: Execute a query
-      System.out.println("Inserting Product records into table...");
-      // Statement used to execute queries
-      Statement stmt = conn.createStatement();
-      // SQL query stored in a string
-      String sql =
-          "INSERT INTO Product(type, manufacturer, name) " + "VALUES ( 'AUDIO', 'Apple', 'iPod' )";
-      // Executes a SQL database query
-      stmt.executeUpdate(sql);
-      // If execution was successful, this message will print.
-      System.out.println("Product record has been inserted successfully.");
-      stmt.close();
-      conn.close();
-    } catch (SQLException e) {
-      System.out.println("Error: SQL Exception.");
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      System.out.println("Error: Class Not Found.");
-      e.printStackTrace();
-    }
-  }
 
   /**
    * Starts program.
@@ -104,5 +54,6 @@ public class Main extends Application {
    */
   public static void main(String[] args) {
     launch(args);
+
   }
 }

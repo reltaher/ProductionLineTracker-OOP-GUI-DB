@@ -1,10 +1,10 @@
 package productlinetracker;
 
-abstract class Product implements Item {
+public abstract class Product implements Item {
   private int id;
-  private String type;
-  private String manufacturer;
   private String name;
+  private String manufacturer;
+  private String type;
 
   public Product(String name, String manufacturer, String type) {
     this.name = name;
@@ -24,12 +24,12 @@ abstract class Product implements Item {
     this.id = id;
   }
 
-  public String getType() {
-    return type;
+  public String getName() {
+    return name;
   }
 
-  public void setType(String type) {
-    this.type = type;
+  public void setName(String name) {
+    this.name = name;
   }
 
   public String getManufacturer() {
@@ -40,11 +40,11 @@ abstract class Product implements Item {
     this.manufacturer = manufacturer;
   }
 
-  public String getName() {
-    return name;
+  public String getType() {
+    return type;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setType(String type) {
+    this.type = type;
   }
 }

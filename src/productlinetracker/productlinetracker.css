@@ -122,16 +122,19 @@
 #productNameColumn {
   -fx-background-color: #1F2833;
   -fx-border-color: #45A29E;
+  -fx-text-fill: white;
 }
 
 /*Modifies the Manufacturer Column in the Table*/
 #manufacturerColumn {
   -fx-background-color: #1F2833;
   -fx-border-color: #45A29E;
+  -fx-text-fill: white;
 }
 
 /*Modifies the Item Type Column in the Table*/
 #itemTypeColumn {
   -fx-background-color: #1F2833;
   -fx-border-color: #45A29E;
+  -fx-text-fill: white;
 }

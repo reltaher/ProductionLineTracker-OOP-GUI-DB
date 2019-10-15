@@ -10,7 +10,7 @@ package productlinetracker;
  *     <p>Date: 09/30/19
  */
 public enum ItemType {
-  AU("Audio"), VI("Visual"), AM("AudioMobile"), VM("VisualMobile");
+  Audio("AU"), Visual("VI"), AudioMobile("AM"), VisualMobile("VM");
 
   private String code;
 
