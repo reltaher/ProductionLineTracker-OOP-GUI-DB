@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -42,6 +43,9 @@ public class Controller {
   @FXML private TableColumn<?, ?> manufacturerColumn;
 
   @FXML private TableColumn<?, ?> itemTypeColumn;
+
+  @FXML
+  private ListView<Product> listView;
 
   Statement stmt;
 
@@ -105,6 +109,7 @@ public class Controller {
         manufacturerColumn.setCellValueFactory(new PropertyValueFactory("manufacturer"));
         itemTypeColumn.setCellValueFactory(new PropertyValueFactory("type"));
         tableView.setItems(data);
+        listView.setItems(data);
       }
       rs.close();
     } catch (SQLException ex) {
