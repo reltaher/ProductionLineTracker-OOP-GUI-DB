@@ -139,6 +139,12 @@
   -fx-border-color: #66FCF1;
 }
 
+/*Modifies the combo box pop-up list when hovered*/
+.combo-box-popup .list-view .list-cell:filled:hover {
+  -fx-background-color: white;
+  -fx-text-fill: -fx-text-inner-color;
+}
+
 /*Modifies the Product Name Column in the Table*/
 #productNameColumn {
   -fx-background-color: #1F2833;
