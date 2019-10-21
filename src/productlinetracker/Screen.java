@@ -26,15 +26,15 @@ public class Screen implements ScreenSpec {
     return responsetime;
   }
 
-  public void setResoulution(String resoulution) {
+  public void setResoulution(String resolution) {
     this.resolution = resolution;
   }
 
-  public void setRefreshrate(int refreshrate) {
+  public void setRefreshRate(int refreshrate) {
     this.refreshrate = refreshrate;
   }
 
-  public void setResponsetime(int responsetime) {
+  public void setResponseTime(int responsetime) {
     this.responsetime = responsetime;
   }
 

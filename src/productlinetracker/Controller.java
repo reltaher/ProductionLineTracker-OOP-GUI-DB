@@ -1,6 +1,7 @@
 package productlinetracker;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -44,8 +46,9 @@ public class Controller {
 
   @FXML private TableColumn<?, ?> itemTypeColumn;
 
-  @FXML
-  private ListView<Product> listView;
+  @FXML private ListView<Product> listView;
+
+  @FXML private TextArea productionLog;
 
   Statement stmt;
 
@@ -88,10 +91,11 @@ public class Controller {
     }
   }
 
+  /** Method to load name, type, manufacturer into a product table */
   private void loadProductTable() {
     // Observable List of products which are stored in each respective column
     try {
-      //Execute a SELECT query
+      // Execute a SELECT query
       String sql = "SELECT NAME, TYPE, MANUFACTURER FROM PRODUCT";
       PreparedStatement ps = conn.prepareStatement(sql);
       ResultSet rs = ps.executeQuery();
@@ -118,19 +122,20 @@ public class Controller {
     }
   }
 
+  /** Method to save name, manufacturer, and type to product DB */
   private void saveToDB() {
     try {
       String name = prodNameTA.getText();
       String manufacturer = manufacturerTA.getText();
       String type = itemTypeChoiceBox.getValue().getCode();
-      //Execute an INSERT INTO query
+      // Execute an INSERT INTO query
       System.out.println("Inserting Product to Database...");
-      String sql = "INSERT INTO Product (name, manufacturer, type)" + "VALUES(?, ?, ?)";
-      PreparedStatement ps = conn.prepareStatement(sql);
-      ps.setString(1, name);
-      ps.setString(2, manufacturer);
-      ps.setString(3, type);
-      ps.executeUpdate();
+      String saveProdSQL = "INSERT INTO Product (name, manufacturer, type)" + "VALUES(?, ?, ?)";
+      PreparedStatement saveProdPS = conn.prepareStatement(saveProdSQL);
+      saveProdPS.setString(1, name);
+      saveProdPS.setString(2, manufacturer);
+      saveProdPS.setString(3, type);
+      saveProdPS.executeUpdate();
       // If insertion was successful, a message will print to the console saying that it worked.
       System.out.println("Insertion successful. Product has been added.");
     } catch (SQLException ex) {
@@ -141,37 +146,42 @@ public class Controller {
     }
   }
 
-  /**
-   * Method to handle a button event.
-   *
-   * @brief The method that handles events for the "Add Product" button in the "Product Line" tab.
-   *     <p>When the "Add Product" button it clicks, the program accesses the database from the main
-   *     class and launches it. If launch was successful, it will then attempt to execute a query
-   *     that was instructed. If successful, the statement will execute the query, and a message
-   *     will print afterwards stating that it was successful.
-   * @return nothing
-   */
-  @FXML
-  void handleEventAddProduct() {
-    saveToDB();
-    loadProductTable();
+  /** Method that saves Production Log info to ProductionRecord database table */
+  private void saveToProductLog() {
+    // Create ProductionRecord
+    ProductionRecord pr = new ProductionRecord(0);
+    // Execute an INSERT INTO query
+    String insertProdLogSQL =
+        "INSERT INTO PRODUCTIONRECORD(PRODUCTION_NUM, PRODUCT_ID, SERIAL_NUM, DATE_PRODUCED)"
+            + "VALUES (?, ?, ?, ?)";
+    try {
+      PreparedStatement insertProdLogPS = conn.prepareStatement(insertProdLogSQL);
+      insertProdLogPS.setInt(1, pr.getProductionNumber());
+      insertProdLogPS.setInt(2, pr.getProductID());
+      insertProdLogPS.setString(3, pr.getSerialNumber());
+      insertProdLogPS.setDate(4, new Date(0));
+      insertProdLogPS.executeUpdate();
+      // If insertion was successful, a message will be sent to the console stating success.
+      System.out.println("Product has been logged.");
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
   }
 
-  /**
-   * Method to handle a button event.
-   *
-   * @brief The method that handles events for the "Record Production" button in the "Product
-   *     Record" tab.
-   *     <p>When the "Record Production" button is clicked, the program will output the number that
-   *     is selected from the Combo Box. This button will have more functions in the future.
-   * @return nothing
-   */
-  @FXML
-  void handleEventRecordProduction() {
-    // Gets the value from the Product Quantity Combobox in Product Record tab.
-    String prodQuantity = productAmtComboBox.getValue();
-    // Prints value that was obtained from prodQuantity
-    System.out.println(prodQuantity);
+  /** Method that loads Production Log info from ProductionRecord database table */
+  private void loadProductLog() {
+    String loadProdLogSQL = "SELECT * FROM PRODUCTIONRECORD";
+    try {
+      PreparedStatement loadProdLogPS = conn.prepareStatement(loadProdLogSQL);
+      ResultSet loadProdLogRS = loadProdLogPS.executeQuery();
+      ProductionRecord pr = new ProductionRecord(0);
+      while (loadProdLogRS.next()) {
+        productionLog.appendText(pr.toString() + "\n");
+      }
+      loadProdLogRS.close();
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
   }
 
   /**
@@ -185,6 +195,7 @@ public class Controller {
   public void initialize() {
     initializeDB();
     loadProductTable();
+    loadProductLog();
 
     // Observable List of items that is added in the ComboBox in the "Product Record" tab.
     ObservableList<String> productQuantityList =
@@ -230,5 +241,47 @@ public class Controller {
       p.next();
       p.previous();
     }
+  }
+
+  /**
+   * Method to handle a button event.
+   *
+   * @brief The method that handles events for the "Add Product" button in the "Product Line" tab.
+   *     <p>When the "Add Product" button it clicks, the program accesses the database from the main
+   *     class and launches it. If launch was successful, it will then attempt to execute a query
+   *     that was instructed. If successful, the statement will execute the query, and a message
+   *     will print afterwards stating that it was successful.
+   * @return nothing
+   */
+  @FXML
+  void handleEventAddProduct() {
+    saveToDB();
+    loadProductTable();
+  }
+
+  /**
+   * Method to handle a button event.
+   *
+   * @brief The method that handles events for the "Record Production" button in the "Product
+   *     Record" tab.
+   *     <p>When the "Record Production" button is clicked, the program will output the number that
+   *     is selected from the Combo Box. This button will have more functions in the future.
+   * @return nothing
+   */
+  @FXML
+  void handleEventRecordProduction() {
+    // Gets the item from the Product Record tab and converts it into a string.
+    String prodToProduce = listView.getSelectionModel().getSelectedItem().toString();
+    // Gets the value from the combo box in the Product Record tab.
+    String prodQuantity = productAmtComboBox.getValue();
+    // Prints value that was obtained from prodQuantity
+    System.out.println(
+        "Product has been made: " + "\n" + prodToProduce + "\nAmount: " + prodQuantity);
+    // Calls the saveToProductLog method, which saves the record of the production to the database.
+    saveToProductLog();
+    // When an item is added to the log, the TextArea is cleared to prevent duplication.
+    productionLog.clear();
+    // Calls the loadProductLog method, which adds a new production log line.
+    loadProductLog();
   }
 }

@@ -97,7 +97,7 @@
     </Tab>
     <Tab styleClass="product-tab" text="Production Log">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-        <TextArea layoutX="40.0" layoutY="41.0" prefHeight="354.0" prefWidth="568.0" />
+        <TextArea fx:id="productionLog" layoutX="40.0" layoutY="41.0" prefHeight="354.0" prefWidth="568.0" />
       </AnchorPane>
     </Tab>
   </TabPane>

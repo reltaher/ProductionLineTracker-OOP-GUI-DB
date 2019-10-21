@@ -80,8 +80,6 @@
   -fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }
 
-
-
 /*Modifies the content in a choice box*/
 .choice-box .label {
   -fx-text-fill: black;
@@ -125,6 +123,12 @@
   -fx-border-color: #66FCF1;
 }
 
+/*Modifies the List View items when hovered*/
+.list-view .list-cell:filled:hover {
+  -fx-background-color: white;
+  -fx-text-fill: -fx-text-inner-color;
+}
+
 /*Modifies the even list-view cells*/
 .list-view .list-cell:even {
   -fx-background-color: #1F2833;
@@ -132,11 +136,23 @@
   -fx-border-color: #66FCF1;
 }
 
+/*Modifies the ListView even cells when hovered*/
+.list-view .list-cell:even:filled:hover {
+  -fx-background-color: white;
+  -fx-text-fill: -fx-text-inner-color;
+}
+
 /*Modifies the odd list-view cells*/
 .list-view .list-cell:odd {
   -fx-background-color: #1F2833;
   -fx-text-fill: white;
   -fx-border-color: #66FCF1;
+}
+
+/**/
+.list-view .list-cell:odd:filled:hover {
+  -fx-background-color: white;
+  -fx-text-fill: -fx-text-inner-color;
 }
 
 /*Modifies the combo box pop-up list when hovered*/
