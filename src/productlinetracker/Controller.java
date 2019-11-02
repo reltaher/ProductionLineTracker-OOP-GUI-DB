@@ -1,13 +1,15 @@
 package productlinetracker;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.TimeZone;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -46,9 +48,9 @@ public class Controller {
 
   @FXML private TableColumn<?, ?> itemTypeColumn;
 
-  @FXML private ListView<Product> listView;
+  @FXML private ListView<Product> prodLineListView;
 
-  @FXML private TextArea productionLog;
+  @FXML private TextArea productLogTA;
 
   Statement stmt;
 
@@ -92,49 +94,45 @@ public class Controller {
   }
 
   /** Method to load name, type, manufacturer into a product table */
-  private void loadProductTable() {
+  private ObservableList<Product> loadProductList() {
+    System.out.println("Loading Products...");
+    // ArrayList which holds all of the products that can be produced.
+    ArrayList<Product> productLine = new ArrayList<>();
+
     // Observable List of products which are stored in each respective column
     try {
       // Execute a SELECT query
-      String sql = "SELECT NAME, TYPE, MANUFACTURER FROM PRODUCT";
-      PreparedStatement ps = conn.prepareStatement(sql);
-      ResultSet rs = ps.executeQuery();
-      ArrayList<Product> productLine = new ArrayList<>();
-      while (rs.next()) {
-        // Get each row label from database
-        String name = rs.getString("name");
-        String manufacturer = rs.getString("manufacturer");
-        String type = rs.getString("type");
+      String loadProdList = "SELECT NAME, TYPE, MANUFACTURER FROM PRODUCT";
+      PreparedStatement prepareProdList = conn.prepareStatement(loadProdList);
+      ResultSet rsProdList = prepareProdList.executeQuery();
 
-        // Store rows into an ArrayList
-        productLine.add(new Widget(name, manufacturer, type));
-        ObservableList<Product> data = FXCollections.observableArrayList(productLine);
-        productNameColumn.setCellValueFactory(new PropertyValueFactory("name"));
-        manufacturerColumn.setCellValueFactory(new PropertyValueFactory("manufacturer"));
-        itemTypeColumn.setCellValueFactory(new PropertyValueFactory("type"));
-        tableView.setItems(data);
-        listView.setItems(data);
-      }
-      rs.close();
+      // Stores each row from the database into an ArrayList as a Widget Object
+      while (rsProdList.next()) {
+        productLine.add(
+            new Widget(
+                rsProdList.getString("name"),
+                rsProdList.getString("manufacturer"),
+                ItemType.fromString(rsProdList.getString("type"))));
+        }
+      rsProdList.close();
     } catch (SQLException ex) {
       ex.printStackTrace();
       System.out.println("Error: SQL Exception");
     }
+    return FXCollections.observableArrayList(productLine);
   }
 
-  /** Method to save name, manufacturer, and type to product DB */
-  private void saveToDB() {
+  /** Method to save name, manufacturer, and type to the Product table in the database. When the Add
+   * Product Button is pressed, this method is executed. */
+  private void addProductToDB() {
     try {
-      String name = prodNameTA.getText();
-      String manufacturer = manufacturerTA.getText();
-      String type = itemTypeChoiceBox.getValue().getCode();
       // Execute an INSERT INTO query
       System.out.println("Inserting Product to Database...");
       String saveProdSQL = "INSERT INTO Product (name, manufacturer, type)" + "VALUES(?, ?, ?)";
       PreparedStatement saveProdPS = conn.prepareStatement(saveProdSQL);
-      saveProdPS.setString(1, name);
-      saveProdPS.setString(2, manufacturer);
-      saveProdPS.setString(3, type);
+      saveProdPS.setString(1, prodNameTA.getText());
+      saveProdPS.setString(2, manufacturerTA.getText());
+      saveProdPS.setString(3, itemTypeChoiceBox.getValue().getCode());
       saveProdPS.executeUpdate();
       // If insertion was successful, a message will print to the console saying that it worked.
       System.out.println("Insertion successful. Product has been added.");
@@ -147,24 +145,24 @@ public class Controller {
   }
 
   /** Method that saves Production Log info to ProductionRecord database table */
-  private void saveToProductLog() {
-    // Create ProductionRecord
-    ProductionRecord pr = new ProductionRecord(0);
-    // Execute an INSERT INTO query
-    String insertProdLogSQL =
-        "INSERT INTO PRODUCTIONRECORD(PRODUCTION_NUM, PRODUCT_ID, SERIAL_NUM, DATE_PRODUCED)"
-            + "VALUES (?, ?, ?, ?)";
-    try {
-      PreparedStatement insertProdLogPS = conn.prepareStatement(insertProdLogSQL);
-      insertProdLogPS.setInt(1, pr.getProductionNumber());
-      insertProdLogPS.setInt(2, pr.getProductID());
-      insertProdLogPS.setString(3, pr.getSerialNumber());
-      insertProdLogPS.setDate(4, new Date(0));
-      insertProdLogPS.executeUpdate();
-      // If insertion was successful, a message will be sent to the console stating success.
-      System.out.println("Product has been logged.");
-    } catch (SQLException ex) {
-      ex.printStackTrace();
+  private void addToProductionDB(ArrayList<ProductionRecord> productionRun) {
+    /* Loop through the productionRun,
+       inserting productionRecord object information into the ProductionRecord database table. */
+    for (ProductionRecord productLine : productionRun) {
+      String insertItemRecord =
+          "INSERT INTO PRODUCTIONRECORD(PRODUCTION_NUM, PRODUCT_ID, SERIAL_NUM, DATE_PRODUCED)"
+              + "VALUES (?, ?, ?, ?)";
+      long d = System.currentTimeMillis();
+      try {
+      PreparedStatement prepareInsertQuery = conn.prepareStatement(insertItemRecord);
+      prepareInsertQuery.setInt(1, productLine.getProductionNumber());
+      prepareInsertQuery.setInt(2, productLine.getProductID());
+      prepareInsertQuery.setString(3, productLine.getSerialNumber());
+      prepareInsertQuery.setTimestamp(4, new Timestamp(d));
+      prepareInsertQuery.executeUpdate();
+      } catch (SQLException ex) {
+        ex.printStackTrace();
+      }
     }
   }
 
@@ -174,14 +172,48 @@ public class Controller {
     try {
       PreparedStatement loadProdLogPS = conn.prepareStatement(loadProdLogSQL);
       ResultSet loadProdLogRS = loadProdLogPS.executeQuery();
-      ProductionRecord pr = new ProductionRecord(0);
+
+      // When an item is added to the log, the TextArea is cleared to prevent duplication.
+      productLogTA.clear();
       while (loadProdLogRS.next()) {
-        productionLog.appendText(pr.toString() + "\n");
+        ProductionRecord pr =
+            new ProductionRecord(
+                loadProdLogRS.getInt("production_num"),
+                loadProdLogRS.getInt("product_id"),
+                loadProdLogRS.getString("serial_num"),
+                loadProdLogRS.getTimestamp("date_produced"));
+        //Populate productionLog ArrayList
+        ArrayList<ProductionRecord> productionLog = new ArrayList<>();
+        productionLog.add(pr);
+
+        /* Stores Production Record Info, time produced in Hours:Minutes:Seconds, and the
+        local Timezone to the Production Log tab. */
+        showProduction(productionLog);
       }
-      loadProdLogRS.close();
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
+  }
+
+  /**
+   * method that populates the TextArea on the Production Log tab with the information from the
+   * productionLog, replacing the productId with the product name
+   */
+  public void showProduction(ArrayList<ProductionRecord> productionLog) {
+    productLogTA.appendText
+        (productionLog.toString().substring(1, productionLog.toString().indexOf('.')) + " "
+        + Calendar.getInstance(TimeZone.getDefault()).getTime().toString().substring(20, 24)
+        + "\n");
+  }
+
+  /** Method that sets the columns and does the setCellValueFactory in the TableView. */
+  public void setupProductLineTable() {
+    ObservableList<Product> data = loadProductList();
+    productNameColumn.setCellValueFactory(new PropertyValueFactory("name"));
+    manufacturerColumn.setCellValueFactory(new PropertyValueFactory("manufacturer"));
+    itemTypeColumn.setCellValueFactory(new PropertyValueFactory("type"));
+    tableView.setItems(data);
+    prodLineListView.setItems(data);
   }
 
   /**
@@ -194,9 +226,10 @@ public class Controller {
    */
   public void initialize() {
     initializeDB();
-    loadProductTable();
+    // Calls the method that sets up the Product Line Table.
+    setupProductLineTable();
+    loadProductList();
     loadProductLog();
-
     // Observable List of items that is added in the ComboBox in the "Product Record" tab.
     ObservableList<String> productQuantityList =
         FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
@@ -211,17 +244,10 @@ public class Controller {
     itemTypeChoiceBox.getItems().addAll(ItemType.values());
     // shows the first value in the item type Choice Box in the "Product Line" tab
     itemTypeChoiceBox.getSelectionModel().selectFirst();
-
-    // Storing ProductionRecord Collection into DataBase
-    ArrayList<ProductionRecord> productionRun = new ArrayList<>();
-    Integer numProduced = 3;
-    for (int productionRunProduct = 0; productionRunProduct < numProduced; productionRunProduct++) {
-      productionRun.add(new ProductionRecord(0));
-    }
     testMultiMedia();
   }
 
-  public static void testMultiMedia() {
+  private static void testMultiMedia() {
     AudioPlayer newAudioProduct =
         new AudioPlayer(
             "DP-X1A", "Onkyo", "DSD/FLAC/ALAC/WAV/AIFF/MQA/Ogg-Vorbis/MP3/AAC", "M3U/PLS/WPL");
@@ -255,8 +281,8 @@ public class Controller {
    */
   @FXML
   void handleEventAddProduct() {
-    saveToDB();
-    loadProductTable();
+    addProductToDB();
+    loadProductList();
   }
 
   /**
@@ -271,17 +297,48 @@ public class Controller {
   @FXML
   void handleEventRecordProduction() {
     // Gets the item from the Product Record tab and converts it into a string.
-    String prodToProduce = listView.getSelectionModel().getSelectedItem().toString();
+    String prodToProduce = prodLineListView.getSelectionModel().getSelectedItem().toString();
+
+    // Gets the quantity from the ComboBox
+    int productQuantity = Integer.parseInt(productAmtComboBox.getValue());
+
+    ArrayList<ProductionRecord> productionRun = new ArrayList<>();
+    
+    String selectDBItem = "SELECT * FROM PRODUCT";
+    try {
+      PreparedStatement prepareSelectQuery = conn.prepareStatement(selectDBItem);
+      ResultSet rs = prepareSelectQuery.executeQuery();
+      int itemRecordProdNum = 0;
+      while (rs.next()) {
+        Product aProduct = new Widget(
+            rs.getString("name"),
+            rs.getString("manufacturer"),
+            ItemType.fromString(rs.getString("type"))
+        );
+
+        ProductionRecord pr = new ProductionRecord(aProduct, itemRecordProdNum);
+        productionRun.add(pr);
+        if (prodLineListView
+            .getSelectionModel()
+            .getSelectedItem()
+            .toString()
+            .equals(aProduct.toString())) {
+          for (int i = 0; i < productQuantity; i++) {
+            addToProductionDB(productionRun);
+            // Calls the loadProductLog method, which adds a new production log line.
+            loadProductLog();
+            }
+        }
+      }
+      rs.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     // Gets the value from the combo box in the Product Record tab.
+
     String prodQuantity = productAmtComboBox.getValue();
     // Prints value that was obtained from prodQuantity
     System.out.println(
         "Product has been made: " + "\n" + prodToProduce + "\nAmount: " + prodQuantity);
-    // Calls the saveToProductLog method, which saves the record of the production to the database.
-    saveToProductLog();
-    // When an item is added to the log, the TextArea is cleared to prevent duplication.
-    productionLog.clear();
-    // Calls the loadProductLog method, which adds a new production log line.
-    loadProductLog();
   }
 }

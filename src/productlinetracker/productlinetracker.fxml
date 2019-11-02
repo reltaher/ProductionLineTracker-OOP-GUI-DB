@@ -89,7 +89,7 @@
     <Tab styleClass="product-tab" text="Produce">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
         <Label layoutX="271.0" layoutY="14.0" text="Choose Product:" />
-        <ListView fx:id="listView" layoutX="225.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0" />
+        <ListView fx:id="prodLineListView" layoutX="225.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0" />
         <Label layoutX="268.0" layoutY="255.0" text="Choose Quantity:" />
         <ComboBox fx:id="productAmtComboBox" layoutX="220.0" layoutY="276.0" prefHeight="31.0" prefWidth="206.0" />
         <Button layoutX="220.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleEventRecordProduction" prefHeight="31.0" prefWidth="207.0" text="Record Production" />
@@ -97,7 +97,7 @@
     </Tab>
     <Tab styleClass="product-tab" text="Production Log">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-        <TextArea fx:id="productionLog" layoutX="40.0" layoutY="41.0" prefHeight="354.0" prefWidth="568.0" />
+        <TextArea fx:id="productLogTA" layoutX="40.0" layoutY="41.0" prefHeight="354.0" prefWidth="568.0" />
       </AnchorPane>
     </Tab>
   </TabPane>

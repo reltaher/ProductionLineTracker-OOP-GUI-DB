@@ -10,8 +10,11 @@ package productlinetracker;
  *     <p>Date: 09/30/19
  */
 public enum ItemType {
-  Audio("AU"), Visual("VI"), AudioMobile("AM"), VisualMobile("VM");
-
+  AUDIO("AU"),
+  VISUAL("VI"),
+  AUDIOMOBILE("AM"),
+  VISUALMOBILE("VM");
+  // AU("AU"), VI("VI"), AM("AM"), VM("VM");
   private String code;
 
   /**
@@ -31,5 +34,23 @@ public enum ItemType {
    */
   public String getCode() {
     return code;
+  }
+
+  /**
+   * Method that returns an ItemType constant value if the code for the value is equal to the enum.
+   * https://stackoverflow.com/questions/12639791/what-is-the-reason-for-java-lang-illegalargumentexception-no-enum-const-class-e
+   *
+   * @param code The string variable that identifies the ItemType enum values.
+   * @return types which are the ItemType enum values. If an enum type does not exist then the
+   * method will throw a new IllegalArgumentException, stating that the item type code does not
+   * exist.
+   */
+  public static ItemType fromString(String code) {
+    for (ItemType types : ItemType.values()) {
+      if (types.code.equalsIgnoreCase(code)) {
+        return types;
+      }
+    }
+    throw new IllegalArgumentException(code + " is not a valid item type");
   }
 }

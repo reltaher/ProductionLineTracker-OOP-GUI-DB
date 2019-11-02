@@ -4,7 +4,9 @@ import java.util.Date;
 
 public class ProductionRecord {
 
+  // int that is unique for every item produced and gets auto incremented by the database
   private int productionNumber;
+  // int that corresponds to the productID from the Product table / class
   private int productID;
   private String serialNumber;
   private Date dateProduced;
@@ -25,11 +27,20 @@ public class ProductionRecord {
     this.productionNumber = productionNumber;
     this.productID = productID;
     this.serialNumber = serialNumber;
+    //caller makes to the original dateProduced object
     this.dateProduced = dateProduced;
   }
 
+  public ProductionRecord(Product aProduct, int itemCount) {
+    this.serialNumber = aProduct.getManufacturer().substring(0,3) + aProduct.getType().getCode() +
+        String.format("%05d", itemCount);
+    this.productionNumber = 0;
+    this.productID = 0;
+    this.dateProduced = new Date();
+  }
+
   public String toString() {
-    return "Production Num:" + productionNumber +
+    return "Production Num: " + productionNumber +
         " Product ID: " + productID +
         " Serial Num: " + serialNumber + " Date: " + dateProduced;
   }
@@ -65,4 +76,5 @@ public class ProductionRecord {
   public void setDateProduced(Date dateProduced) {
     this.dateProduced = dateProduced;
   }
+
 }

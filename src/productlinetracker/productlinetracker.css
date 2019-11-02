@@ -96,7 +96,7 @@
 .table-view .label {
   -fx-text-alignment: center;
   -fx-background-color: #1F2833;
-  -fx-text-fill: white;
+  -fx-text-fill: #66FCF1;
 }
 
 /*Modifies the Table View columns when hovered*/
@@ -111,10 +111,10 @@
   -fx-border-color: #66FCF1;
 }
 
-/*Modifies the Table View background when hovered*/
-.tableView:hover {
-  -fx-background-color: #1F2833;
-}
+/*!*Modifies the Table View background when hovered*!*/
+/*.tableView:hover {*/
+/*  -fx-background-color: orange;*/
+/*}*/
 
 /*Modifies the List View item selection background*/
 .list-view .list-cell:filled:selected:focused, .list-cell:filled:selected {
@@ -142,7 +142,7 @@
   -fx-text-fill: -fx-text-inner-color;
 }
 
-/*Modifies the odd list-view cells*/
+/*Modifies the odd list-view cells in the Produce tab.*/
 .list-view .list-cell:odd {
   -fx-background-color: #1F2833;
   -fx-text-fill: white;
@@ -166,6 +166,7 @@
   -fx-background-color: #1F2833;
   -fx-border-color: #45A29E;
   -fx-text-fill: white;
+  -fx-alignment: center;
 }
 
 /*Modifies the Manufacturer Column in the Table*/
@@ -173,6 +174,7 @@
   -fx-background-color: #1F2833;
   -fx-border-color: #45A29E;
   -fx-text-fill: white;
+  -fx-alignment: center;
 }
 
 /*Modifies the Item Type Column in the Table*/
@@ -180,4 +182,5 @@
   -fx-background-color: #1F2833;
   -fx-border-color: #45A29E;
   -fx-text-fill: white;
+  -fx-alignment: center;
 }
