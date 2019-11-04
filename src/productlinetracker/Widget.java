@@ -2,8 +2,8 @@ package productlinetracker;
 
 class Widget extends Product {
 
-  Widget(String name, String manufacturer, ItemType type)
+  Widget(String name, ItemType type, String manufacturer)
   {
-    super(name, manufacturer, type);
+    super(name, type, manufacturer);
   }
 }

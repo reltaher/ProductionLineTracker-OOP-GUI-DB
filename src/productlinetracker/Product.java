@@ -3,13 +3,14 @@ package productlinetracker;
 public abstract class Product implements Item {
   private int id;
   private String name;
-  private String manufacturer;
   private ItemType type;
+  private String manufacturer;
 
-  public Product(String name, String manufacturer, ItemType type) {
+
+  public Product(String name, ItemType type, String manufacturer) {
     this.name = name;
-    this.manufacturer = manufacturer;
     this.type = type;
+    this.manufacturer = manufacturer;
   }
 
   public String toString() {
