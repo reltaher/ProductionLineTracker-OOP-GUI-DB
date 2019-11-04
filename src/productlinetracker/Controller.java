@@ -57,6 +57,7 @@ public class Controller {
    * a JDBC driver is registered, a connection gets opened, and a statement is created. The method
    * is called from the "initialize()" method, which runs any code contained within it at the start
    * of the program.
+   *
    * @return void
    */
   private void initializeDB() {
@@ -76,12 +77,12 @@ public class Controller {
       System.out.println("Connecting to Database...");
       conn = DriverManager.getConnection(DB_URL, USER, PASS);
       Statement stmt = conn.createStatement();
-      //Checks if the created statement is not null
+      // Checks if the created statement is not null
       if (stmt != null) {
-        //Message will execute if stmt is not null
+        // Message will execute if stmt is not null
         System.out.println("Successfully connected to Database.");
       } else {
-        //A NullPointerException is thrown is the statement is null
+        // A NullPointerException is thrown is the statement is null
         throw new NullPointerException("There was a problem creating a statement.");
       }
     } catch (SQLException e) {
@@ -97,6 +98,7 @@ public class Controller {
    * Method which sets up the Product Line Table. The TableView and the ListView are both populated
    * with items from an ObservableList which holds an Arraylist of Product objects, which was
    * populated from the "loadProductList()" method.
+   *
    * @return void
    */
   private void setupProductLineTable() {
@@ -109,10 +111,10 @@ public class Controller {
   }
 
   /**
-   * Method that populates the Product Amount ComboBox, which is located in the Produce tab.
-   * The ComboBox is populated with an ObservableList of String variables, numbered 1-10. The
-   * ComboBox also selects the first item within the ObservableList, which in this case would be
-   * "1".
+   * Method that populates the Product Amount ComboBox, which is located in the Produce tab. The
+   * ComboBox is populated with an ObservableList of String variables, numbered 1-10. The ComboBox
+   * also selects the first item within the ObservableList, which in this case would be "1".
+   *
    * @return void
    */
   private void populateComboBox() {
@@ -129,9 +131,10 @@ public class Controller {
 
   /**
    * Method that populates the Item Type ChoiceBox, located in the Product Line tab. The ChoiceBox
-   * is populated with the Item Type Enums "AUDIO", "AUDIOMOBILE", "VISUAL", and "VISUALMOBILE".
-   * The Choice Box also selects the first item in the Item Type list by default, which in this
-   * case would be "AUDIO".
+   * is populated with the Item Type Enums "AUDIO", "AUDIOMOBILE", "VISUAL", and "VISUALMOBILE". The
+   * Choice Box also selects the first item in the Item Type list by default, which in this case
+   * would be "AUDIO".
+   *
    * @return void
    */
   private void populateChoiceBox() {
@@ -146,6 +149,8 @@ public class Controller {
    * inserts the text from the name TextField into the "NAME" column, the text from the manufacturer
    * TextField into the "MANUFACTURER" column, and the code obtained from the ItemType enums into
    * the "TYPE" column.
+   *
+   * @return void
    */
   private void addToProductDB() {
     try {
@@ -168,12 +173,14 @@ public class Controller {
   }
 
   /**
-   * Method that executes a SELECT query for the Product table in the H2 database. The query will select the NAME,
-   * TYPE, and MANUFACTURER columns from the Product table, Prepare a statement using PreparedStatement, and executes
-   * the query with a ResultSet. With the use of the ResultSet, a Widget object is made that takes in the selected
-   * items from name, type, manufacturer. The Widget object is then stored into an ArrayList of Product objects named
-   * "productLine". The ArrayList of product objects is finally stored into an ObservableList, and the ObservableList
-   * gets returned.
+   * Method that executes a SELECT query for the Product table in the H2 database. The query will
+   * select the NAME, TYPE, and MANUFACTURER columns from the Product table, Prepare a statement
+   * using PreparedStatement, and executes the query with a ResultSet. With the use of the
+   * ResultSet, a Widget object is made that takes in the selected items from name, type,
+   * manufacturer. The Widget object is then stored into an ArrayList of Product objects named
+   * "productLine". The ArrayList of product objects is finally stored into an ObservableList, and
+   * the ObservableList gets returned.
+   *
    * @return an ObservableList fill with the ArrayList of Product objects named "productLine".
    */
   private ObservableList<Product> loadProductList() {
@@ -210,8 +217,9 @@ public class Controller {
    * the ProductionRecord database table with the use of an INSERT INTO query. Each column within
    * the ProductionRecord table is set to the respective accessor from the ProductionRecord object
    * "productLine".
+   *
    * @param productionRun An ArrayList of ProductionRecord objects, used to store a ProductionRecord
-   *                      object's fields into the ProductionRecord database.
+   *     object's fields into the ProductionRecord database.
    */
   private void addToProductionDB(ArrayList<ProductionRecord> productionRun) {
     /* Loop through the productionRun,
@@ -225,7 +233,8 @@ public class Controller {
         prepareInsertQuery.setInt(1, productLine.getProductionNumber());
         prepareInsertQuery.setInt(2, productLine.getProductID());
         prepareInsertQuery.setString(3, productLine.getSerialNumber());
-        prepareInsertQuery.setTimestamp(4, new java.sql.Timestamp(productLine.getDateProduced().getTime()));
+        prepareInsertQuery.setTimestamp(
+            4, new java.sql.Timestamp(productLine.getDateProduced().getTime()));
         prepareInsertQuery.executeUpdate();
       } catch (SQLException ex) {
         ex.printStackTrace();
@@ -235,12 +244,13 @@ public class Controller {
 
   /**
    * Method that executes a SELECT query for the ProductionRecord table in the H2 database. The
-   * ResultSet that is being executed in this method takes each item from the ProductionRecord
-   * table and stores the information into a ProductionRecord object. The object is stored into
-   * an ArrayList of ProductionRecord objects names "productionLog", and the ArrayList is then
-   * passed on to a method named "showProduction".
+   * ResultSet that is being executed in this method takes each item from the ProductionRecord table
+   * and stores the information into a ProductionRecord object. The object is stored into an
+   * ArrayList of ProductionRecord objects names "productionLog", and the ArrayList is then passed
+   * on to a method named "showProduction".
+   *
    * @return void
-   **/
+   */
   private void loadProductionLog() {
     String loadProdLogSQL = "SELECT * FROM PRODUCTIONRECORD";
     try {
@@ -276,13 +286,19 @@ public class Controller {
    * ArrayList in the Production Log tab. The Production Log will display the Production Number,
    * Product ID (Product Name), Serial Number, and the date produced along with the current
    * timezone.
+   *
    * @param productionLog The ArrayList of ProductionRecord objects used to be displayed in the
-   *                      Production Log.
+   *     Production Log.
    */
   private void showProduction(ArrayList<ProductionRecord> productionLog) {
     productLogTA.appendText(
+        /* Converts the contents of the ArrayList to a string
+         * Substring starts at 1 to prevent a "[" from displaying at the start.
+         * Substring ends at the index of "." to prevent displaying milliseconds. */
         productionLog.toString().substring(1, productionLog.toString().indexOf('.'))
             + " "
+            // Calendar class that gets the current Year, Date, and Time.
+            // Substring (20,24) gets only the current Timezone and displays it at the end
             + Calendar.getInstance(TimeZone.getDefault()).getTime().toString().substring(20, 24)
             + "\n");
   }
@@ -290,6 +306,7 @@ public class Controller {
   /**
    * The initialize method is used to call other methods that are needed to be executed when the
    * program starts.
+   *
    * @return void
    */
   public void initialize() {
@@ -304,6 +321,7 @@ public class Controller {
 
   /**
    * Method that tests the functionality of the MultiMedia.
+   *
    * @return void
    */
   private static void testMultiMedia() {
@@ -329,13 +347,13 @@ public class Controller {
   }
 
   /**
-   * Method to handle a button event.
+   * Method that handles the event when the "Add Product" button is pressed in the Product Line tab.
+   * When the button is clicked, the method calls two other methods in the program; one that adds
+   * data to the Product table, and one that displays the data from the Product table to the Table
+   * View and List View. any text entered in the name TextField, manufacturer TextField, and the
+   * ItemType ChoiceBox selection will be added to the Product table in the database, and the data
+   * that was inserting into the database will be added onto the Table View and ListView.
    *
-   * @brief The method that handles events for the "Add Product" button in the "Product Line" tab.
-   *     <p>When the "Add Product" button it clicks, the program accesses the database from the main
-   *     class and launches it. If launch was successful, it will then attempt to execute a query
-   *     that was instructed. If successful, the statement will execute the query, and a message
-   *     will print afterwards stating that it was successful.
    * @return void
    */
   @FXML
@@ -345,13 +363,15 @@ public class Controller {
   }
 
   /**
-   * Method to handle a button event.
+   * Method that handles the event when the "Record Production" button is pressed in the "Produce"
+   * tab. When the button is pressed, the data that the user selects from the ListView will be
+   * stored as an object, and the object is stored under an ArrayList that holds ProductionRecord
+   * objects. The data from the ArrayList is inserted into the ProductionRecord table, and the
+   * program converts the data stored into the ArrayList into the data listed in the
+   * ProductionRecord table. The data from the ProductionRecord table is then selected from the
+   * database and is displayed on the Text Area in the Production Log tab.
    *
-   * @brief The method that handles events for the "Record Production" button in the "Product
-   *     Record" tab.
-   *     <p>When the "Record Production" button is clicked, the program will output the number that
-   *     is selected from the Combo Box. This button will have more functions in the future.
-   * @return nothing
+   * @return void
    */
   @FXML
   void handleEventRecordProduction() {
