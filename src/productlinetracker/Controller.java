@@ -414,16 +414,16 @@ public class Controller {
             vm++;
           }
         }
-          if (aProduct.toString().substring(aProduct.toString().length()-5).equals("AUDIO")) {
+          if (aProduct.toString().contains("AU")) {
             counter = au;
           }
-          if (aProduct.toString().contains("AUDIOMOBILE")) {
+          if (aProduct.toString().contains("AM")) {
             counter = am;
           }
-        if (aProduct.toString().substring(aProduct.toString().length()-6).equals("VISUAL")) {
+        if (aProduct.toString().contains("VI")) {
             counter = vi;
           }
-        if (aProduct.toString().contains("VISUALMOBILE")) {
+        if (aProduct.toString().contains("VM")) {
             counter = vm;
           }
 

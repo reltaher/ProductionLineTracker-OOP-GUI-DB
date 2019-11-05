@@ -7,6 +7,8 @@
  *     <p>Date: 09/26/19
  */
 
+/******************** BUTTONS ********************/
+
 /*Modifies the contents of a button*/
 .button {
   -fx-background-color: linear-gradient(white, #61a2b1);
@@ -28,6 +30,8 @@
 
 }
 
+/******************** LABELS ********************/
+
 /*Modifies the contents within a label*/
 .label {
   -fx-font-weight: bold;
@@ -39,6 +43,8 @@
   -fx-background-color: #0B0C10;
   -fx-text-fill: white;
 }
+
+/******************** TABS ********************/
 
 /*Modifies the background of the tab, and the background  of the scene that the tab is in*/
 .tab {
@@ -80,6 +86,13 @@
   -fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }
 
+/******************** CHOICE BOX ********************/
+
+/*Modifies the Choice Box item cells*/
+.choice-box {
+  -fx-border-color: #66FCF1;
+}
+
 /*Modifies the content in a choice box*/
 .choice-box .label {
   -fx-text-fill: black;
@@ -91,6 +104,35 @@
   -fx-text-fill: white;
   -fx-border-color: white;
 }
+
+/*Modifies the context menu in the Choice Box*/
+.choice-box .context-menu {
+  -fx-background-color: #1F2833;
+}
+
+/*Modifies the menu items in the choice box*/
+.choice-box .menu-item {
+  -fx-border-color: #66FCF1;
+}
+
+/*Modifies the menu items in the combo box when focused*/
+.choice-box .menu-item:focused {
+  -fx-border-color: #66FCF1;
+  -fx-background-color: white;
+  -fx-text-fill: black;
+}
+
+/*Modifies the labels in the choice box menu items*/
+.choice-box .menu-item .label {
+  -fx-text-fill: white;
+}
+
+/*Modifies the labels in the choice box menu items when focused*/
+.choice-box .menu-item:focused .label {
+  -fx-text-fill: black;
+}
+
+/******************** TABLE VIEW ********************/
 
 /*Modifies the columns in the Table View*/
 .table-view .label {
@@ -111,10 +153,7 @@
   -fx-border-color: #66FCF1;
 }
 
-/*!*Modifies the Table View background when hovered*!*/
-/*.tableView:hover {*/
-/*  -fx-background-color: orange;*/
-/*}*/
+/******************** LIST VIEW ********************/
 
 /*Modifies the List View item selection background*/
 .list-view .list-cell:filled:selected:focused, .list-cell:filled:selected {
@@ -155,11 +194,29 @@
   -fx-text-fill: -fx-text-inner-color;
 }
 
+/******************** COMBO BOX ********************/
+
+
 /*Modifies the combo box pop-up list when hovered*/
 .combo-box-popup .list-view .list-cell:filled:hover {
   -fx-background-color: white;
   -fx-text-fill: -fx-text-inner-color;
 }
+
+/******************** TEXT AREA ********************/
+
+.text-area {
+  text-area-background: #1F2833;
+  -fx-text-fill: white;
+  -fx-border-color: #45A29E;
+}
+
+.text-area .content {
+  -fx-background-color: #1F2833;
+
+}
+
+/******************** TABLE VIEW COLUMNS ********************/
 
 /*Modifies the Product Name Column in the Table*/
 #productNameColumn {
