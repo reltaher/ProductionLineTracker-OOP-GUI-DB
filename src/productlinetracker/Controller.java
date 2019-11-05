@@ -1,5 +1,6 @@
 package productlinetracker;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * Represents the author of the program.
@@ -102,8 +104,12 @@ public class Controller {
    * @return void
    */
   private void setupProductLineTable() {
+    System.out.println("Loading Products...");
     // ObservableList with the ArrayList of Product objects populated from a different method.
     ObservableList<Product> data = loadProductList();
+    productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+    manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+    itemTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
     // Populates the Table View with the items from the ObservableList.
     tableView.setItems(data);
     // Populates the List View with the items from the ObservableList.
@@ -184,7 +190,6 @@ public class Controller {
    * @return an ObservableList fill with the ArrayList of Product objects named "productLine".
    */
   private ObservableList<Product> loadProductList() {
-    System.out.println("Loading Products...");
     // ArrayList which holds all of the products that can be produced.
     ArrayList<Product> productLine = new ArrayList<>();
     try {
@@ -226,15 +231,15 @@ public class Controller {
     inserting productionRecord object information into the ProductionRecord database table. */
     for (ProductionRecord productLine : productionRun) {
       String insertIntoPR =
-          "INSERT INTO PRODUCTIONRECORD(PRODUCTION_NUM, PRODUCT_ID, SERIAL_NUM, DATE_PRODUCED)"
-              + "VALUES (?, ?, ?, ?)";
+          "INSERT INTO PRODUCTIONRECORD(PRODUCT_ID, SERIAL_NUM, DATE_PRODUCED)"
+              + "VALUES (?, ?, ?)";
       try {
         PreparedStatement prepareInsertQuery = conn.prepareStatement(insertIntoPR);
-        prepareInsertQuery.setInt(1, productLine.getProductionNumber());
-        prepareInsertQuery.setInt(2, productLine.getProductID());
-        prepareInsertQuery.setString(3, productLine.getSerialNumber());
+        //prepareInsertQuery.setInt(1, productLine.getProductionNumber());
+        prepareInsertQuery.setInt(1, productLine.getProductID());
+        prepareInsertQuery.setString(2, productLine.getSerialNumber());
         prepareInsertQuery.setTimestamp(
-            4, new java.sql.Timestamp(productLine.getDateProduced().getTime()));
+            3, new java.sql.Timestamp(productLine.getDateProduced().getTime()));
         prepareInsertQuery.executeUpdate();
       } catch (SQLException ex) {
         ex.printStackTrace();
@@ -360,6 +365,7 @@ public class Controller {
   void handleEventAddProduct() {
     addToProductDB();
     loadProductList();
+    setupProductLineTable();
   }
 
   /**
@@ -380,21 +386,64 @@ public class Controller {
     // Get the Quantity Value from the Combo Box and convert it into an Integer
     int amtToProduce = Integer.parseInt(productAmtComboBox.getValue());
     // Number which represents the amount of items made
-    int itemCount;
+    //int itemCount = 0;
     // ArrayList of ProductionRecord objects
     ArrayList<ProductionRecord> productionRun = new ArrayList<>();
     // Loop that adds an item to the ArrayList depending on the amount that the user selects
-    for (itemCount = 0; itemCount < amtToProduce; itemCount++) {
-      /* ProductionRecord object that takes in the Product object of the user selection and the
-      amount of items that is made*/
-      ProductionRecord pr = new ProductionRecord(aProduct, itemCount);
-      // Stores the ProductionRecord object that was made into the ArrayList
+      int au = 0;
+      int am = 0;
+      int vi = 0;
+      int vm = 0;
+      int counter = 0;
+      String SQL = "SELECT SERIAL_NUM FROM PRODUCTIONRECORD";
+      try {
+      PreparedStatement ps = conn.prepareStatement(SQL);
+      ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+          String serialNum = rs.getString("serial_num");
+          if (serialNum.contains("AU")) {
+            au++;
+          }
+          if (serialNum.contains("AM")) {
+            am++;
+          }
+          if (serialNum.contains("VI")) {
+            vi++;
+          }
+          if (serialNum.contains("VM")) {
+            vm++;
+          }
+        }
+          if (aProduct.toString().substring(aProduct.toString().length()-5).equals("AUDIO")) {
+            counter = au;
+          }
+          if (aProduct.toString().contains("AUDIOMOBILE")) {
+            counter = am;
+          }
+        if (aProduct.toString().substring(aProduct.toString().length()-6).equals("VISUAL")) {
+            counter = vi;
+          }
+        if (aProduct.toString().contains("VISUALMOBILE")) {
+            counter = vm;
+          }
+
+      } catch (SQLException ex) {
+        ex.printStackTrace();
+      }
+    /* ProductionRecord object that takes in the Product object of the user selection and the
+    amount of items that is made*/
+    for (int itemCount = 1; itemCount <= amtToProduce; itemCount++) {
+      ProductionRecord pr = new ProductionRecord(aProduct, counter++);
+
+    // Stores the ProductionRecord object that was made into the ArrayList
+
       productionRun.add(pr);
-    }
+      }
+      addToProductionDB(productionRun);
+      loadProductionLog();
+
     // Passes the ArrayList of ProductionRecord objects to the "addToProductionDB" method.
-    addToProductionDB(productionRun);
-    loadProductionLog();
-    // showProduction();
+
     // Gets the item from the Product Record tab and converts it into a string.
     String prodToProduce = prodLineListView.getSelectionModel().getSelectedItem().toString();
     // Gets the value of the amount of items that the user wishes to make.
