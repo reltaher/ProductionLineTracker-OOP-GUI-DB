@@ -1,6 +1,5 @@
 package productlinetracker;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.TimeZone;
 import javafx.collections.FXCollections;
@@ -104,11 +104,15 @@ public class Controller {
    * @return void
    */
   private void setupProductLineTable() {
+    // Console message that informs the user that the products are loading.
     System.out.println("Loading Products...");
     // ObservableList with the ArrayList of Product objects populated from a different method.
     ObservableList<Product> data = loadProductList();
+    // Sets Cell Value Factory for the Product Name column
     productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+    // Sets Cell Value Factory for the Manufacturer column
     manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+    // Sets Cell Value Factory for the Item Type column
     itemTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
     // Populates the Table View with the items from the ObservableList.
     tableView.setItems(data);
@@ -193,22 +197,22 @@ public class Controller {
     // ArrayList which holds all of the products that can be produced.
     ArrayList<Product> productLine = new ArrayList<>();
     try {
-      // Execute a SELECT query
-      String loadProdList = "SELECT NAME, TYPE, MANUFACTURER FROM PRODUCT";
-      // Prepare a statement
-      PreparedStatement prepareProdList = conn.prepareStatement(loadProdList);
-      // Executes the PreparedStatement
-      ResultSet rsProdList = prepareProdList.executeQuery();
-
-      // Stores each row from the database into an ArrayList as a Widget Object
-      while (rsProdList.next()) {
+      // SELECT SQL query for NAME, TYPE, and MANUFACTURER in the PRODUCT table.
+      String selectProductLine = "SELECT NAME, TYPE, MANUFACTURER FROM PRODUCT";
+      // Prepares a statement for the SQL query
+      PreparedStatement psSelectProductLine = conn.prepareStatement(selectProductLine);
+      // ResultSet which executes the PreparedStatement
+      ResultSet rsSelectProductLine = psSelectProductLine.executeQuery();
+      // Loops through each row selected in the Product table in the database.
+      while (rsSelectProductLine.next()) {
+        // Stores each row from the database into an ArrayList as a Widget Object
         productLine.add(
             new Widget(
-                rsProdList.getString("name"),
-                ItemType.fromString(rsProdList.getString("type")),
-                rsProdList.getString("manufacturer")));
+                rsSelectProductLine.getString("name"),
+                ItemType.fromString(rsSelectProductLine.getString("type")),
+                rsSelectProductLine.getString("manufacturer")));
       }
-      rsProdList.close();
+      rsSelectProductLine.close();
     } catch (SQLException ex) {
       ex.printStackTrace();
       System.out.println("Error: SQL Exception");
@@ -235,7 +239,7 @@ public class Controller {
               + "VALUES (?, ?, ?)";
       try {
         PreparedStatement prepareInsertQuery = conn.prepareStatement(insertIntoPR);
-        //prepareInsertQuery.setInt(1, productLine.getProductionNumber());
+        // prepareInsertQuery.setInt(1, productLine.getProductionNumber());
         prepareInsertQuery.setInt(1, productLine.getProductID());
         prepareInsertQuery.setString(2, productLine.getSerialNumber());
         prepareInsertQuery.setTimestamp(
@@ -276,6 +280,8 @@ public class Controller {
         ArrayList<ProductionRecord> productionLog = new ArrayList<>();
         // Populate productionLog ArrayList with the ProductionRecord objects
         productionLog.add(pr);
+        String[] products = productionLog.toString().split(" ");
+        System.out.println(products[5]);
 
         /* Stores Production Record Info, time produced in Hours:Minutes:Seconds, and the
         local Timezone to the Production Log tab. */
@@ -296,11 +302,36 @@ public class Controller {
    *     Production Log.
    */
   private void showProduction(ArrayList<ProductionRecord> productionLog) {
+    // Splits each word separated by a space in the Production Log into its own index with regex
+    String[] log =
+        productionLog.toString().substring(1, productionLog.toString().indexOf('.')).split(" ");
+    // SQL Query to Select ID and Name from Product Table.
+    String selectNameID = "SELECT ID, NAME FROM PRODUCT";
+    try {
+      // PreparedStatement - Prepares to execute the SQL query
+      PreparedStatement ps = conn.prepareStatement(selectNameID);
+      // ResultSet - Executes the SQL query
+      ResultSet rs = ps.executeQuery();
+      // Loops through the selected columns in the Product Table
+      while (rs.next()) {
+        // Stores the data in the ID column as a String
+        String id = rs.getString("ID");
+        // Stores the data in the Name column as a String
+        String name = rs.getString("NAME");
+        // Compares the Product ID (5th index) in the Production Log with the ID in the ID Column
+        if (log[5].equals(id)) {
+          // Assigns the 5th index in the Production Log to the product name that matches the ID
+          log[5] = name;
+        }
+      }
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
     productLogTA.appendText(
         /* Converts the contents of the ArrayList to a string
          * Substring starts at 1 to prevent a "[" from displaying at the start.
          * Substring ends at the index of "." to prevent displaying milliseconds. */
-        productionLog.toString().substring(1, productionLog.toString().indexOf('.'))
+        Arrays.toString(log).replaceAll("[,]", "").replaceAll("\\[", "").replaceAll("]", "")
             + " "
             // Calendar class that gets the current Year, Date, and Time.
             // Substring (20,24) gets only the current Timezone and displays it at the end
@@ -386,61 +417,77 @@ public class Controller {
     // Get the Quantity Value from the Combo Box and convert it into an Integer
     int amtToProduce = Integer.parseInt(productAmtComboBox.getValue());
     // Number which represents the amount of items made
-    //int itemCount = 0;
+    // int itemCount = 0;
     // ArrayList of ProductionRecord objects
     ArrayList<ProductionRecord> productionRun = new ArrayList<>();
     // Loop that adds an item to the ArrayList depending on the amount that the user selects
-      int au = 0;
-      int am = 0;
-      int vi = 0;
-      int vm = 0;
-      int counter = 0;
-      String SQL = "SELECT SERIAL_NUM FROM PRODUCTIONRECORD";
-      try {
+    int au = 0;
+    int am = 0;
+    int vi = 0;
+    int vm = 0;
+    int counter = 0;
+    String SQL = "SELECT SERIAL_NUM FROM PRODUCTIONRECORD";
+    try {
       PreparedStatement ps = conn.prepareStatement(SQL);
       ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-          String serialNum = rs.getString("serial_num");
-          if (serialNum.contains("AU")) {
-            au++;
-          }
-          if (serialNum.contains("AM")) {
-            am++;
-          }
-          if (serialNum.contains("VI")) {
-            vi++;
-          }
-          if (serialNum.contains("VM")) {
-            vm++;
-          }
+      while (rs.next()) {
+        String serialNum = rs.getString("serial_num");
+        if (serialNum.contains("AU")) {
+          au++;
         }
-          if (aProduct.toString().contains("AU")) {
-            counter = au;
-          }
-          if (aProduct.toString().contains("AM")) {
-            counter = am;
-          }
-        if (aProduct.toString().contains("VI")) {
-            counter = vi;
-          }
-        if (aProduct.toString().contains("VM")) {
-            counter = vm;
-          }
-
-      } catch (SQLException ex) {
-        ex.printStackTrace();
+        if (serialNum.contains("AM")) {
+          am++;
+        }
+        if (serialNum.contains("VI")) {
+          vi++;
+        }
+        if (serialNum.contains("VM")) {
+          vm++;
+        }
       }
+      if (aProduct.toString().contains("AU")) {
+        counter = au;
+      }
+      if (aProduct.toString().contains("AM")) {
+        counter = am;
+      }
+      if (aProduct.toString().contains("VI")) {
+        counter = vi;
+      }
+      if (aProduct.toString().contains("VM")) {
+        counter = vm;
+      }
+
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
     /* ProductionRecord object that takes in the Product object of the user selection and the
     amount of items that is made*/
     for (int itemCount = 1; itemCount <= amtToProduce; itemCount++) {
       ProductionRecord pr = new ProductionRecord(aProduct, counter++);
 
-    // Stores the ProductionRecord object that was made into the ArrayList
+      // Stores the ProductionRecord object that was made into the ArrayList
+
+      // Sets the Product ID based on the Item selected in the List View.
+      String selectID = "SELECT ID, NAME FROM PRODUCT";
+      try {
+        PreparedStatement ps = conn.prepareStatement(selectID);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+          int id = rs.getInt("ID");
+          String name = rs.getString("NAME");
+          if (prodLineListView.getSelectionModel().getSelectedItem().toString().contains(name)) {
+            pr.setProductID(id);
+          }
+        }
+      } catch (SQLException ex) {
+        ex.printStackTrace();
+      }
 
       productionRun.add(pr);
-      }
-      addToProductionDB(productionRun);
-      loadProductionLog();
+    }
+    addToProductionDB(productionRun);
+    loadProductionLog();
 
     // Passes the ArrayList of ProductionRecord objects to the "addToProductionDB" method.
 
