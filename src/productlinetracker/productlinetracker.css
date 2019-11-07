@@ -203,6 +203,13 @@
   -fx-text-fill: -fx-text-inner-color;
 }
 
+/*Modifies the text field of the combo box when hovered*/
+.combo-box .text-field:hover {
+  -fx-background-color: #1F2833;
+  -fx-text-fill: white;
+  -fx-border-color: #66FCF1;
+}
+
 /******************** TEXT AREA ********************/
 
 .text-area {
