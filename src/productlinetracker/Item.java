@@ -10,12 +10,15 @@ package productlinetracker;
  *     <p>Date: 10/07/19
  */
 public interface Item {
+  // Each method is implicitly public, so the access modifier is not needed.
 
-  //Each method is implicitly public, so the access modifier is not needed.
   int getId();
-  void setName(String name);
-  String getName();
-  void setManufacturer(String manufacturer);
-  String getManufacturer();
 
+  void setName(String name);
+
+  String getName();
+
+  void setManufacturer(String manufacturer);
+
+  String getManufacturer();
 }
