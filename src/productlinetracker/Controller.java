@@ -164,13 +164,16 @@ public class Controller {
    */
   private void addToProductDB() {
     try {
-      // Execute an INSERT INTO query
       System.out.println("Inserting Product to Database...");
-      String saveProdSQL = "INSERT INTO Product (name, manufacturer, type)" + "VALUES(?, ?, ?)";
+      // Execute an INSERT INTO query for NAME, MANUFACTURER, and TYPE
+      String saveProdSQL = "INSERT INTO Product (NAME, MANUFACTURER, TYPE)" + "VALUES(?, ?, ?)";
+      // Prepares a statement for the SQL query
       PreparedStatement saveProdPS = conn.prepareStatement(saveProdSQL);
+      // Sets the Text obtained from the Product Name TextField
       saveProdPS.setString(1, prodNameTA.getText());
       saveProdPS.setString(2, manufacturerTA.getText());
       saveProdPS.setString(3, itemTypeChoiceBox.getValue().getCode());
+      // After the sets for the PreparedStatement, an executeUpdate is called for the query
       saveProdPS.executeUpdate();
       // If insertion was successful, a message will print to the console saying that it worked.
       System.out.println("Insertion successful. Product has been added.");
@@ -199,23 +202,23 @@ public class Controller {
     try {
       // SELECT SQL query for NAME, TYPE, and MANUFACTURER in the PRODUCT table.
       String selectProductLine = "SELECT NAME, TYPE, MANUFACTURER FROM PRODUCT";
-      // Prepares a statement for the SQL query
+      // Prepares a statement for the SQL query.
       PreparedStatement psSelectProductLine = conn.prepareStatement(selectProductLine);
-      // ResultSet which executes the PreparedStatement
+      // ResultSet which executes the PreparedStatement.
       ResultSet rsSelectProductLine = psSelectProductLine.executeQuery();
       // Loops through each row selected in the Product table in the database.
       while (rsSelectProductLine.next()) {
-        // Stores each row from the database into an ArrayList as a Widget Object
+        // Stores each row from the database into an ArrayList as a Widget Object.
         productLine.add(
             new Widget(
                 rsSelectProductLine.getString("name"),
                 ItemType.fromString(rsSelectProductLine.getString("type")),
                 rsSelectProductLine.getString("manufacturer")));
       }
+      // Closes the ResultSet once it is finished with execution.
       rsSelectProductLine.close();
     } catch (SQLException ex) {
       ex.printStackTrace();
-      System.out.println("Error: SQL Exception");
     }
     // Observable List of products which are stored in each respective column.
     return FXCollections.observableArrayList(productLine);
@@ -280,9 +283,6 @@ public class Controller {
         ArrayList<ProductionRecord> productionLog = new ArrayList<>();
         // Populate productionLog ArrayList with the ProductionRecord objects
         productionLog.add(pr);
-        String[] products = productionLog.toString().split(" ");
-        System.out.println(products[5]);
-
         /* Stores Production Record Info, time produced in Hours:Minutes:Seconds, and the
         local Timezone to the Production Log tab. */
         showProduction(productionLog);
