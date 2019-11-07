@@ -397,6 +397,8 @@ public class Controller {
     addToProductDB();
     loadProductList();
     setupProductLineTable();
+    prodNameTA.clear();
+    manufacturerTA.clear();
   }
 
   /**
