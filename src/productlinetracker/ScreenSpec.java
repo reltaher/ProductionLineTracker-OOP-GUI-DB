@@ -10,8 +10,11 @@ package productlinetracker;
  *     <p>Date: 10/14/19
  */
 public interface ScreenSpec {
-  String getResolution();
-  int getRefreshRate();
-  int getResponseTime();
+  // Each method is implicitly public, so the access modifier is not needed.
 
+  String getResolution();
+
+  int getRefreshRate();
+
+  int getResponseTime();
 }
