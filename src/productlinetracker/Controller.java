@@ -26,15 +26,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * Represents the author of the program.
  *
  * @author Ramzy El-Taher
- *     <p>The program is a software made in JavaFX where it tracks the number and types of products
+ *
+ *     The program is a software made in JavaFX where it tracks the number and types of products
  *     being made. This file is the Controller Class, where the events of the controls are handled.
- *     <p>Date: 09/26/19
+ *
+ *     Date: 09/26/19
  */
 public class Controller {
 
-  @FXML private TextField prodNameTA;
+  @FXML private TextField productNameTF;
 
-  @FXML private TextField manufacturerTA;
+  @FXML private TextField manufacturerTF;
 
   @FXML private ChoiceBox<ItemType> itemTypeChoiceBox;
 
@@ -87,6 +89,7 @@ public class Controller {
         // A NullPointerException is thrown is the statement is null
         throw new NullPointerException("There was a problem creating a statement.");
       }
+      stmt.close();
     } catch (SQLException e) {
       System.out.println("Error: SQL Exception.");
       e.printStackTrace();
@@ -94,30 +97,6 @@ public class Controller {
       System.out.println("Error: Class Not Found.");
       e.printStackTrace();
     }
-  }
-
-  /**
-   * Method which sets up the Product Line Table. The TableView and the ListView are both populated
-   * with items from an ObservableList which holds an Arraylist of Product objects, which was
-   * populated from the "loadProductList()" method.
-   *
-   * @return void
-   */
-  private void setupProductLineTable() {
-    // Console message that informs the user that the products are loading.
-    System.out.println("Loading Products...");
-    // ObservableList with the ArrayList of Product objects populated from a different method.
-    ObservableList<Product> data = loadProductList();
-    // Sets Cell Value Factory for the Product Name column
-    productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-    // Sets Cell Value Factory for the Manufacturer column
-    manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
-    // Sets Cell Value Factory for the Item Type column
-    itemTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-    // Populates the Table View with the items from the ObservableList.
-    tableView.setItems(data);
-    // Populates the List View with the items from the ObservableList.
-    prodLineListView.setItems(data);
   }
 
   /**
@@ -166,17 +145,19 @@ public class Controller {
     try {
       System.out.println("Inserting Product to Database...");
       // Execute an INSERT INTO query for NAME, MANUFACTURER, and TYPE
-      String saveProdSQL = "INSERT INTO Product (NAME, MANUFACTURER, TYPE)" + "VALUES(?, ?, ?)";
+      String insertIntoProduct =
+          "INSERT INTO Product (NAME, MANUFACTURER, TYPE)" + "VALUES(?, ?, ?)";
       // Prepares a statement for the SQL query
-      PreparedStatement saveProdPS = conn.prepareStatement(saveProdSQL);
+      PreparedStatement psInsertIntoProduct = conn.prepareStatement(insertIntoProduct);
       // Sets the Text obtained from the Product Name TextField
-      saveProdPS.setString(1, prodNameTA.getText());
-      saveProdPS.setString(2, manufacturerTA.getText());
-      saveProdPS.setString(3, itemTypeChoiceBox.getValue().getCode());
+      psInsertIntoProduct.setString(1, productNameTF.getText());
+      psInsertIntoProduct.setString(2, manufacturerTF.getText());
+      psInsertIntoProduct.setString(3, itemTypeChoiceBox.getValue().getCode());
       // After the sets for the PreparedStatement, an executeUpdate is called for the query
-      saveProdPS.executeUpdate();
+      psInsertIntoProduct.executeUpdate();
       // If insertion was successful, a message will print to the console saying that it worked.
       System.out.println("Insertion successful. Product has been added.");
+      psInsertIntoProduct.close();
     } catch (SQLException ex) {
       ex.printStackTrace();
       System.out.println("Error: SQL Error");
@@ -217,11 +198,36 @@ public class Controller {
       }
       // Closes the ResultSet once it is finished with execution.
       rsSelectProductLine.close();
+      psSelectProductLine.close();
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
     // Observable List of products which are stored in each respective column.
     return FXCollections.observableArrayList(productLine);
+  }
+
+  /**
+   * Method which sets up the Product Line Table. The TableView and the ListView are both populated
+   * with items from an ObservableList which holds an Arraylist of Product objects, which was
+   * populated from the "loadProductList()" method.
+   *
+   * @return void
+   */
+  private void setupProductLineTable() {
+    // Console message that informs the user that the products are loading.
+    System.out.println("Loading Products...");
+    // ObservableList with the ArrayList of Product objects populated from a different method.
+    final ObservableList<Product> data = loadProductList();
+    // Sets Cell Value Factory for the Product Name column
+    productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+    // Sets Cell Value Factory for the Manufacturer column
+    manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+    // Sets Cell Value Factory for the Item Type column
+    itemTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+    // Populates the Table View with the items from the ObservableList.
+    tableView.setItems(data);
+    // Populates the List View with the items from the ObservableList.
+    prodLineListView.setItems(data);
   }
 
   /**
@@ -248,6 +254,7 @@ public class Controller {
         prepareInsertQuery.setTimestamp(
             3, new java.sql.Timestamp(productLine.getDateProduced().getTime()));
         prepareInsertQuery.executeUpdate();
+        prepareInsertQuery.close();
       } catch (SQLException ex) {
         ex.printStackTrace();
       }
@@ -264,21 +271,21 @@ public class Controller {
    * @return void
    */
   private void loadProductionLog() {
-    String loadProdLogSQL = "SELECT * FROM PRODUCTIONRECORD";
+    String selectAllFromPR = "SELECT * FROM PRODUCTIONRECORD";
     try {
-      PreparedStatement loadProdLogPS = conn.prepareStatement(loadProdLogSQL);
-      ResultSet loadProdLogRS = loadProdLogPS.executeQuery();
+      PreparedStatement psSelectAllFromPR = conn.prepareStatement(selectAllFromPR);
+      ResultSet rsSelectAllFromPR = psSelectAllFromPR.executeQuery();
 
       // When an item is added to the log, the TextArea is cleared to prevent duplication.
       productLogTA.clear();
-      while (loadProdLogRS.next()) {
+      while (rsSelectAllFromPR.next()) {
         // Create ProductionRecord objects from the database columns
         ProductionRecord pr =
             new ProductionRecord(
-                loadProdLogRS.getInt("PRODUCTION_NUM"),
-                loadProdLogRS.getInt("PRODUCT_ID"),
-                loadProdLogRS.getString("SERIAL_NUM"),
-                loadProdLogRS.getTimestamp("DATE_PRODUCED"));
+                rsSelectAllFromPR.getInt("PRODUCTION_NUM"),
+                rsSelectAllFromPR.getInt("PRODUCT_ID"),
+                rsSelectAllFromPR.getString("SERIAL_NUM"),
+                rsSelectAllFromPR.getTimestamp("DATE_PRODUCED"));
         // Create an ArrayList that holds ProductionRecord objects used for production log
         ArrayList<ProductionRecord> productionLog = new ArrayList<>();
         // Populate productionLog ArrayList with the ProductionRecord objects
@@ -287,6 +294,8 @@ public class Controller {
         local Timezone to the Production Log tab. */
         showProduction(productionLog);
       }
+      rsSelectAllFromPR.close();
+      psSelectAllFromPR.close();
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
@@ -309,21 +318,23 @@ public class Controller {
     String selectNameID = "SELECT ID, NAME FROM PRODUCT";
     try {
       // PreparedStatement - Prepares to execute the SQL query
-      PreparedStatement ps = conn.prepareStatement(selectNameID);
+      PreparedStatement psSelectNameID = conn.prepareStatement(selectNameID);
       // ResultSet - Executes the SQL query
-      ResultSet rs = ps.executeQuery();
+      ResultSet rsSelectNameID = psSelectNameID.executeQuery();
       // Loops through the selected columns in the Product Table
-      while (rs.next()) {
+      while (rsSelectNameID.next()) {
         // Stores the data in the ID column as a String
-        String id = rs.getString("ID");
+        String id = rsSelectNameID.getString("ID");
         // Stores the data in the Name column as a String
-        String name = rs.getString("NAME");
+        String name = rsSelectNameID.getString("NAME");
         // Compares the Product ID (5th index) in the Production Log with the ID in the ID Column
         if (log[5].equals(id)) {
           // Assigns the 5th index in the Production Log to the product name that matches the ID
           log[5] = name;
         }
       }
+      rsSelectNameID.close();
+      psSelectNameID.close();
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
@@ -337,13 +348,12 @@ public class Controller {
             // Substring (20,24) gets only the current Timezone and displays it at the end
             + Calendar.getInstance(TimeZone.getDefault()).getTime().toString().substring(20, 24)
             + "\n");
+
   }
 
   /**
    * The initialize method is used to call other methods that are needed to be executed when the
    * program starts.
-   *
-   * @return void
    */
   public void initialize() {
     initializeDB();
@@ -397,8 +407,8 @@ public class Controller {
     addToProductDB();
     loadProductList();
     setupProductLineTable();
-    prodNameTA.clear();
-    manufacturerTA.clear();
+    productNameTF.clear();
+    manufacturerTF.clear();
   }
 
   /**
@@ -415,7 +425,7 @@ public class Controller {
   @FXML
   void handleEventRecordProduction() {
     // Create a Product Object from the item that the user selects from the List View
-    Product aProduct = prodLineListView.getSelectionModel().getSelectedItem();
+    Product itemToProduce = prodLineListView.getSelectionModel().getSelectedItem();
     // Get the Quantity Value from the Combo Box and convert it into an Integer
     int amtToProduce = Integer.parseInt(productAmtComboBox.getValue());
     // Number which represents the amount of items made
@@ -428,12 +438,12 @@ public class Controller {
     int vi = 0;
     int vm = 0;
     int counter = 0;
-    String SQL = "SELECT SERIAL_NUM FROM PRODUCTIONRECORD";
+    String selectSerialNum = "SELECT SERIAL_NUM FROM PRODUCTIONRECORD";
     try {
-      PreparedStatement ps = conn.prepareStatement(SQL);
-      ResultSet rs = ps.executeQuery();
-      while (rs.next()) {
-        String serialNum = rs.getString("serial_num");
+      PreparedStatement psSelectSerialNum = conn.prepareStatement(selectSerialNum);
+      ResultSet rsSelectSerialNum = psSelectSerialNum.executeQuery();
+      while (rsSelectSerialNum.next()) {
+        String serialNum = rsSelectSerialNum.getString("serial_num");
         if (serialNum.contains("AU")) {
           au++;
         }
@@ -447,16 +457,18 @@ public class Controller {
           vm++;
         }
       }
-      if (aProduct.toString().contains("AU")) {
+      rsSelectSerialNum.close();
+      psSelectSerialNum.close();
+      if (itemToProduce.toString().contains("AU")) {
         counter = au;
       }
-      if (aProduct.toString().contains("AM")) {
+      if (itemToProduce.toString().contains("AM")) {
         counter = am;
       }
-      if (aProduct.toString().contains("VI")) {
+      if (itemToProduce.toString().contains("VI")) {
         counter = vi;
       }
-      if (aProduct.toString().contains("VM")) {
+      if (itemToProduce.toString().contains("VM")) {
         counter = vm;
       }
 
@@ -466,22 +478,24 @@ public class Controller {
     /* ProductionRecord object that takes in the Product object of the user selection and the
     amount of items that is made*/
     for (int itemCount = 1; itemCount <= amtToProduce; itemCount++) {
-      ProductionRecord pr = new ProductionRecord(aProduct, counter++);
+      ProductionRecord pr = new ProductionRecord(itemToProduce, counter++);
 
       // Stores the ProductionRecord object that was made into the ArrayList
 
       // Sets the Product ID based on the Item selected in the List View.
-      String selectID = "SELECT ID, NAME FROM PRODUCT";
+      String selectNameID = "SELECT ID, NAME FROM PRODUCT";
       try {
-        PreparedStatement ps = conn.prepareStatement(selectID);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-          int id = rs.getInt("ID");
-          String name = rs.getString("NAME");
+        PreparedStatement psSelectNameID = conn.prepareStatement(selectNameID);
+        ResultSet rsSelectNameID = psSelectNameID.executeQuery();
+        while (rsSelectNameID.next()) {
+          int id = rsSelectNameID.getInt("ID");
+          String name = rsSelectNameID.getString("NAME");
           if (prodLineListView.getSelectionModel().getSelectedItem().toString().contains(name)) {
             pr.setProductID(id);
           }
         }
+        rsSelectNameID.close();
+        psSelectNameID.close();
       } catch (SQLException ex) {
         ex.printStackTrace();
       }

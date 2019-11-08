@@ -42,13 +42,13 @@
             <Label layoutX="51.0" layoutY="17.0" styleClass="label" text="Product Name:" />
           </AnchorPane>
           <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-            <TextField fx:id="prodNameTA" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="117.0" />
+            <TextField fx:id="productNameTF" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="117.0" />
           </AnchorPane>
           <AnchorPane prefHeight="200.0" prefWidth="170.0" GridPane.rowIndex="1">
             <Label layoutX="57.0" layoutY="16.0" styleClass="label" text="Manufacturer:" />
           </AnchorPane>
           <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-            <TextField fx:id="manufacturerTA" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="117.0" />
+            <TextField fx:id="manufacturerTF" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="117.0" />
           </AnchorPane>
           <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
             <Label layoutX="81.0" layoutY="16.0" styleClass="label" text="Item Type:" />
