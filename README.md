@@ -14,6 +14,8 @@ N/A. All of the documentation are currently in the program as JavaDoc style comm
 
 ![Sprint 1 Class Diagram](diagrams/Class_Diagram_Sprint1.pdf)
 
+![Sprint 2 Class Diagram](diagrams/Class_Diagram_Sprint_2.pdf)
+
 
 ## Getting Started
 
@@ -109,6 +111,40 @@ Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 -Within the same "initialize" method, I populated the Item Type Choice Box in the "Product Line" tab with the string values "Audio", "AudioMobile", "Visual", and "VisualMobile". I also called the method where it shows a default value for the choice box, in which the value here would be "Audio".
 
 -After everything was complete for this sprint, I made sure that the Quality, Style, and Documentation expectations met the satisfactory requirements before submission. I also added a Sprint 1 Diagram to the Repository, and I added information about the project into the README.
+
+
+### Sprint 2 
+
+#### Week 6 (Sept. 29 - Oct. 5):
+
+-I created an enum called ItemType which stored four constants: AUDIO, VISUAL, AUDIOMOBILE, and VISUALMOBILE. Each of these enums has its code, which is stored as a String. AUDIO is AU, VISUAL is VI, AUDIOMOBILE is AM, and VISUALMOBILE is VM. The ChoiceBox in the Product Line tab has been populated with the enum constants, with the use of the implicit values method.
+
+-I created an interface called Item that forces all classes to implement the following functions:
+
+*A method getId that would return an int
+
+*A method setName that would have one String parameter
+
+*A method getName that would return a String
+
+*A method setManufacturer that would have one String parameter
+
+*A method getManufacturer that would return a String
+
+-I created an abstract class called Product that implements the Item interface. The purpose of the Product class is that it will implement the basic functionality that all items on a production line should have. Within the Product class, it contains fields for the Item's id, name, manufacturer, and type. It also contains the methods from the Item interface, since it agreed on having those methods due to the class implementing the interface. The Product class also contains a constructor that takes in the name, manufacturer, and type of the product, and each variable is set to its field variables. Finally, the class contains a toString method that returns an item's name, manufacturer, and type in the form of a String.
+
+-Since the Product class is abstract, I cannot make objects out of this class. To fix this problem, I created a Widget class that extends Product. I use this Widget class to store a created Widget object to the database and the productLine collection.
+
+
+#### Week 7 (Oct. 6 - Oct. 12):
+
+#### Week 8 (Oct. 13 - Oct. 19):
+
+#### Week 9 (Oct. 20 - Oct. 26):
+
+#### Week 10 (Oct. 27 - Nov. 2):
+
+#### Week 11 (Nov. 3 - Nov. 9):
 
 ## Key Programming Concepts Utilized
 
