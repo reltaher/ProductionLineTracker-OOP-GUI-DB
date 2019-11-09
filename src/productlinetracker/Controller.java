@@ -26,11 +26,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * Represents the author of the program.
  *
  * @author Ramzy El-Taher
- *
- *     The program is a software made in JavaFX where it tracks the number and types of products
+ *     <p>The program is a software made in JavaFX where it tracks the number and types of products
  *     being made. This file is the Controller Class, where the events of the controls are handled.
- *
- *     Date: 09/26/19
+ *     <p>Date: 09/26/19
  */
 public class Controller {
 
@@ -348,7 +346,6 @@ public class Controller {
             // Substring (20,24) gets only the current Timezone and displays it at the end
             + Calendar.getInstance(TimeZone.getDefault()).getTime().toString().substring(20, 24)
             + "\n");
-
   }
 
   /**
