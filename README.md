@@ -117,6 +117,20 @@ Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 
 #### Week 6 (Sept. 29 - Oct. 5):
 
+-I created an enum called ItemType which stored four constants: AUDIO, VISUAL, AUDIOMOBILE, and VISUALMOBILE. Each of these enums has its code, which is stored as a String. AUDIO is AU, VISUAL is VI, AUDIOMOBILE is AM, and VISUALMOBILE is VM. The ChoiceBox in the Product Line tab has been populated with the enum constants, with the use of the implicit values method.
+
+-I created an interface called Item that forces all classes to implement the following functions:
+*A method getId that would return an int
+*A method setName that would have one String parameter
+*A method getName that would return a String
+*A method setManufacturer that would have one String parameter
+*A method getManufacturer that would return a String
+
+-I created an abstract class called Product that implements the Item interface. The purpose of the Product class is that it will implement the basic functionality that all items on a production line should have. Within the Product class, it contains fields for the Item's id, name, manufacturer, and type. It also contains the methods from the Item interface, since it agreed on having those methods due to the class implementing the interface. The Product class also contains a constructor that takes in the name, manufacturer, and type of the product, and each variable is set to its field variables. Finally, the class contains a toString method that returns an item's name, manufacturer, and type in the form of a String.
+
+-Since the Product class is abstract, I cannot make objects out of this class. To fix this problem, I created a Widget class that extends Product. I use this Widget class to store a created Widget object to the database and the productLine collection.
+
+
 #### Week 7 (Oct. 6 - Oct. 12):
 
 #### Week 8 (Oct. 13 - Oct. 19):
