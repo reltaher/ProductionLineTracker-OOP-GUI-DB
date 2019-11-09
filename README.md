@@ -110,6 +110,21 @@ Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 
 -After everything was complete for this sprint, I made sure that the Quality, Style, and Documentation expectations met the satisfactory requirements before submission. I also added a Sprint 1 Diagram to the Repository, and I added information about the project into the README.
 
+
+### Sprint 2 
+
+#### Week 6 (Sept. 29 - Oct. 5):
+
+#### Week 7 (Oct. 6 - Oct. 12):
+
+#### Week 8 (Oct. 13 - Oct. 19):
+
+#### Week 9 (Oct. 20 - Oct. 26):
+
+#### Week 10 (Oct. 27 - Nov. 2):
+
+#### Week 11 (Nov. 3 - Nov. 9):
+
 ## Key Programming Concepts Utilized
 
 -Using SceneBuilder to create a JavaFX GUI Structure
