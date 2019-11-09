@@ -186,6 +186,22 @@ Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 
 #### Week 9 (Oct. 20 - Oct. 26):
 
+###### ProductionRecord
+
+-I created a ProductionRecord class with int fields for productionNumber and productID, a String field for serialNumber, and a field for the dateProduced of type java.util.Date.
+
+-Within this class, 
+
+--I created accessors and mutators for all fields. 
+
+--I created a constructor that has a parameter for just the productID, which sets this productionNumber to 0 (since the database ends up auto-incrementing), the serialNumber to 0, anad the date to the current date (using new Date()).
+
+--I created an overloaded constructor that is used when creating ProductionRecord objects from the database. This constructor contains parameters for all fields.
+
+--I created a toString method which returns a string in the format "Prod. Num: 0 Product ID: 0 Serial Num: 0 Date: (current date)"
+
+-I added functionality in my Controller class which allows the Production Record to display in the TextArea of the Production Log tab.
+
 #### Week 10 (Oct. 27 - Nov. 2):
 
 #### Week 11 (Nov. 3 - Nov. 9):
