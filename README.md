@@ -204,7 +204,15 @@ Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 
 #### Week 10 (Oct. 27 - Nov. 2):
 
+-The serial numbers that are displayed in the Production Log tab are currently set to 0, so the goal for this week is to produce a unique serial number for each product produced.
+
+-In the ProductionRecord class, I added a constructor which accepts a Product object and an int which will be used to count the number of items of its type that have been created. Within this constructor, I set the serialNumber to start with the first three letters of the Manufacturer name, then the two letter ItemType code, then five digits (with leading 0s) that are unique and sequential for the item type. 
+
 #### Week 11 (Nov. 3 - Nov. 9):
+
+-I updated the production record text area information to show the product name instead of the product ID.
+
+-The objective for this week was to show all Products in the Product Line TableView and ListView, to set the items of the TableView to the ObservableList, and to show the production log in the ProductionLog tab TextArea. However, I have already accomplished each of those tasks in the previous weeks.
 
 ## Key Programming Concepts Utilized
 
