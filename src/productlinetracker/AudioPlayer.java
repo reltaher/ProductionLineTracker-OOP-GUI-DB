@@ -4,10 +4,12 @@ package productlinetracker;
  * Represents the author of the program.
  *
  * @author Ramzy El-Taher
- *     <p>The program is a software made in JavaFX where it tracks the number and types of products
+ *
+ *     The program is a software made in JavaFX where it tracks the number and types of products
  *     being made. This file is the Main class, where the program is launched and executed. The
  *     program is checked with CheckStyle using Google Checks, which uses the p tag.
- *     <p>Date: 10/07/19
+ *
+ *     Date: 10/07/19
  */
 public class AudioPlayer extends Product implements MultimediaControl {
 
@@ -23,7 +25,11 @@ public class AudioPlayer extends Product implements MultimediaControl {
    * @param supportedAudioFormats The String variable that stores the Product's Audio Specification.
    * @param supportedPlaylistFormats The String variable that stores the Product's Media Type.
    */
-  AudioPlayer(String name, String manufacturer, String supportedAudioFormats, String supportedPlaylistFormats) {
+  AudioPlayer(
+      String name,
+      String manufacturer,
+      String supportedAudioFormats,
+      String supportedPlaylistFormats) {
     super(name, ItemType.AUDIO, manufacturer);
     this.supportedAudioFormats = supportedAudioFormats;
     this.supportedPlaylistFormats = supportedPlaylistFormats;
@@ -37,7 +43,11 @@ public class AudioPlayer extends Product implements MultimediaControl {
    *     formats and supported playlist formats
    */
   public String toString() {
-    return super.toString() + "\nAudio Spec: " + supportedAudioFormats + "\nMedia Type: " + supportedPlaylistFormats;
+    return super.toString()
+        + "\nAudio Spec: "
+        + supportedAudioFormats
+        + "\nMedia Type: "
+        + supportedPlaylistFormats;
   }
 
   /** Method from the MultimediaControl Interface to display the "play" action to the console. */
@@ -63,7 +73,7 @@ public class AudioPlayer extends Product implements MultimediaControl {
   }
 
   /**
-   * Accessor for supportedAudioFormats
+   * Accessor for supportedAudioFormats.
    *
    * @return audioSpecification, the private String field.
    */
@@ -73,9 +83,9 @@ public class AudioPlayer extends Product implements MultimediaControl {
   }
 
   /**
-   * Mutator for supportedAudioFormats
+   * Mutator for supportedAudioFormats.
    *
-   * @param supportedAudioFormats, the String variable that the private String field is assigned to.
+   * @param supportedAudioFormats the String variable that the private String field is assigned to.
    */
   @SuppressWarnings("unused")
   public void setSupportedAudioFormats(String supportedAudioFormats) {
@@ -83,7 +93,7 @@ public class AudioPlayer extends Product implements MultimediaControl {
   }
 
   /**
-   * Accessor for supportedPlaylistFormats
+   * Accessor for supportedPlaylistFormats.
    *
    * @return mediaType, the private String field.
    */
@@ -93,9 +103,10 @@ public class AudioPlayer extends Product implements MultimediaControl {
   }
 
   /**
-   * Mutator for supportedPlaylistFormats
+   * Mutator for supportedPlaylistFormats.
    *
-   * @param supportedPlaylistFormats, the String variable that the private String field is assigned to.
+   * @param supportedPlaylistFormats the String variable that the private String field is assigned
+   *     to.
    */
   @SuppressWarnings("unused")
   public void setSupportedPlaylistFormats(String supportedPlaylistFormats) {

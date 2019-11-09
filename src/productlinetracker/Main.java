@@ -17,10 +17,12 @@ import javafx.stage.Stage;
  * Represents the author of the program.
  *
  * @author Ramzy El-Taher
- *     <p>The program is a software made in JavaFX where it tracks the number and types of products
- *     being made. This file is the Main class, where the program is launched and executed. The
- *     program is checked with CheckStyle using Google Checks, which uses the p tag.
- *     <p>Date: 09/26/19
+ *
+ *     The program is a software made in JavaFX where it tracks the number and
+ *     types of products being made. This file is the Main class, where the program is launched and
+ *     executed. The program is checked with CheckStyle using Google Checks, which uses the p tag.
+ *
+ *     Date: 09/26/19
  */
 public class Main extends Application {
 
@@ -28,7 +30,7 @@ public class Main extends Application {
    * Method that starts the JavaFX program.
    *
    * @brief starts JavaFX program.
-   *     <p>The start method is the starting point of a JavaFX program. This start method sets the
+   *     The start method is the starting point of a JavaFX program. This start method sets the
    *     title.
    * @param primaryStage The primary stage, which sets the title, scene, and ability to show the
    *     program.
@@ -44,7 +46,6 @@ public class Main extends Application {
     primaryStage.show();
   }
 
-
   /**
    * Starts program.
    *
@@ -54,6 +55,5 @@ public class Main extends Application {
    */
   public static void main(String[] args) {
     launch(args);
-
   }
 }
