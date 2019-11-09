@@ -117,19 +117,21 @@ Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 
 #### Week 6 (Sept. 29 - Oct. 5):
 
+###### Product
+
 -I created an enum called ItemType which stored four constants: AUDIO, VISUAL, AUDIOMOBILE, and VISUALMOBILE. Each of these enums has its code, which is stored as a String. AUDIO is AU, VISUAL is VI, AUDIOMOBILE is AM, and VISUALMOBILE is VM. The ChoiceBox in the Product Line tab has been populated with the enum constants, with the use of the implicit values method.
 
 -I created an interface called Item that forces all classes to implement the following functions:
 
-*A method getId that would return an int
+*A method called getId that which returns an int
 
-*A method setName that would have one String parameter
+*A method called setName which would have one String parameter
 
-*A method getName that would return a String
+*A method called getName which returns a String
 
-*A method setManufacturer that would have one String parameter
+*A method called setManufacturer which would have one String parameter
 
-*A method getManufacturer that would return a String
+*A method called getManufacturer which returns a String
 
 -I created an abstract class called Product that implements the Item interface. The purpose of the Product class is that it will implement the basic functionality that all items on a production line should have. Within the Product class, it contains fields for the Item's id, name, manufacturer, and type. It also contains the methods from the Item interface, since it agreed on having those methods due to the class implementing the interface. The Product class also contains a constructor that takes in the name, manufacturer, and type of the product, and each variable is set to its field variables. Finally, the class contains a toString method that returns an item's name, manufacturer, and type in the form of a String.
 
@@ -138,13 +140,79 @@ Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 
 #### Week 7 (Oct. 6 - Oct. 12):
 
+###### MultimediaControl
+
+-I created an interface called MultimediaControl, and the purpose of this interface is because all of the items on this production line will have basic media controls. Since this is the case, the interface will contain four methods: play, stop, previous, and next. None of these methods return anything.
+
+###### AudioPlayer
+
+-I created an AudioPlayer class which will capture the details of an audio player. This class extends Product and implements the MultimediaControl interface. Within this class, it contains two fields: A String named supportedAudioFormats, and a String named supportedPlaylistFormats. Within this class, I created a constructor that takes in 4 parameters: name, manufacturer, supportedAudioFormats, and supportedPlaylistFormats. What this constructor does is that it calls its parent's constructor and sets the media type to AUDIO. 
+
+-The methods from the MultimediaControl interface are also implemented, and within these methods, the actions are written to the console (Ex. play() methods prints "Playing" to the console). In an actual media player system, the code would instruct the media player to play, but for this program it will simply display a message.
+
+-The final method that the AudioPlayer class contains is a toString method that displays the superclass's toString method, while also adding rows for supportedAudioFormats and supportedPlaylistFormats.
+
 #### Week 8 (Oct. 13 - Oct. 19):
+
+-I created an enum for MonitorType which will be used for creating portable movie players. This enum stores two types: LCD, and LED.
+
+###### ScreenSpec
+
+-I created an interface called ScreenSpec that defines three methods:
+
+*A method called getResolution which returns a String
+
+*A method called getRefreshRate which returns a String
+
+*A method called getResponseTime which returns a String
+
+###### Screen
+
+-I created a class named Screen that implements ScreenSpec. This class contains fields for resolution, refreshrate, and responsetime, the methods from the ScreenSpec interface, and a toString method that returns the details of the 3 fields in the same format as the Product Class.
+
+###### MoviePlayer
+
+-I created a class named MoviePlayer that extends Product and implements MultimediaControl. This class contains fields for screen and monitorType, and the difference between these fields and other fields is that other fields were assigned either String or an appropriate primitive data type to them, while these fields are assigned of type Screen and of type MonitorType.
+
+-This class also contains a constructor that accepts nae, manufacturer, a screen object, and a monitor type object. The constructor also sets the item type to VISUAL.
+
+-Since this class implements MultimediaControl, it will complete the methods from that interface in a similar fashion to AudioPlayer.
+
+-The final method that this class contains is a toString method which calls the Product's toString method and displays the monitor and the screen details.
+
+###### Demonstration
+
+-To demonstrate the functionality from these classes and interface, I created a method in my Controller named "testMultimedia", and this method creates objects for AudioPlayer, Screen, and MoviePlayer, stores the AudioPayer and MoviePlayer object in an ArrayList of type MultimediaControl, loops through that array with a for each loop, and prints the object's information and the methods from the MultimediaControl interface to the console.
 
 #### Week 9 (Oct. 20 - Oct. 26):
 
+###### ProductionRecord
+
+-I created a ProductionRecord class with int fields for productionNumber and productID, a String field for serialNumber, and a field for the dateProduced of type java.util.Date.
+
+-Within this class, 
+
+--I created accessors and mutators for all fields. 
+
+--I created a constructor that has a parameter for just the productID, which sets this productionNumber to 0 (since the database ends up auto-incrementing), the serialNumber to 0, anad the date to the current date (using new Date()).
+
+--I created an overloaded constructor that is used when creating ProductionRecord objects from the database. This constructor contains parameters for all fields.
+
+--I created a toString method which returns a string in the format "Prod. Num: 0 Product ID: 0 Serial Num: 0 Date: (current date)"
+
+-I added functionality in my Controller class which allows the Production Record to display in the TextArea of the Production Log tab.
+
 #### Week 10 (Oct. 27 - Nov. 2):
 
+-The serial numbers that are displayed in the Production Log tab are currently set to 0, so the goal for this week is to produce a unique serial number for each product produced.
+
+-In the ProductionRecord class, I added a constructor which accepts a Product object and an int which will be used to count the number of items of its type that have been created. Within this constructor, I set the serialNumber to start with the first three letters of the Manufacturer name, then the two letter ItemType code, then five digits (with leading 0s) that are unique and sequential for the item type. 
+
 #### Week 11 (Nov. 3 - Nov. 9):
+
+-I updated the production record text area information to show the product name instead of the product ID.
+
+-The objective for this week was to show all Products in the Product Line TableView and ListView, to set the items of the TableView to the ObservableList, and to show the production log in the ProductionLog tab TextArea. However, I have already accomplished each of those tasks in the previous weeks.
 
 ## Key Programming Concepts Utilized
 
