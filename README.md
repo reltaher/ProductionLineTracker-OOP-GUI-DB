@@ -138,6 +138,14 @@ Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 
 #### Week 7 (Oct. 6 - Oct. 12):
 
+-I created an interface called MultimediaControl, and the purpose of this interface is because all of the items on this production line will have basic media controls. Since this is the case, the interface will contain four methods: play, stop, previous, and next. None of these methods return anything.
+
+-I created an AudioPlayer class which will capture the details of an audio player. This class extends Product and implements the MultimediaControl interface. Within this class, it contains two fields: A String named supportedAudioFormats, and a String named supportedPlaylistFormats. Within this class, I created a constructor that takes in 4 parameters: name, manufacturer, supportedAudioFormats, and supportedPlaylistFormats. What this constructor does is that it calls its parent's constructor and sets the media type to AUDIO. 
+
+-The methods from the MultimediaControl interface are also implemented, and within these methods, the actions are written to the console (Ex. play() methods prints "Playing" to the console). In an actual media player system, the code would instruct the media player to play, but for this program it will simply display a message.
+
+-The final method that the AudioPlayer class contains is a toString method that displays the superclass's toString method, while also adding rows for supportedAudioFormats and supportedPlaylistFormats.
+
 #### Week 8 (Oct. 13 - Oct. 19):
 
 #### Week 9 (Oct. 20 - Oct. 26):
