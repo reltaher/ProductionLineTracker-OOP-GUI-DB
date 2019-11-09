@@ -14,7 +14,7 @@ N/A. All of the documentation are currently in the program as JavaDoc style comm
 
 ![Sprint 1 Class Diagram](diagrams/Class_Diagram_Sprint1.pdf)
 
-![Sprint 2 Class Diagram](diagrams/Sprint 2 Class Diagram.pdf)
+![Sprint 2 Class Diagram](diagrams/Class_Diagram_Sprint_2.pdf)
 
 
 ## Getting Started
