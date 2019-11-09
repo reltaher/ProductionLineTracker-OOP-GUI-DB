@@ -4,10 +4,10 @@ package productlinetracker;
  * Represents the author of the program.
  *
  * @author Ramzy El-Taher
- *     The program is a software made in JavaFX where it tracks the number and
- *     types of products being made. This file is the Main class, where the program is launched and
- *     executed. The program is checked with CheckStyle using Google Checks, which uses the p tag.
- *     Date: 10/07/19
+ *     <p>The program is a software made in JavaFX where it tracks the number and types of products
+ *     being made. This file is the Product class, which implements the basic functionality that all
+ *     items on a production line should have.
+ *     <p>Date: 10/07/19
  */
 public abstract class Product implements Item {
   private int id;
