@@ -4,10 +4,10 @@ package productlinetracker;
  * Represents the author of the program.
  *
  * @author Ramzy El-Taher
- *     The program is a software made in JavaFX where it tracks the number and types of products
- *     being made. This file is the Main class, where the program is launched and executed. The
- *     program is checked with CheckStyle using Google Checks, which uses the p tag.
- *     Date: 10/14/19
+ *     <p>The program is a software made in JavaFX where it tracks the number and types of products
+ *     being made. This file is the MoviePlayer class, where the information of a Product that is a
+ *     MoviePlayer is obtained.
+ *     <p>Date: 10/14/19
  */
 public class MoviePlayer extends Product implements MultimediaControl {
 
@@ -37,33 +37,17 @@ public class MoviePlayer extends Product implements MultimediaControl {
     return super.toString() + "\nScreen: " + screen + "\nMonitor Type: " + monitorType;
   }
 
-  /**
-   * The method "play", implemented from the MultimediaControl interface.
-   */
-  public void play() {
+  /** The method "play", implemented from the MultimediaControl interface. */
+  public void play() {}
 
-  }
+  /** The method "stop", implemented from the MultimediaControl interface. */
+  public void stop() {}
 
-  /**
-   * The method "stop", implemented from the MultimediaControl interface.
-   */
-  public void stop() {
+  /** The method "previous", implemented from the MultimediaControl interface. */
+  public void previous() {}
 
-  }
-
-  /**
-   * The method "previous", implemented from the MultimediaControl interface.
-   */
-  public void previous() {
-
-  }
-
-  /**
-   * The method "next", implemented from the MultimediaControl interface.
-   */
-  public void next() {
-
-  }
+  /** The method "next", implemented from the MultimediaControl interface. */
+  public void next() {}
 
   /**
    * Accessor for screen.
