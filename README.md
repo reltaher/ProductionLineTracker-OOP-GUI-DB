@@ -117,19 +117,21 @@ Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 
 #### Week 6 (Sept. 29 - Oct. 5):
 
+###### Product
+
 -I created an enum called ItemType which stored four constants: AUDIO, VISUAL, AUDIOMOBILE, and VISUALMOBILE. Each of these enums has its code, which is stored as a String. AUDIO is AU, VISUAL is VI, AUDIOMOBILE is AM, and VISUALMOBILE is VM. The ChoiceBox in the Product Line tab has been populated with the enum constants, with the use of the implicit values method.
 
 -I created an interface called Item that forces all classes to implement the following functions:
 
-*A method getId that would return an int
+*A method called getId that which returns an int
 
-*A method setName that would have one String parameter
+*A method called setName which would have one String parameter
 
-*A method getName that would return a String
+*A method called getName which returns a String
 
-*A method setManufacturer that would have one String parameter
+*A method called setManufacturer which would have one String parameter
 
-*A method getManufacturer that would return a String
+*A method called getManufacturer which returns a String
 
 -I created an abstract class called Product that implements the Item interface. The purpose of the Product class is that it will implement the basic functionality that all items on a production line should have. Within the Product class, it contains fields for the Item's id, name, manufacturer, and type. It also contains the methods from the Item interface, since it agreed on having those methods due to the class implementing the interface. The Product class also contains a constructor that takes in the name, manufacturer, and type of the product, and each variable is set to its field variables. Finally, the class contains a toString method that returns an item's name, manufacturer, and type in the form of a String.
 
@@ -138,7 +140,11 @@ Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 
 #### Week 7 (Oct. 6 - Oct. 12):
 
+###### MultimediaControl
+
 -I created an interface called MultimediaControl, and the purpose of this interface is because all of the items on this production line will have basic media controls. Since this is the case, the interface will contain four methods: play, stop, previous, and next. None of these methods return anything.
+
+###### AudioPlayer
 
 -I created an AudioPlayer class which will capture the details of an audio player. This class extends Product and implements the MultimediaControl interface. Within this class, it contains two fields: A String named supportedAudioFormats, and a String named supportedPlaylistFormats. Within this class, I created a constructor that takes in 4 parameters: name, manufacturer, supportedAudioFormats, and supportedPlaylistFormats. What this constructor does is that it calls its parent's constructor and sets the media type to AUDIO. 
 
@@ -147,6 +153,36 @@ Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 -The final method that the AudioPlayer class contains is a toString method that displays the superclass's toString method, while also adding rows for supportedAudioFormats and supportedPlaylistFormats.
 
 #### Week 8 (Oct. 13 - Oct. 19):
+
+-I created an enum for MonitorType which will be used for creating portable movie players. This enum stores two types: LCD, and LED.
+
+###### ScreenSpec
+
+-I created an interface called ScreenSpec that defines three methods:
+
+*A method called getResolution which returns a String
+
+*A method called getRefreshRate which returns a String
+
+*A method called getResponseTime which returns a String
+
+###### Screen
+
+-I created a class named Screen that implements ScreenSpec. This class contains fields for resolution, refreshrate, and responsetime, the methods from the ScreenSpec interface, and a toString method that returns the details of the 3 fields in the same format as the Product Class.
+
+###### MoviePlayer
+
+-I created a class named MoviePlayer that extends Product and implements MultimediaControl. This class contains fields for screen and monitorType, and the difference between these fields and other fields is that other fields were assigned either String or an appropriate primitive data type to them, while these fields are assigned of type Screen and of type MonitorType.
+
+-This class also contains a constructor that accepts nae, manufacturer, a screen object, and a monitor type object. The constructor also sets the item type to VISUAL.
+
+-Since this class implements MultimediaControl, it will complete the methods from that interface in a similar fashion to AudioPlayer.
+
+-The final method that this class contains is a toString method which calls the Product's toString method and displays the monitor and the screen details.
+
+###### Demonstration
+
+-To demonstrate the functionality from these classes and interface, I created a method in my Controller named "testMultimedia", and this method creates objects for AudioPlayer, Screen, and MoviePlayer, stores the AudioPayer and MoviePlayer object in an ArrayList of type MultimediaControl, loops through that array with a for each loop, and prints the object's information and the methods from the MultimediaControl interface to the console.
 
 #### Week 9 (Oct. 20 - Oct. 26):
 
