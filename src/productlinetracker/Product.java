@@ -4,10 +4,10 @@ package productlinetracker;
  * Represents the author of the program.
  *
  * @author Ramzy El-Taher
- *     <p>The program is a software made in JavaFX where it tracks the number and types of products
- *     being made. This file is the Main class, where the program is launched and executed. The
- *     program is checked with CheckStyle using Google Checks, which uses the p tag.
- *     <p>Date: 10/07/19
+ *     The program is a software made in JavaFX where it tracks the number and
+ *     types of products being made. This file is the Main class, where the program is launched and
+ *     executed. The program is checked with CheckStyle using Google Checks, which uses the p tag.
+ *     Date: 10/07/19
  */
 public abstract class Product implements Item {
   private int id;
@@ -29,7 +29,7 @@ public abstract class Product implements Item {
   }
 
   /**
-   * Method that return's the Product's information as a String
+   * Method that return's the Product's information as a String.
    *
    * @return name, which is a private String field, manufacturer, which is a private String field,
    *     and type, which is a private ItemType enum.
@@ -50,7 +50,7 @@ public abstract class Product implements Item {
   /**
    * Mutator for id.
    *
-   * @param id, the int variable that the private int field is assigned to.
+   * @param id the int variable that the private int field is assigned to.
    */
   public void setId(int id) {
     this.id = id;
@@ -68,7 +68,7 @@ public abstract class Product implements Item {
   /**
    * Mutator for name.
    *
-   * @param name, the String variable that the private String field is assigned to.
+   * @param name the String variable that the private String field is assigned to.
    */
   public void setName(String name) {
     this.name = name;
@@ -86,7 +86,7 @@ public abstract class Product implements Item {
   /**
    * Mutator for manufacturer.
    *
-   * @param manufacturer, the String field that the private String field is assigned to.
+   * @param manufacturer the String field that the private String field is assigned to.
    */
   public void setManufacturer(String manufacturer) {
     this.manufacturer = manufacturer;
@@ -104,7 +104,7 @@ public abstract class Product implements Item {
   /**
    * Mutator for type.
    *
-   * @param type, the ItemType enum that the private ItemType enum is assigned to.
+   * @param type the ItemType enum that the private ItemType enum is assigned to.
    */
   public void setType(ItemType type) {
     this.type = type;

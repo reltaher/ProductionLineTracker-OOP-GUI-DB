@@ -6,10 +6,10 @@ import java.util.Date;
  * Represents the author of the program.
  *
  * @author Ramzy El-Taher
- *     <p>The program is a software made in JavaFX where it tracks the number and types of products
+ *     The program is a software made in JavaFX where it tracks the number and types of products
  *     being made. This file is the Main class, where the program is launched and executed. The
  *     program is checked with CheckStyle using Google Checks, which uses the p tag.
- *     <p>Date: 10/14/19
+ *     Date: 10/14/19
  */
 public class ProductionRecord {
 
@@ -45,19 +45,19 @@ public class ProductionRecord {
     this.productionNumber = productionNumber;
     this.productID = productID;
     this.serialNumber = serialNumber;
-    this.dateProduced = dateProduced;
+    this.dateProduced = new Date(dateProduced.getTime());
   }
 
   /**
    * Constructor that generates a unique serial number for each product produced.
    *
-   * @param aProduct a Product object that obtained the manufacturer and type for the serial number.
+   * @param product a Product object that obtained the manufacturer and type for the serial number.
    * @param itemCount an int variable that is used to be incremented for every product produced.
    */
-  public ProductionRecord(Product aProduct, int itemCount) {
+  public ProductionRecord(Product product, int itemCount) {
     this.serialNumber =
-        aProduct.getManufacturer().substring(0, 3)
-            + aProduct.getType().getCode()
+        product.getManufacturer().substring(0, 3)
+            + product.getType().getCode()
             + String.format("%05d", itemCount);
     this.productionNumber = 0;
     this.productID = 0;
@@ -81,7 +81,7 @@ public class ProductionRecord {
   }
 
   /**
-   * Accessor for productionNumber
+   * Accessor for productionNumber.
    *
    * @return productionNumber, the private String field.
    */
@@ -91,9 +91,9 @@ public class ProductionRecord {
   }
 
   /**
-   * Mutator for productionNumber
+   * Mutator for productionNumber.
    *
-   * @param productionNumber, the String variable that the private String field is assigned to.
+   * @param productionNumber the String variable that the private String field is assigned to.
    */
   @SuppressWarnings("unused")
   public void setProductionNumber(int productionNumber) {
@@ -101,7 +101,7 @@ public class ProductionRecord {
   }
 
   /**
-   * Accessor for productID
+   * Accessor for productID.
    *
    * @return productID, the private String field.
    */
@@ -110,16 +110,16 @@ public class ProductionRecord {
   }
 
   /**
-   * Mutator for productID
+   * Mutator for productID.
    *
-   * @param productID, the int variable that the private String field is assigned to.
+   * @param productID the int variable that the private String field is assigned to.
    */
   void setProductID(int productID) {
     this.productID = productID;
   }
 
   /**
-   * Accessor for serialNumber
+   * Accessor for serialNumber.
    *
    * @return serialNumber, the private String field.
    */
@@ -128,9 +128,9 @@ public class ProductionRecord {
   }
 
   /**
-   * Mutator for serialNumber
+   * Mutator for serialNumber.
    *
-   * @param serialNumber, the String variable that the private String field is assigned to.
+   * @param serialNumber the String variable that the private String field is assigned to.
    */
   @SuppressWarnings("unused")
   public void setSerialNumber(String serialNumber) {
@@ -138,7 +138,7 @@ public class ProductionRecord {
   }
 
   /**
-   * Accessor for dateProduced
+   * Accessor for dateProduced.
    *
    * @return dateProduced, the private String field.
    */
@@ -147,12 +147,12 @@ public class ProductionRecord {
   }
 
   /**
-   * Mutator for dateProduced
+   * Mutator for dateProduced.
    *
-   * @param dateProduced, the Date variable that the private String field is assigned to.
+   * @param dateProduced the Date variable that the private String field is assigned to.
    */
   @SuppressWarnings("unused")
   public void setDateProduced(Date dateProduced) {
-    this.dateProduced = dateProduced;
+    this.dateProduced = new Date(dateProduced.getTime());
   }
 }

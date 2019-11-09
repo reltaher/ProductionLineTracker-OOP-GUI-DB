@@ -4,10 +4,10 @@ package productlinetracker;
  * Represents the author of the program.
  *
  * @author Ramzy El-Taher
- *     <p>The program is a software made in JavaFX where it tracks the number and types of products
+ *     The program is a software made in JavaFX where it tracks the number and types of products
  *     being made. This file is the Main class, where the program is launched and executed. The
  *     program is checked with CheckStyle using Google Checks, which uses the p tag.
- *     <p>Date: 11/04/19
+ *     Date: 11/04/19
  */
 public class Screen implements ScreenSpec {
 
@@ -29,7 +29,7 @@ public class Screen implements ScreenSpec {
   }
 
   /**
-   * Accessor for resolution
+   * Accessor for resolution.
    *
    * @return resolution, the private String field.
    */
@@ -38,7 +38,7 @@ public class Screen implements ScreenSpec {
   }
 
   /**
-   * Accessor for refreshRate
+   * Accessor for refreshRate.
    *
    * @return refreshRate, the private int field.
    */
@@ -48,7 +48,7 @@ public class Screen implements ScreenSpec {
   }
 
   /**
-   * Accessor for responseTime
+   * Accessor for responseTime.
    *
    * @return responseTime, the private int field.
    */
@@ -58,9 +58,9 @@ public class Screen implements ScreenSpec {
   }
 
   /**
-   * Mutator for resolution
+   * Mutator for resolution.
    *
-   * @param resolution, the String variable that the private String field is assigned to.
+   * @param resolution the String variable that the private String field is assigned to.
    */
   @SuppressWarnings("unused")
   public void setResolution(String resolution) {
@@ -68,9 +68,9 @@ public class Screen implements ScreenSpec {
   }
 
   /**
-   * Mutator for refreshRate
+   * Mutator for refreshRate.
    *
-   * @param refreshRate, the int variable that the private String field is assigned to.
+   * @param refreshRate the int variable that the private String field is assigned to.
    */
   @SuppressWarnings("unused")
   public void setRefreshRate(int refreshRate) {
@@ -78,9 +78,9 @@ public class Screen implements ScreenSpec {
   }
 
   /**
-   * Mutator for responseTime
+   * Mutator for responseTime.
    *
-   * @param responseTime, the int variable that the private String field is assigned to.
+   * @param responseTime the int variable that the private String field is assigned to.
    */
   @SuppressWarnings("unused")
   public void setResponseTime(int responseTime) {
@@ -88,7 +88,7 @@ public class Screen implements ScreenSpec {
   }
 
   /**
-   * Method that returns the Screen's information as a String
+   * Method that returns the Screen's information as a String.
    *
    * @return resolution, which is a private String variable, refreshRate, which is a private int
    *     variable, and responseTime, which is a private int variable.
