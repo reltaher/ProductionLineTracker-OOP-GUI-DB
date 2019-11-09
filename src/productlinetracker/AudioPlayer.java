@@ -11,8 +11,8 @@ package productlinetracker;
  */
 public class AudioPlayer extends Product implements MultimediaControl {
 
-  private String audioSpecification;
-  private String mediaType;
+  private String supportedAudioFormats;
+  private String supportedPlaylistFormats;
 
   /**
    * Constructor that takes in the Product's name, manufacturer, Audio Specification, and media
@@ -20,13 +20,13 @@ public class AudioPlayer extends Product implements MultimediaControl {
    *
    * @param name The String variable that stores the Product's name.
    * @param manufacturer The String variable that stores the Product's manufacturer.
-   * @param audioSpecification The String variable that stores the Product's Audio Specification.
-   * @param mediaType The String variable that stores the Product's Media Type.
+   * @param supportedAudioFormats The String variable that stores the Product's Audio Specification.
+   * @param supportedPlaylistFormats The String variable that stores the Product's Media Type.
    */
-  AudioPlayer(String name, String manufacturer, String audioSpecification, String mediaType) {
+  AudioPlayer(String name, String manufacturer, String supportedAudioFormats, String supportedPlaylistFormats) {
     super(name, ItemType.AUDIO, manufacturer);
-    this.audioSpecification = audioSpecification;
-    this.mediaType = mediaType;
+    this.supportedAudioFormats = supportedAudioFormats;
+    this.supportedPlaylistFormats = supportedPlaylistFormats;
   }
 
   /**
@@ -37,7 +37,7 @@ public class AudioPlayer extends Product implements MultimediaControl {
    *     formats and supported playlist formats
    */
   public String toString() {
-    return super.toString() + "\nAudio Spec: " + audioSpecification + "\nMedia Type: " + mediaType;
+    return super.toString() + "\nAudio Spec: " + supportedAudioFormats + "\nMedia Type: " + supportedPlaylistFormats;
   }
 
   /** Method from the MultimediaControl Interface to display the "play" action to the console. */
@@ -63,42 +63,42 @@ public class AudioPlayer extends Product implements MultimediaControl {
   }
 
   /**
-   * Accessor for audioSpecification
+   * Accessor for supportedAudioFormats
    *
    * @return audioSpecification, the private String field.
    */
   @SuppressWarnings("unused")
-  public String getAudioSpecification() {
-    return audioSpecification;
+  public String getSupportedAudioFormats() {
+    return supportedAudioFormats;
   }
 
   /**
-   * Mutator for audioSpecification
+   * Mutator for supportedAudioFormats
    *
-   * @param audioSpecification, the String variable that the private String field is assigned to.
+   * @param supportedAudioFormats, the String variable that the private String field is assigned to.
    */
   @SuppressWarnings("unused")
-  public void setAudioSpecification(String audioSpecification) {
-    this.audioSpecification = audioSpecification;
+  public void setSupportedAudioFormats(String supportedAudioFormats) {
+    this.supportedAudioFormats = supportedAudioFormats;
   }
 
   /**
-   * Accessor for mediaType
+   * Accessor for supportedPlaylistFormats
    *
    * @return mediaType, the private String field.
    */
   @SuppressWarnings("unused")
-  public String getMediaType() {
-    return mediaType;
+  public String getSupportedPlaylistFormats() {
+    return supportedPlaylistFormats;
   }
 
   /**
-   * Mutator for mediaType
+   * Mutator for supportedPlaylistFormats
    *
-   * @param mediaType, the String variable that the private String field is assigned to.
+   * @param supportedPlaylistFormats, the String variable that the private String field is assigned to.
    */
   @SuppressWarnings("unused")
-  public void setMediaType(String mediaType) {
-    this.mediaType = mediaType;
+  public void setSupportedPlaylistFormats(String supportedPlaylistFormats) {
+    this.supportedPlaylistFormats = supportedPlaylistFormats;
   }
 }
