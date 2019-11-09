@@ -45,7 +45,7 @@ public class ProductionRecord {
     this.productionNumber = productionNumber;
     this.productID = productID;
     this.serialNumber = serialNumber;
-    this.dateProduced = new Date(dateProduced.getTime());
+    this.dateProduced = dateProduced;
   }
 
   /**
@@ -153,6 +153,6 @@ public class ProductionRecord {
    */
   @SuppressWarnings("unused")
   public void setDateProduced(Date dateProduced) {
-    this.dateProduced = new Date(dateProduced.getTime());
+    this.dateProduced = dateProduced;
   }
 }
