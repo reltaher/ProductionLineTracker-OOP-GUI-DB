@@ -54,3 +54,7 @@ Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 -Creating UML Diagrams within IntelliJ Ultimate Edition withing a package (Right Click Package -> Diagrams -> Show Diagram)
 
 -Use of Enums (a fixed set of special objects, or constants), Abstract Classes (A class that cannot be used to make objects), and Interfaces (Similar to a contract).
+
+-Inheritance, which is the idea of a subclass deriving fields and methods from a superclass.
+
+-Polymorphism, which in biology is defined as an organism having many different forms and stages. This idea also applies on Object Oriented Programming, where a subclass can have its unique states and behavior compared to its superclass.
