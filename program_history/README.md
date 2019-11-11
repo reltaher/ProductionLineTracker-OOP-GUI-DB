@@ -1,3 +1,5 @@
+# Program History
+
 ### Sprint 1 (GUI, Basic Database)
 
 #### Week 1 (Aug 19 - Aug 24):
