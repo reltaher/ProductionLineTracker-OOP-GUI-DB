@@ -476,10 +476,6 @@ public class Controller {
     amount of items that is made*/
     for (int itemCount = 1; itemCount <= amtToProduce; itemCount++) {
       ProductionRecord pr = new ProductionRecord(itemToProduce, counter++);
-
-      // Stores the ProductionRecord object that was made into the ArrayList
-
-      // Sets the Product ID based on the Item selected in the List View.
       String selectNameID = "SELECT ID, NAME FROM PRODUCT";
       try {
         PreparedStatement psSelectNameID = conn.prepareStatement(selectNameID);
@@ -487,6 +483,7 @@ public class Controller {
         while (rsSelectNameID.next()) {
           int id = rsSelectNameID.getInt("ID");
           String name = rsSelectNameID.getString("NAME");
+          // Sets the Product ID based on the Item selected in the List View.
           if (prodLineListView.getSelectionModel().getSelectedItem().toString().contains(name)) {
             pr.setProductID(id);
           }
@@ -496,7 +493,7 @@ public class Controller {
       } catch (SQLException ex) {
         ex.printStackTrace();
       }
-
+      // Stores the ProductionRecord object that was made into the ArrayList
       productionRun.add(pr);
     }
     addToProductionDB(productionRun);
