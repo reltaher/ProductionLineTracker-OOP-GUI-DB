@@ -53,4 +53,4 @@ Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 
 -Creating UML Diagrams within IntelliJ Ultimate Edition withing a package (Right Click Package -> Diagrams -> Show Diagram)
 
--Use of Enums, Abstract Classes, and Interfaces
+-Use of Enums (a fixed set of special objects, or constants), Abstract Classes (A class that cannot be used to make objects), and Interfaces (Similar to a contract).
