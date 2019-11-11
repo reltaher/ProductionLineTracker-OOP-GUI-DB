@@ -23,12 +23,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * Represents the author of the program.
+ * The program is a software made in JavaFX where it tracks the number and types of products being
+ * made. This file is the Controller Class, where the events of the controls are handled.
+ *
+ * <p>Date: 09/26/19
  *
  * @author Ramzy El-Taher
- *     <p>The program is a software made in JavaFX where it tracks the number and types of products
- *     being made. This file is the Controller Class, where the events of the controls are handled.
- *     <p>Date: 09/26/19
  */
 public class Controller {
 

@@ -14,24 +14,21 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * Represents the author of the program.
+ * The program is a software made in JavaFX where it tracks the number and types of products being
+ * made. This file is the Main class, where the program is launched and executed. The program is
+ * checked with CheckStyle using Google Checks, which uses the p tag.
+ *
+ * <p>Date: 09/26/19
  *
  * @author Ramzy El-Taher
- *
- *     The program is a software made in JavaFX where it tracks the number and
- *     types of products being made. This file is the Main class, where the program is launched and
- *     executed. The program is checked with CheckStyle using Google Checks, which uses the p tag.
- *
- *     Date: 09/26/19
  */
 public class Main extends Application {
 
   /**
    * Method that starts the JavaFX program.
    *
-   * @brief starts JavaFX program.
-   *     The start method is the starting point of a JavaFX program. This start method sets the
-   *     title.
+   * @brief starts JavaFX program. The start method is the starting point of a JavaFX program. This
+   *     start method sets the title.
    * @param primaryStage The primary stage, which sets the title, scene, and ability to show the
    *     program.
    * @throws Exception Any problem with the code.

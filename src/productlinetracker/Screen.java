@@ -1,12 +1,12 @@
 package productlinetracker;
 
 /**
- * Represents the author of the program.
+ * The program is a software made in JavaFX where it tracks the number and types of products being
+ * made. This file is the Screen class, where the Product's screen information is made.
+ *
+ * <p>Date: 11/04/19
  *
  * @author Ramzy El-Taher
- *     <p>The program is a software made in JavaFX where it tracks the number and types of products
- *     being made. This file is the Screen class, where the Product's screen information is made.
- *     <p>Date: 11/04/19
  */
 public class Screen implements ScreenSpec {
 

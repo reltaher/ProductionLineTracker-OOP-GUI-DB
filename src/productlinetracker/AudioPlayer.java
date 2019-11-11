@@ -1,13 +1,13 @@
 package productlinetracker;
 
 /**
- * Represents the author of the program.
+ * The program is a software made in JavaFX where it tracks the number and types of products being
+ * made. This file is the AudioPlayer class, where the program captures the details of an audio
+ * player.
+ *
+ * <p>Date: 10/07/19
  *
  * @author Ramzy El-Taher
- *     <p>The program is a software made in JavaFX where it tracks the number and types of products
- *     being made. This file is the AudioPlayer class, where the program captures the details of an
- *     audio player.
- *     <p>Date: 10/07/19
  */
 public class AudioPlayer extends Product implements MultimediaControl {
 

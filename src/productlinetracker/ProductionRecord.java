@@ -3,14 +3,13 @@ package productlinetracker;
 import java.util.Date;
 
 /**
- * Represents the author of the program.
+ * The program is a software made in JavaFX where it tracks the number and types of products being
+ * made. This file is the ProductionRecord class, which is used to store information about the
+ * product being made, including generating a unique serial number for each product produced.
+ *
+ * <p>Date: 10/14/19
  *
  * @author Ramzy El-Taher
- *     <p>The program is a software made in JavaFX where it tracks the number and types of products
- *     being made. This file is the ProductionRecord class, which is used to store information about
- *     the product being made, including generating a unique serial number for each product
- *     produced.
- *     <p>Date: 10/14/19
  */
 public class ProductionRecord {
 
