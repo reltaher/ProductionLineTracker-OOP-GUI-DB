@@ -52,3 +52,5 @@ Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 -Connecting to Database by registering JDBC driver, opening a connection, and executing a query using statements.
 
 -Creating UML Diagrams within IntelliJ Ultimate Edition withing a package (Right Click Package -> Diagrams -> Show Diagram)
+
+-Use of Enums, Abstract Classes, and Interfaces
