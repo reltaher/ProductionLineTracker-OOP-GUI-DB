@@ -38,16 +38,24 @@ public class MoviePlayer extends Product implements MultimediaControl {
   }
 
   /** The method "play", implemented from the MultimediaControl interface. */
-  public void play() {}
+  public void play() {
+    System.out.println("Playing Movie");
+  }
 
   /** The method "stop", implemented from the MultimediaControl interface. */
-  public void stop() {}
+  public void stop() {
+    System.out.println("Stopping Movie");
+  }
 
   /** The method "previous", implemented from the MultimediaControl interface. */
-  public void previous() {}
+  public void previous() {
+    System.out.println("Previous Movie");
+  }
 
   /** The method "next", implemented from the MultimediaControl interface. */
-  public void next() {}
+  public void next() {
+    System.out.println("Next Movie");
+  }
 
   /**
    * Accessor for screen.
