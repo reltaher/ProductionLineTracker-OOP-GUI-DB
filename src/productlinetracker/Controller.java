@@ -1,5 +1,7 @@
 package productlinetracker;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,6 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Properties;
 import java.util.TimeZone;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,10 +26,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * The program is a software made in JavaFX where it tracks the number and types of products being
- * made. This file is the Controller Class, where the events of the controls are handled.
+ * The Controller Class handles the events and the functionality of the program.
  *
- * <p>Date: 09/26/19
+ * <p>Date: 11/14/19
  *
  * @author Ramzy El-Taher
  */
@@ -67,10 +69,26 @@ public class Controller {
 
     final String DB_URL = "jdbc:h2:./res/ProductLineDB";
 
+    // Properties File
+    Properties prop = new Properties();
+    // FileInputStream could contain an IOException, so it is placed in a try/catch
+    try {
+      // Load Properties File
+      prop.load(new FileInputStream("res/data.properties"));
+      // IOException, which catches an issue from FileInputStream
+    } catch (IOException fileInputEx) {
+      fileInputEx.printStackTrace();
+      // General exception, which catches any other issue.
+    } catch (Exception ex) {
+      System.out.println("Something unusual went wrong. Check code for issues.");
+      ex.printStackTrace();
+    }
     //  Database credentials (Username/Password are temporary)
     final String USER = "";
-
-    final String PASS = "";
+    /* Password is obtained from the Properties file in the res folder
+     * The password can be changed in the databse console using "SET PASSWORD 'pwname';"
+     */
+    final String PASS = prop.getProperty("password");
 
     try {
       // STEP 1: Register JDBC driver
