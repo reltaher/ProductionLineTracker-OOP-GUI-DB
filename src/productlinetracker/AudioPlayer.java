@@ -1,9 +1,7 @@
 package productlinetracker;
 
 /**
- * The program is a software made in JavaFX where it tracks the number and types of products being
- * made. This file is the AudioPlayer class, where the program captures the details of an audio
- * player.
+ * The AudioPlayer class is where the program captures the details of an audio player.
  *
  * <p>Date: 10/07/19
  *

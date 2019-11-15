@@ -1,9 +1,8 @@
 package productlinetracker;
 
 /**
- * The program is a software made in JavaFX where it tracks the number and types of products being
- * made. This file is the Product class, which implements the basic functionality that all items on
- * a production line should have.
+ * The Product class implements the basic functionality that all items on a production line should
+ * have.
  *
  * <p>Date: 10/07/19
  *

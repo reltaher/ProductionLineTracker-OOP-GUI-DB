@@ -1,9 +1,8 @@
 package productlinetracker;
 
 /**
- * The program is a software made in JavaFX where it tracks the number and types of products being
- * made. This file is the ScreenSpec interface, where a Product's screen resolution, refresh rate,
- * and response time are obtained.
+ * The ScreenSpec interface is where a Product's screen resolution, refresh rate, and response time
+ * are obtained.
  *
  * <p>Date: 10/14/19
  *

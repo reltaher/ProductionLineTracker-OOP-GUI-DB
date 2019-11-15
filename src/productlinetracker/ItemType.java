@@ -1,11 +1,10 @@
 package productlinetracker;
 
 /**
- * The program is a software made in JavaFX where it tracks the number and types of products being
- * made. This file is the itemType enum class, where the the enums for each item types are created,
- * along with a String value of code which each enum carries with them.
+ * The ItemType enum is where the the enums for each item types are created. This enum class also
+ * includes a method where each ItemType enumeration are returned as a String literal.
  *
- * <p>Date: 09/30/19
+ * <p>Date: 10/16/19
  *
  * @author Ramzy El-Taher
  */

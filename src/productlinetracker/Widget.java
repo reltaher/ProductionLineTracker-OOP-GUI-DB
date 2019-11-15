@@ -1,8 +1,7 @@
 package productlinetracker;
 
 /**
- * The program is a software made in JavaFX where it tracks the number and types of products being
- * made. This file is the Widget Class, which is a class used to create Product objects.
+ * The Widget Class is a class used to create Product objects.
  *
  * <p>Date: 10/01/19
  *

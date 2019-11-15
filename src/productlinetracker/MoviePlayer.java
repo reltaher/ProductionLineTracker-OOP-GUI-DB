@@ -1,9 +1,7 @@
 package productlinetracker;
 
 /**
- * The program is a software made in JavaFX where it tracks the number and types of products being
- * made. This file is the MoviePlayer class, where the information of a Product that is a
- * MoviePlayer is obtained.
+ * The MoviePlayer class is where the information of a Product that is a MoviePlayer is obtained.
  *
  * <p>Date: 10/14/19
  *
