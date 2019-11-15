@@ -86,7 +86,7 @@ public class Controller {
     //  Database credentials (Username/Password are temporary)
     final String USER = "";
     /* Password is obtained from the Properties file in the res folder
-     * The password can be changed in the databse console using "SET PASSWORD 'pwname';"
+     * The password can be changed in the database console using "SET PASSWORD 'pwName';"
      */
     final String PASS = prop.getProperty("password");
 
