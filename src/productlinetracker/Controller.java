@@ -106,12 +106,15 @@ public class Controller {
         throw new NullPointerException("There was a problem creating a statement.");
       }
       stmt.close();
-    } catch (SQLException e) {
-      System.out.println("Error: SQL Exception.");
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      System.out.println("Error: Class Not Found.");
-      e.printStackTrace();
+    } catch (SQLException sqlEx) {
+      System.out.println("Could not connect to the database. Check the console for issues.");
+      sqlEx.printStackTrace();
+    } catch (ClassNotFoundException cnfEx) {
+      System.out.println("Error: Class Not Found. Check the console for issues.");
+      cnfEx.printStackTrace();
+    } catch (Exception unusualEx) {
+      System.out.println("An unusual exception has occurred. Check the console for issues.");
+      unusualEx.printStackTrace();
     }
   }
 
