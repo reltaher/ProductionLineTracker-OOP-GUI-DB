@@ -331,8 +331,7 @@ public class Controller {
    */
   private void showProduction(ArrayList<ProductionRecord> productionLog) {
     // Splits each word separated by a space in the Production Log into its own index with regex
-    String[] log =
-        productionLog.toString().substring(1, productionLog.toString().indexOf('.')).split(" ");
+    String[] log = productionLog.toString().split(" ");
     // SQL Query to Select ID and Name from Product Table.
     String selectNameID = "SELECT ID, NAME FROM PRODUCT";
     try {
