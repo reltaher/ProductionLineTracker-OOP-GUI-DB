@@ -361,10 +361,6 @@ public class Controller {
          * Substring starts at 1 to prevent a "[" from displaying at the start.
          * Substring ends at the index of "." to prevent displaying milliseconds. */
         Arrays.toString(log).replaceAll("[,]", "").replaceAll("\\[", "").replaceAll("]", "")
-            + " "
-            // Calendar class that gets the current Year, Date, and Time.
-            // Substring (20,24) gets only the current Timezone and displays it at the end
-            + Calendar.getInstance(TimeZone.getDefault()).getTime().toString().substring(20, 24)
             + "\n");
   }
 
