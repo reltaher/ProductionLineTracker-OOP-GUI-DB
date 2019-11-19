@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="43257389-9346-46da-93f2-722e4919c07d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/productlinetracker/AudioPlayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/productlinetracker/MultimediaControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/ProductLineDB.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/res/ProductLineDB.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/ProductLineDB.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/res/ProductLineDB.trace.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/productlinetracker/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/productlinetracker/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/productlinetracker/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/productlinetracker/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/productlinetracker/ItemType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/productlinetracker/ItemType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/productlinetracker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/productlinetracker/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/productlinetracker/Widget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/productlinetracker/Widget.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ProductLineDB" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ProductLineDB" type="feb32156:DbDataSourceImpl" />
+        <item name="PRODUCTLINEDB: database" type="2aa06773:H2ImplModel$Database" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ProductLineDB" type="feb32156:DbDataSourceImpl" />
+        <item name="PRODUCTLINEDB: database" type="2aa06773:H2ImplModel$Database" />
+        <item name="PUBLIC: schema" type="7f85d983:H2ImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ProductLineDB" type="feb32156:DbDataSourceImpl" />
+        <item name="PRODUCTLINEDB: database" type="2aa06773:H2ImplModel$Database" />
+        <item name="PUBLIC: schema" type="7f85d983:H2ImplModel$Schema" />
+        <item name="PRODUCT: table" type="818c1b4a:H2ImplModel$Table" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="JavaFxApplication" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1RqfS1jP47jbOIXsAt9FBDJINFt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CarProduction" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="productlinetracker.Main" />
+      <module name="ProductionLineTracker-GUI" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@9ecc0397" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@9ecc0397" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@39f48854" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="43257389-9346-46da-93f2-722e4919c07d" name="Default Changelist" comment="" />
+      <created>1570399543339</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1570399543339</updated>
+      <workItem from="1570399547180" duration="22010000" />
+      <workItem from="1570488476265" duration="1524000" />
+      <workItem from="1570673313034" duration="42000" />
+    </task>
+    <task id="LOCAL-00001" summary="Added new CSS Features (Gradient colors, text-fill, hover features) to the tabs, tab labels, and the &quot;Add Product&quot; button in the Product Line tab.">
+      <created>1570469626467</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1570469626468</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Designed a Widget Class which inherits the fields from the Product Class. &#10;&#10;In the Controller class, a Widget object is made which uses the textfield values of name, manufacturer, and the choicebox value of type as constructors. This object also uses the toString method from Product, and the values are printed to the console.">
+      <created>1570471021073</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1570471021073</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added new CSS Features (Gradient colors, text-fill, hover features) to the tabs, tab labels, and the &quot;Add Product&quot; button in the Product Line tab." />
+    <MESSAGE value="Designed a Widget Class which inherits the fields from the Product Class. &#10;&#10;In the Controller class, a Widget object is made which uses the textfield values of name, manufacturer, and the choicebox value of type as constructors. This object also uses the toString method from Product, and the values are printed to the console." />
+    <option name="LAST_COMMIT_MESSAGE" value="Designed a Widget Class which inherits the fields from the Product Class. &#10;&#10;In the Controller class, a Widget object is made which uses the textfield values of name, manufacturer, and the choicebox value of type as constructors. This object also uses the toString method from Product, and the values are printed to the console." />
+  </component>
+</project>
