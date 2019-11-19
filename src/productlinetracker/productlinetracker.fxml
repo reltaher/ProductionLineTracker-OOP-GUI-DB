@@ -105,12 +105,13 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <Label layoutX="308.0" layoutY="151.0" />
-                  <TextField layoutX="308.0" layoutY="44.0" />
-                  <Label layoutX="140.0" layoutY="49.0" text="Employee Name:" />
-                  <TextField layoutX="308.0" layoutY="93.0" />
-                  <TextArea layoutX="148.0" layoutY="198.0" prefHeight="200.0" prefWidth="347.0" />
-                  <Label layoutX="186.0" layoutY="98.0" text="Password:" />
+                  <TextField fx:id="employeeNameTF" layoutX="308.0" layoutY="34.0" />
+                  <Label layoutX="163.0" layoutY="39.0" text="Employee Name:" />
+                  <TextField fx:id="employeePasswordTF" layoutX="308.0" layoutY="78.0" />
+                  <TextArea fx:id="employeeInfoTA" layoutX="148.0" layoutY="193.0" prefHeight="200.0" prefWidth="347.0" />
+                  <Label layoutX="209.0" layoutY="83.0" text="Password:" />
                   <Label layoutX="235.0" layoutY="172.0" text="Employee Information" />
+                  <Button layoutX="289.0" layoutY="131.0" mnemonicParsing="false" onAction="#onActionSubmitEmployeeInfo" text="Submit" />
                </children>
             </AnchorPane>
          </content>

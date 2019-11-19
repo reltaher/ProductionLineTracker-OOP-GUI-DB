@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Properties;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -51,6 +52,15 @@ public class Controller {
   @FXML private ListView<Product> prodLineListView;
 
   @FXML private TextArea productLogTA;
+
+  @FXML
+  private TextField employeeNameTF;
+
+  @FXML
+  private TextField employeePasswordTF;
+
+  @FXML
+  private TextArea employeeInfoTA;
 
   private Connection conn;
 
@@ -522,5 +532,10 @@ public class Controller {
     // Prints value that was obtained from prodQuantity
     System.out.println(
         "Product has been made: " + "\n" + prodToProduce + "\nAmount: " + prodQuantity);
+  }
+
+  @FXML
+  void onActionSubmitEmployeeInfo(ActionEvent event) {
+
   }
 }

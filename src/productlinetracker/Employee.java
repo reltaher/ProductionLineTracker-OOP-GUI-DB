@@ -41,6 +41,11 @@ public class Employee {
 
   }
 
+  public String toString() {
+    return "Name: " + this.name + "\nUsername: " + this.username + "\nEmail: " + this.email +
+        "\nInitial Password: " + this.password;
+  }
+
   private void setUsername(String name) {
     // set username field to first initial of the first name + last name (all lowercase)
     this.username =
@@ -63,9 +68,7 @@ public class Employee {
   }
 
   private boolean isValidPassword() {
-    if (!password.matches("[A-Za-z0-9]")) {
-      return false;
-    }
-    return true;
-    }
+    return password.matches("[A-Za-z0-9]");
+  }
+
 }
