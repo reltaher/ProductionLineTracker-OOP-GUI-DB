@@ -536,6 +536,9 @@ public class Controller {
 
   @FXML
   void onActionSubmitEmployeeInfo(ActionEvent event) {
-
+    String empName = employeeNameTF.getText();
+    String empPassword = employeePasswordTF.getText();
+    Employee employee = new Employee(empName, empPassword);
+    employeeInfoTA.setText(employee.toString());
   }
 }
