@@ -7,7 +7,7 @@ package productlinetracker;
  *
  * @author Ramzy El-Taher
  */
-public class Screen implements ScreenSpec {
+public class  Screen implements ScreenSpec {
 
   private String resolution;
   private int refreshRate;

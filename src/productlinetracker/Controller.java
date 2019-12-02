@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.Properties;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -53,14 +52,11 @@ public class Controller {
 
   @FXML private TextArea productLogTA;
 
-  @FXML
-  private TextField employeeNameTF;
+  @FXML private TextField employeeNameTF;
 
-  @FXML
-  private TextField employeePasswordTF;
+  @FXML private TextField employeePasswordTF;
 
-  @FXML
-  private TextArea employeeInfoTA;
+  @FXML private TextArea employeeInfoTA;
 
   private Connection conn;
 
@@ -96,7 +92,7 @@ public class Controller {
     /* Password is obtained from the Properties file in the res folder
      * The password can be changed in the database console using "SET PASSWORD 'pwName';"
      */
-    final String PASS = prop.getProperty("password");
+    final String PASS = reverseString(prop.getProperty("password"));
 
     try {
       // STEP 1: Register JDBC driver
@@ -534,11 +530,28 @@ public class Controller {
         "Product has been made: " + "\n" + prodToProduce + "\nAmount: " + prodQuantity);
   }
 
+  /**
+   * Method that gets the text of the employee's username and password, creates an Employee object
+   * of the information obtained from the TextFields, and prints the Employee's information to a
+   * TextArea.
+   */
   @FXML
-  void onActionSubmitEmployeeInfo(ActionEvent event) {
+  void onActionSubmitEmployeeInfo() {
     String empName = employeeNameTF.getText();
     String empPassword = employeePasswordTF.getText();
     Employee employee = new Employee(empName, empPassword);
     employeeInfoTA.setText(employee.toString());
+  }
+
+  /**
+   * Method that reverses the order of the text stored for the database password.
+   * @param pw The String variable that contains the password.
+   * @return reversedPw, which is the reversed password obtained from the method.
+   */
+  private String reverseString(String pw) {
+    if (pw.length() <= 0) {
+      return pw;
+    }
+    return reverseString(pw.substring(1)) + pw.charAt(0);
   }
 }

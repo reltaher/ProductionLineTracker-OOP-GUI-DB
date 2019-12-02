@@ -1,0 +1,29 @@
+/*Modifies the contents of a button*/
+.button {
+  -fx-background-color: linear-gradient(white, #61a2b1);
+  -fx-text-fill: black;
+  -fx-font-weight: bold;
+  -fx-border-color: #66FCF1;
+}
+
+/*Modifies the buttons when hovered*/
+.button:hover {
+  -fx-background-color: #0B0C10;
+  -fx-text-fill: white;
+}
+
+/*Modifies the buttons when clicked*/
+.button:focused {
+  -fx-background-color: #1F2833;
+  -fx-text-fill: white;
+}
+
+/*Modifies the contents within a label*/
+.label {
+  -fx-font-weight: bold;
+  -fx-text-fill: #66FCF1;
+}
+
+#anchorPaneLogin {
+  -fx-background-color: #1F2833;
+}

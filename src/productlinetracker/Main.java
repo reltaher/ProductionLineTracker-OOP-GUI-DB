@@ -36,10 +36,10 @@ public class Main extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
 
-    Parent root = FXMLLoader.load(getClass().getResource("productlinetracker.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("../login/login.fxml"));
     primaryStage.setTitle("Production Line Tracker");
-    primaryStage.setScene(new Scene(root, 657, 470));
-    root.getStylesheets().add("productlinetracker/productlinetracker.css");
+    primaryStage.setScene(new Scene(root, 600, 400));
+    root.getStylesheets().add("login/login.css");
     primaryStage.show();
   }
 

@@ -248,3 +248,7 @@
   -fx-text-fill: white;
   -fx-alignment: center;
 }
+
+#anchorPaneLogin {
+  -fx-background-color: #1F2833;
+}
