@@ -22,6 +22,8 @@ public class LoginController {
 
   public void initialize() {
     errorTextLogin.setVisible(false);
+    usernameTF.setText("admin");
+    passwordTF.setText("password");
   }
 
   @FXML
@@ -31,9 +33,11 @@ public class LoginController {
     if ((username.equals(""))) {
       errorTextLogin.setVisible(true);
       errorTextLogin.setText("Please enter a username.");
+      usernameTF.requestFocus();
     } else if (password.equals("")) {
       errorTextLogin.setVisible(true);
       errorTextLogin.setText("Please enter a password.");
+      passwordTF.requestFocus();
     } else {
       errorTextLogin.setVisible(false);
       Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
