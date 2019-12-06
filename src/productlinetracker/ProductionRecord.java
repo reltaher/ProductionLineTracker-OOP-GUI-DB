@@ -69,9 +69,9 @@ public class ProductionRecord {
    * @return the product's productionNumber, productID, serialNumber, and dateProduced.
    */
   public String toString() {
-    return "Production Num: "
+    return "Prod. Num: "
         + productionNumber
-        + " Product ID: "
+        + " Name: "
         + productID
         + " Serial Num: "
         + serialNumber

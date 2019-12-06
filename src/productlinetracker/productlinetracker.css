@@ -24,10 +24,9 @@
 }
 
 /*Modifies the buttons when clicked*/
-.button:focused {
+.button:pressed {
   -fx-background-color: #1F2833;
   -fx-text-fill: white;
-
 }
 
 /******************** LABELS ********************/
@@ -43,6 +42,7 @@
   -fx-background-color: #0B0C10;
   -fx-text-fill: white;
 }
+
 
 /******************** TABS ********************/
 
@@ -221,6 +221,11 @@
 .text-area .content {
   -fx-background-color: #1F2833;
 
+}
+
+.text-field.error {
+  -fx-text-box-border: red ;
+  -fx-focus-color: red ;
 }
 
 /******************** TABLE VIEW COLUMNS ********************/
