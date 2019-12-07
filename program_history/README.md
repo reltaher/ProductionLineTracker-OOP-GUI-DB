@@ -170,3 +170,55 @@
 -I updated the production record text area information to show the product name instead of the product ID.
 
 -The objective for this week was to show all Products in the Product Line TableView and ListView, to set the items of the TableView to the ObservableList, and to show the production log in the ProductionLog tab TextArea. However, I have already accomplished each of those tasks in the previous weeks.
+
+### Sprint 3
+
+#### Week 12 (Nov. 10 - Nov. 16)
+
+-This week was supposed to be the database integration, but I have already achieved that in previous weeks.Instead, I decided to add a password to the database. I did that by using the SQL command "SET PASSWORD" from the database command line. To add a layer of security, I stored the password in a properties file, and linked the file path to the password String in the Controller class.
+
+#### Week 13 (Nov. 17 - Nov. 23)
+
+-The program requires an audit trail to check which employee recorded production, so I created a class and a tab named "Employee", which allows the user to input their full name and then creates a userid for their first name, a period, and their surname, and an email address of their first initial and last name.
+
+In the Employee class, 
+
+-I added the following information for fields:
+
+-- StringBuilder name
+
+-- String username
+
+-- String password
+
+-- String email
+
+-I added the following information for methods:
+
+-- private void setUsername
+
+-- private boolean checkName
+
+-- private void setEmail
+
+-- private boolean isValidPassword
+
+-I added a constructor which took a String for name and a String for password.
+
+In the constructor,
+
+-I called checkName to check if the name contains a space. If it does, it will call the setUsername and setEmail methods, passing the name field in both. If it does not contain a space, the username is set to "default" and the email is set to "user@oracleacademy.Test".
+
+-I callced isValidPassword to check if the password that the user entered contains a lowercase letter, an uppercase letter, and a special character. If the password is valid, the password field gets set to the entered password, and if it is not valid, the password field gets set to "pw".
+
+-setUsername sets the name field to the first initial of the first name and the last name, all lowercase.
+
+-setEmail sets the email to the first name, a period, and then the last name, all in lowercase. It is then followed by the "@oracleacademy.Test".
+
+-I finally created a toString method which returns the employee's details, which includes their name, username, email, and initial password.
+
+
+#### Week 14 (Nov. 24 - Nov. 30)
+
+
+#### Week 15 (Dec. 1 - Dec. 7)
