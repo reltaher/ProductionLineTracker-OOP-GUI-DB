@@ -220,5 +220,6 @@ In the constructor,
 
 #### Week 14 (Nov. 24 - Nov. 30)
 
+-I decided to add an extra layer of security to the database password. To do this, I added a reverseString method in the Controller class which recursively returns a String in reverse. I applied this method to the password String, and in the properties file, I had to rewrite the password in reverse in order for the program to work. Now, if a suspcious user were to access this program and try to access the password, the user will not know that the password in the file is not the actual password.
 
 #### Week 15 (Dec. 1 - Dec. 7)
