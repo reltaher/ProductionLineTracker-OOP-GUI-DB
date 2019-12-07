@@ -223,3 +223,7 @@ In the constructor,
 -I decided to add an extra layer of security to the database password. To do this, I added a reverseString method in the Controller class which recursively returns a String in reverse. I applied this method to the password String, and in the properties file, I had to rewrite the password in reverse in order for the program to work. Now, if a suspcious user were to access this program and try to access the password, the user will not know that the password in the file is not the actual password.
 
 #### Week 15 (Dec. 1 - Dec. 7)
+
+-At this point, I have finsihed all of the main functionalities of the program. However, the only issue that the program had at the start of this week was that the program was not tolerating error inputs. I used this week to add Human User Factors to the program, which includes convienient input, friendly and clear error messages, and software robustness.
+
+-I also included an instruction tab for the program, which gives the user a brief introducftion as well as information about the program
