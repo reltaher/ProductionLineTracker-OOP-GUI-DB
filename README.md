@@ -40,8 +40,7 @@ There can always be additional features to add to this project. If you would lik
 Ramzy El-Taher
 
 ## License
-
-N/A
+[GNU General Public License v3.0](LICENSE)
 
 ## Acknowledgments
 
