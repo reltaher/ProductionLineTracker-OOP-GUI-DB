@@ -1,6 +1,8 @@
 package productlinetracker;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +17,6 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -25,7 +26,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.paint.Color;
 
 /**
  * The Controller Class handles the events and the functionality of the program.
@@ -60,7 +60,13 @@ public class Controller {
 
   @FXML private Label manufacturerErrorLbl;
 
+  @FXML private Label empErrorLbl;
+
+  @FXML private Label pwErrorLbl;
+
   @FXML private ListView<Product> prodLineListView;
+
+  @FXML private TextArea instructionTA;
 
   @FXML private TextArea productLogTA;
 
@@ -269,15 +275,44 @@ public class Controller {
     // Sets Cell Value Factory for the Item Type column
     itemTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
 
-    ObservableList<Product> filteredProducts;
-    if (productFilter.getSelectionModel().getSelectedItem().equals("Name")) {
-      data =
-          FXCollections.observableArrayList(
-              data.stream()
-                  .filter(p -> p.getName().contains(productSearchTF.getText()))
-                  .collect(Collectors.toList()));
-    } else {
-      data = loadProductList();
+    switch (productFilter.getSelectionModel().getSelectedItem()) {
+      case "Name":
+        data =
+            FXCollections.observableArrayList(
+                data.stream()
+                    .filter(
+                        p ->
+                            p.getName()
+                                .toLowerCase()
+                                .contains(productSearchTF.getText().toLowerCase()))
+                    .collect(Collectors.toList()));
+        break;
+      case "Manufacturer":
+        data =
+            FXCollections.observableArrayList(
+                data.stream()
+                    .filter(
+                        p ->
+                            p.getManufacturer()
+                                .toLowerCase()
+                                .contains(productSearchTF.getText().toLowerCase()))
+                    .collect(Collectors.toList()));
+        break;
+      case "Type":
+        data =
+            FXCollections.observableArrayList(
+                data.stream()
+                    .filter(
+                        p ->
+                            p.getType()
+                                .getCode()
+                                .toLowerCase()
+                                .contains(productSearchTF.getText().toLowerCase()))
+                    .collect(Collectors.toList()));
+        break;
+      default:
+        data = loadProductList();
+        break;
     }
     // loadFilteredProductList(filteredProducts);
 
@@ -285,10 +320,6 @@ public class Controller {
     tableView.setItems(data);
     // Populates the List View with the items from the ObservableList.
     prodLineListView.setItems(data);
-  }
-
-  private void loadFilteredProductList(ObservableList<Product> filteredProducts) {
-    prodLineListView.setItems(filteredProducts);
   }
 
   /**
@@ -423,9 +454,25 @@ public class Controller {
    * program starts.
    */
   public void initialize() {
+    String line;
+    try {
+      FileReader filereader = new FileReader("res/instructions");
+      BufferedReader bufferedReader = new BufferedReader(filereader);
+      while ((line = bufferedReader.readLine()) != null) {
+        instructionTA.appendText(line + "\n");
+      }
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    }
+    instructionTA.setEditable(false);
+    productLogTA.setEditable(false);
+    itemProducedTA.setEditable(false);
+    employeeInfoTA.setEditable(false);
     errorLabel.setVisible(false);
     productErrorLbl.setVisible(false);
     manufacturerErrorLbl.setVisible(false);
+    empErrorLbl.setVisible(false);
+    pwErrorLbl.setVisible(false);
     initializeDB();
     populateComboBox();
     populateChoiceBox();
@@ -475,7 +522,7 @@ public class Controller {
   @FXML
   void handleEventAddProduct() {
     // Check if the Manufacturer TextField is empty, but the Product TextField contains valid text
-    if (manufacturerTF.getText().isEmpty() && productNameTF.getText().matches("[a-zA-Z0-9]")) {
+    if (manufacturerTF.getText().isEmpty() && !productNameTF.getText().isEmpty()) {
       productNameTF.getStyleClass().remove("error");
       manufacturerTF.getStyleClass().add("error");
       manufacturerErrorLbl.setVisible(true);
@@ -484,7 +531,7 @@ public class Controller {
       manufacturerErrorLbl.setText("Enter a manufacturer.");
     }
     // Check if the Product TextField is empty, but the Manufacturer TextField contains valid text
-    if (productNameTF.getText().isEmpty() && manufacturerTF.getText().matches("[a-zA-Z0-9]")) {
+    if (productNameTF.getText().isEmpty() && !manufacturerTF.getText().isEmpty()) {
       productNameTF.getStyleClass().add("error");
       manufacturerTF.getStyleClass().remove("error");
       productErrorLbl.setVisible(true);
@@ -629,7 +676,8 @@ public class Controller {
       // Prints value that was obtained from prodQuantity
       System.out.println(
           "Product has been made: " + "\n" + prodToProduce + "\nAmount: " + prodQuantity);
-      itemProducedTA.setText("Product has been made: " + "\n" + prodToProduce + "\nAmount: " + prodQuantity);
+      itemProducedTA.setText(
+          "Product has been made: " + "\n" + prodToProduce + "\nAmount: " + prodQuantity);
     }
   }
 
@@ -648,7 +696,33 @@ public class Controller {
   void onActionSubmitEmployeeInfo() {
     String empName = employeeNameTF.getText();
     String empPassword = employeePasswordTF.getText();
-    Employee employee = new Employee(empName, empPassword);
-    employeeInfoTA.setText(employee.toString());
+    if (empName.isEmpty() && !empPassword.isEmpty()) {
+      empErrorLbl.setVisible(true);
+      pwErrorLbl.setVisible(false);
+      empErrorLbl.setStyle("-fx-text-fill: red");
+      empErrorLbl.setText("Enter Employee Name.");
+    }
+
+    if (empPassword.isEmpty() && !empName.isEmpty()) {
+      empErrorLbl.setVisible(false);
+      pwErrorLbl.setVisible(true);
+      pwErrorLbl.setStyle("-fx-text-fill: red");
+      pwErrorLbl.setText("Enter Password.");
+    }
+    if (empName.isEmpty()) {
+      empErrorLbl.setVisible(true);
+      empErrorLbl.setStyle("-fx-text-fill: red");
+      empErrorLbl.setText("Enter Employee Name.");
+    } else if (empPassword.isEmpty()) {
+      empErrorLbl.setVisible(false);
+      pwErrorLbl.setVisible(true);
+      pwErrorLbl.setStyle("-fx-text-fill: red");
+      pwErrorLbl.setText("Enter Password.");
+    } else {
+      empErrorLbl.setVisible(false);
+      pwErrorLbl.setVisible(false);
+      Employee employee = new Employee(empName, empPassword);
+      employeeInfoTA.setText(employee.toString());
+    }
   }
 }

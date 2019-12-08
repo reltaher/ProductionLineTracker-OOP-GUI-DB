@@ -1,0 +1,53 @@
+PRODUCT LINE:
+
+-Enter the Product's name in the "Product Name" TextField.
+
+-Enter the Product's manufacturer in the "Manufacturer" TextField.
+
+-Select the appropriate ItemType for the Product.
+
+-Press the "Add Product" button after filling in all of the necessary information.
+
+-The Product that you entered will be listed in the TableView.
+
+PRODUCE:
+
+-The Product you entered will also be listed in the ListView in this tab.
+
+-Select a Product from the ListView. You can also search for a product by name,
+manufacturer, and type.
+
+-To search for a product, select the appropriate filter for the product you are
+searching for.
+
+-If you wish to search for all products, enter nothing in the TextField and press search.
+
+-Once a product has been selected, choose the quantity amount you wish to produce.
+
+-The "Quantity Amount" ChoiceBox contains choices 1-10.
+You can also enter your own quantity.
+
+-Once all of the necessary information has been entered, press "Record Production".
+
+-The item will be recorded to the Production Log, and text will appear in the
+TextArea displaying the item you have made.
+
+PRODUCTION LOG:
+
+-In this tab, you will see all of the items that you have produced.
+
+-The Item is listed by Production number, Product name,
+Serial Number, and Date produced.
+
+EMPLOYEE:
+
+-Enter your first and last name in the "Employee Name" TextField.
+
+-Enter a password for the "Password" TextField.
+
+-The password must contain an uppercase letter, a lowercase letter, and a special
+character.
+
+-Once the necessary information has been entered, press the "Submit" button.
+
+-Your employee details will be displayed in the TextArea below.
