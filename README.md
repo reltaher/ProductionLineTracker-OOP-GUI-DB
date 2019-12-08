@@ -37,7 +37,9 @@ Detailed guide provided here: https://guides.github.com/activities/forking/
 
 ## Built With
 
-IntelliJ IDEA.
+IntelliJ IDEA 2019.2
+
+IntelliJ is a Java IDE built for professional developers. Some of the best features of IntelliJ includes giving relevant suggestions for each context, which includes code suggestions, refactoring tools, and shortcuts for code completion, such as a driver method for java (psvm -> tab) and the method to print to the console (sout -> tab).
 
 ## Contributing
 
@@ -53,6 +55,8 @@ Ramzy El-Taher
 ## Acknowledgments
 
 Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
+
+StackOverflow: Helped me with some Java syntax that I was struggling to find a solution for.
 
 ## History
 
