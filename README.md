@@ -16,6 +16,8 @@ The Production Line Tracker is a program that will manage tracking inventory of 
 
 ![Sprint 2 Class Diagram](diagrams/Class_Diagram_Sprint_2.pdf)
 
+Final Sprint Class Diagrams:
+
 ![Sprint 3 Class Diagram - Product Classes](diagrams/Sprint3_Class_Diagram_ProductClasses.PNG)
 
 ![Sprint 3 Class Diagram - Controller Classes](diagrams/Sprint3_Class_Diagram_ControllerClasses.PNG)
