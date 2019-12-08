@@ -32,7 +32,7 @@ public abstract class Product implements Item {
    * Method that return's the Product's information as a String.
    *
    * @return name, which is a private String field, manufacturer, which is a private String field,
-   * and type, which is a private ItemType enum.
+   *        and type, which is a private ItemType enum.
    */
   public String toString() {
     return "Name: " + name + "\nManufacturer: " + manufacturer + "\nType: " + type.getCode();

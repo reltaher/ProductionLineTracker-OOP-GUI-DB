@@ -89,7 +89,7 @@ public class Screen implements ScreenSpec {
    * Method that returns the Screen's information as a String.
    *
    * @return resolution, which is a private String variable, refreshRate, which is a private int
-   * variable, and responseTime, which is a private int variable.
+   *        variable, and responseTime, which is a private int variable.
    */
   public String toString() {
     return "Resolution: "

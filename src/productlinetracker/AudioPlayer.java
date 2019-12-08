@@ -37,7 +37,7 @@ public class AudioPlayer extends Product implements MultimediaControl {
    * console.
    *
    * @return the superclass's toString method, and also adds additional rows for supported audio
-   * formats and supported playlist formats
+   *        formats and supported playlist formats
    */
   public String toString() {
     return super.toString()
