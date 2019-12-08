@@ -56,6 +56,8 @@ Ramzy El-Taher
 
 Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 
+StackOverflow: Helped me with some Java syntax that I was struggling to find a solution for.
+
 ## History
 
 ![Program History](program_history/README.md)
