@@ -8,7 +8,7 @@ N/A
 
 ## Documentation
 
-N/A. All of the documentation are currently in the program as JavaDoc style comments.
+[Link to the website of the program generated with JavaDocs](https://reltaher.github.io/ProductionLineTracker-OOP-GUI-DB/index.html)
 
 ## Diagrams
 
