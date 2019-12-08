@@ -61,6 +61,8 @@ Prof. Vanselow: Cleared up confusion with program expectations for each sprint.
 
 StackOverflow: Helped me with some Java syntax that I was struggling to find a solution for.
 
+Software Engineering Fundamentals Team: Some of the team members has helped me implement some functionality thanks to their backend knowledge, such as filtering a search and creating a login scene.
+
 ## History
 
 ![Program History](program_history/README.md)
