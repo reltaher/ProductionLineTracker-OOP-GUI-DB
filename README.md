@@ -19,7 +19,13 @@ The Production Line Tracker is a program that will manage tracking inventory of 
 
 ## Getting Started
 
-N/A
+-Fork the repository by clicking on the "Fork" button on the top right.
+
+-Clone the fork by clicking on "Clone or download"
+
+-Make a pull request. I will have to accept it before you are able to start contributing or run the program yourself on your local machine.
+
+Detailed guide provided here: https://guides.github.com/activities/forking/
 
 ## Built With
 
@@ -27,7 +33,7 @@ IntelliJ IDEA.
 
 ## Contributing
 
-N/A
+There can always be additional features to add to this project. If you would like to contribute to this project, then create a pull request for this repository, and once accepted, pull this project into your IDE and add whatever you may feel is an improvement to the current version of this software. Once you finish, commit and push back into this repository.
 
 ## Author
 
