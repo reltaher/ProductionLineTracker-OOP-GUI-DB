@@ -6,19 +6,29 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="657.0" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginController">
    <children>
-      <Pane fx:id="anchorPaneLogin" prefHeight="400.0" prefWidth="600.0">
+      <Pane fx:id="anchorPaneLogin" prefHeight="470.0" prefWidth="657.0">
          <children>
-            <PasswordField fx:id="passwordTF" layoutX="207.0" layoutY="211.0" />
-            <Label layoutX="222.0" layoutY="31.0" text="Production Line Tracker" />
-            <Label layoutX="269.0" layoutY="190.0" text="Password" />
-            <TextField fx:id="usernameTF" layoutX="207.0" layoutY="127.0" />
-            <Label layoutX="267.0" layoutY="106.0" text="Username" />
-            <Label layoutX="282.0" layoutY="52.0" text="Login" />
-            <Button fx:id="loginBtn" layoutX="270.0" layoutY="280.0" mnemonicParsing="false" onAction="#onActionLogin" text="Log in" />
-            <Label fx:id="errorTextLogin" alignment="CENTER" layoutY="339.0" prefHeight="21.0" prefWidth="600.0" text="Error Text" textFill="RED" />
+            <PasswordField fx:id="passwordTF" layoutX="236.0" layoutY="252.0" prefHeight="25.0" prefWidth="184.0" />
+            <Label layoutX="307.0" layoutY="235.0" text="Password" />
+            <TextField fx:id="usernameTF" layoutX="238.0" layoutY="190.0" prefHeight="25.0" prefWidth="184.0" />
+            <Label layoutX="301.0" layoutY="173.0" text="Username" />
+            <Button fx:id="loginBtn" layoutX="303.0" layoutY="313.0" mnemonicParsing="false" onAction="#onActionLogin" text="Log in" />
+            <Label fx:id="errorTextLogin" alignment="CENTER" layoutX="-1.0" layoutY="338.0" prefHeight="21.0" prefWidth="657.0" text="Error Text" textFill="RED" />
+            <Text fx:id="loginLogo" fill="WHITE" layoutX="1.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Production Line Tracker" textAlignment="CENTER" wrappingWidth="657.0">
+               <font>
+                  <Font name="System Italic" size="47.0" />
+               </font>
+            </Text>
+            <Text fx:id="loginLogo1" fill="WHITE" layoutX="3.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" wrappingWidth="657.0">
+               <font>
+                  <Font name="System Italic" size="47.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>

@@ -29,7 +29,7 @@ public class Main extends Application {
 
     Parent root = FXMLLoader.load(getClass().getResource("../login/login.fxml"));
     primaryStage.setTitle("Production Line Tracker");
-    primaryStage.setScene(new Scene(root, 600, 400));
+    primaryStage.setScene(new Scene(root, 657, 470));
     root.getStylesheets().add("login/login.css");
     primaryStage.show();
   }
