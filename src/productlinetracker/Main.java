@@ -27,8 +27,6 @@ public class Main extends Application {
   /**
    * Method that starts the JavaFX program.
    *
-   * @brief starts JavaFX program. The start method is the starting point of a JavaFX program. This
-   *     start method sets the title.
    * @param primaryStage The primary stage, which sets the title, scene, and ability to show the
    *     program.
    * @throws Exception Any problem with the code.
