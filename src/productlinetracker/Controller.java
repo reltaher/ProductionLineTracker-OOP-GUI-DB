@@ -593,15 +593,17 @@ public class Controller {
       errorLabel.setVisible(false);
       // Get the Quantity Value from the Combo Box and convert it into an Integer
       int amtToProduce = Integer.parseInt(productAmtComboBox.getValue());
-      // Number which represents the amount of items made
-      // int itemCount = 0;
       // ArrayList of ProductionRecord objects
       ArrayList<ProductionRecord> productionRun = new ArrayList<>();
-      // Loop that adds an item to the ArrayList depending on the amount that the user selects
+      // Audio item counter
       int au = 0;
+      // AudioMobile item counter
       int am = 0;
+      // Visual item counter
       int vi = 0;
+      // VisualMobile item counter
       int vm = 0;
+      // counter variable used for a ProductionRecord object.
       int counter = 0;
       String selectSerialNum = "SELECT SERIAL_NUM FROM PRODUCTIONRECORD";
       try {
@@ -609,30 +611,38 @@ public class Controller {
         ResultSet rsSelectSerialNum = psSelectSerialNum.executeQuery();
         while (rsSelectSerialNum.next()) {
           String serialNum = rsSelectSerialNum.getString("serial_num");
+          // auto-increment Audio counter if SERIAL_NUM table contains "AU"
           if (serialNum.contains("AU")) {
             au++;
           }
+          // auto-increment AudioMobile counter if SERIAL_NUM table contains "AM"
           if (serialNum.contains("AM")) {
             am++;
           }
+          // auto-increment Visual counter if SERIAL_NUM table contains "VI"
           if (serialNum.contains("VI")) {
             vi++;
           }
+          // auto-increment VisualMobile counter if SERIAL_NUM table contains "VM"
           if (serialNum.contains("VM")) {
             vm++;
           }
         }
         rsSelectSerialNum.close();
         psSelectSerialNum.close();
+        // Assign counter variable to Audio item counter if ListView item is an AU ItemType.
         if (itemToProduce.toString().contains("AU")) {
           counter = au;
         }
+        // Assign counter variable to AudioMobile item counter if ListView item is an AM ItemType.
         if (itemToProduce.toString().contains("AM")) {
           counter = am;
         }
+        // Assign counter variable to Visual item counter if ListView item is a VI ItemType.
         if (itemToProduce.toString().contains("VI")) {
           counter = vi;
         }
+        // Assign counter variable to VisualMobile item counter if ListView item is a VM ItemType.
         if (itemToProduce.toString().contains("VM")) {
           counter = vm;
         }
@@ -664,11 +674,10 @@ public class Controller {
         // Stores the ProductionRecord object that was made into the ArrayList
         productionRun.add(pr);
       }
-      addToProductionDB(productionRun);
-      loadProductionLog();
-
       // Passes the ArrayList of ProductionRecord objects to the "addToProductionDB" method.
-
+      addToProductionDB(productionRun);
+      // Calls loadProductionLog method
+      loadProductionLog();
       // Gets the item from the Product Record tab and converts it into a string.
       String prodToProduce = prodLineListView.getSelectionModel().getSelectedItem().toString();
       // Gets the value of the amount of items that the user wishes to make.
@@ -676,6 +685,7 @@ public class Controller {
       // Prints value that was obtained from prodQuantity
       System.out.println(
           "Product has been made: " + "\n" + prodToProduce + "\nAmount: " + prodQuantity);
+      // Sets the item produced to the Text Area in the Produce tab.
       itemProducedTA.setText(
           "Product has been made: " + "\n" + prodToProduce + "\nAmount: " + prodQuantity);
     }
