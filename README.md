@@ -4,7 +4,7 @@ The Production Line Tracker is a program that will manage tracking inventory of 
 
 ## Demonstration
 
-![Production Line Tracker](https://giphy.com/gifs/YkK8WfnFde2rS1Eqw0)
+![Production Line Tracker](9NshPxDVMJ.gif)
 
 ## Documentation
 
