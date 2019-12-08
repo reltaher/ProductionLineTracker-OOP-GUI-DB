@@ -16,9 +16,10 @@ public class AudioPlayer extends Product implements MultimediaControl {
    * Constructor that takes in the Product's name, manufacturer, Audio Specification, and media
    * type. It takes its parent's constructor and also sets up the media type to AUDIO.
    *
-   * @param name The String variable that stores the Product's name.
-   * @param manufacturer The String variable that stores the Product's manufacturer.
-   * @param supportedAudioFormats The String variable that stores the Product's Audio Specification.
+   * @param name                     The String variable that stores the Product's name.
+   * @param manufacturer             The String variable that stores the Product's manufacturer.
+   * @param supportedAudioFormats    The String variable that stores the Product's Audio
+   *                                 Specification.
    * @param supportedPlaylistFormats The String variable that stores the Product's Media Type.
    */
   AudioPlayer(
@@ -36,7 +37,7 @@ public class AudioPlayer extends Product implements MultimediaControl {
    * console.
    *
    * @return the superclass's toString method, and also adds additional rows for supported audio
-   *     formats and supported playlist formats
+   * formats and supported playlist formats
    */
   public String toString() {
     return super.toString()
@@ -46,12 +47,16 @@ public class AudioPlayer extends Product implements MultimediaControl {
         + supportedPlaylistFormats;
   }
 
-  /** Method from the MultimediaControl Interface to display the "play" action to the console. */
+  /**
+   * Method from the MultimediaControl Interface to display the "play" action to the console.
+   */
   public void play() {
     System.out.println("Playing...");
   }
 
-  /** Method from the MultimediaControl Interface to display the "stop" action to the console. */
+  /**
+   * Method from the MultimediaControl Interface to display the "stop" action to the console.
+   */
   public void stop() {
     System.out.println("Stopping...");
   }
@@ -63,7 +68,9 @@ public class AudioPlayer extends Product implements MultimediaControl {
     System.out.println("Going to previous selection...");
   }
 
-  /** Method from the MultimediaControl Interface to display the "next" action to the console. */
+  /**
+   * Method from the MultimediaControl Interface to display the "next" action to the console.
+   */
   public void next() {
     System.out.println("Going to next selection...");
   }
@@ -102,7 +109,7 @@ public class AudioPlayer extends Product implements MultimediaControl {
    * Mutator for supportedPlaylistFormats.
    *
    * @param supportedPlaylistFormats the String variable that the private String field is assigned
-   *     to.
+   *                                 to.
    */
   @SuppressWarnings("unused")
   public void setSupportedPlaylistFormats(String supportedPlaylistFormats) {

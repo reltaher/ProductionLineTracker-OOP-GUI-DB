@@ -39,49 +39,71 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class Controller {
 
-  @FXML private TextField productNameTF;
+  @FXML
+  private TextField productNameTF;
 
-  @FXML private TextField manufacturerTF;
+  @FXML
+  private TextField manufacturerTF;
 
-  @FXML private ChoiceBox<ItemType> itemTypeChoiceBox;
+  @FXML
+  private ChoiceBox<ItemType> itemTypeChoiceBox;
 
-  @FXML private ChoiceBox<String> productFilter;
+  @FXML
+  private ChoiceBox<String> productFilter;
 
-  @FXML private ComboBox<String> productAmtComboBox;
+  @FXML
+  private ComboBox<String> productAmtComboBox;
 
-  @FXML private TableView<Product> tableView;
+  @FXML
+  private TableView<Product> tableView;
 
-  @FXML private TableColumn<String, Product> productNameColumn;
+  @FXML
+  private TableColumn<String, Product> productNameColumn;
 
-  @FXML private TableColumn<?, ?> manufacturerColumn;
+  @FXML
+  private TableColumn<?, ?> manufacturerColumn;
 
-  @FXML private TableColumn<?, ?> itemTypeColumn;
+  @FXML
+  private TableColumn<?, ?> itemTypeColumn;
 
-  @FXML private Label errorLabel;
+  @FXML
+  private Label errorLabel;
 
-  @FXML private Label productErrorLbl;
+  @FXML
+  private Label productErrorLbl;
 
-  @FXML private Label manufacturerErrorLbl;
+  @FXML
+  private Label manufacturerErrorLbl;
 
-  @FXML private Label empErrorLbl;
+  @FXML
+  private Label empErrorLbl;
 
-  @FXML private Label pwErrorLbl;
+  @FXML
+  private Label pwErrorLbl;
 
-  @FXML private ListView<Product> prodLineListView;
+  @FXML
+  private ListView<Product> prodLineListView;
 
-  @FXML private TextArea instructionTA;
+  @FXML
+  private TextArea instructionTA;
 
-  @FXML private TextArea productLogTA;
+  @FXML
+  private TextArea productLogTA;
 
-  @FXML private TextField employeeNameTF;
+  @FXML
+  private TextField employeeNameTF;
 
-  @FXML private TextField employeePasswordTF;
+  @FXML
+  private TextField employeePasswordTF;
 
-  @FXML private TextField productSearchTF;
+  @FXML
+  private TextField productSearchTF;
 
-  @FXML private TextArea employeeInfoTA;
+  @FXML
+  private TextArea employeeInfoTA;
 
-  @FXML private TextArea itemProducedTA;
+  @FXML
+  private TextArea itemProducedTA;
 
   private Connection conn;
 
@@ -332,7 +354,7 @@ public class Controller {
    * "productLine".
    *
    * @param productionRun An ArrayList of ProductionRecord objects, used to store a ProductionRecord
-   *     object's fields into the ProductionRecord database.
+   *                      object's fields into the ProductionRecord database.
    */
   private void addToProductionDB(ArrayList<ProductionRecord> productionRun) {
     /* Loop through the productionRun,
@@ -403,7 +425,7 @@ public class Controller {
    * timezone.
    *
    * @param productionLog The ArrayList of ProductionRecord objects used to be displayed in the
-   *     Production Log.
+   *                      Production Log.
    */
   private void showProduction(ArrayList<ProductionRecord> productionLog) {
     // Splits each word separated by a space in the Production Log into its own index with regex

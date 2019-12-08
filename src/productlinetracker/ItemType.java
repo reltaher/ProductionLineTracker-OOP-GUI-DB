@@ -42,8 +42,8 @@ public enum ItemType {
    *
    * @param code The string variable that identifies the ItemType enum values.
    * @return types which are the ItemType enum values. If an enum type does not exist then the
-   *     method will throw a new IllegalArgumentException, stating that the item type code does not
-   *     exist.
+   * method will throw a new IllegalArgumentException, stating that the item type code does not
+   * exist.
    */
   public static ItemType fromString(String code) {
     // For each loop which loops through each Item Type enum.

@@ -15,10 +15,10 @@ public class MoviePlayer extends Product implements MultimediaControl {
   /**
    * Constructor that contains a MoviePlayer's information when an object is created.
    *
-   * @param name the variable that inherits its parents field.
+   * @param name         the variable that inherits its parents field.
    * @param manufacturer the variable that inherits its parents field.
-   * @param screen the variable that its respective field is assigned to.
-   * @param monitorType the variable that its respective field is assigned to.
+   * @param screen       the variable that its respective field is assigned to.
+   * @param monitorType  the variable that its respective field is assigned to.
    */
   MoviePlayer(String name, String manufacturer, Screen screen, MonitorType monitorType) {
     super(name, ItemType.VISUAL, manufacturer);
@@ -35,22 +35,30 @@ public class MoviePlayer extends Product implements MultimediaControl {
     return super.toString() + "\nScreen: " + screen + "\nMonitor Type: " + monitorType;
   }
 
-  /** The method "play", implemented from the MultimediaControl interface. */
+  /**
+   * The method "play", implemented from the MultimediaControl interface.
+   */
   public void play() {
     System.out.println("Playing Movie");
   }
 
-  /** The method "stop", implemented from the MultimediaControl interface. */
+  /**
+   * The method "stop", implemented from the MultimediaControl interface.
+   */
   public void stop() {
     System.out.println("Stopping Movie");
   }
 
-  /** The method "previous", implemented from the MultimediaControl interface. */
+  /**
+   * The method "previous", implemented from the MultimediaControl interface.
+   */
   public void previous() {
     System.out.println("Previous Movie");
   }
 
-  /** The method "next", implemented from the MultimediaControl interface. */
+  /**
+   * The method "next", implemented from the MultimediaControl interface.
+   */
   public void next() {
     System.out.println("Next Movie");
   }

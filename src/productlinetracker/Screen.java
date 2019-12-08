@@ -7,7 +7,7 @@ package productlinetracker;
  *
  * @author Ramzy El-Taher
  */
-public class  Screen implements ScreenSpec {
+public class Screen implements ScreenSpec {
 
   private String resolution;
   private int refreshRate;
@@ -16,8 +16,8 @@ public class  Screen implements ScreenSpec {
   /**
    * Constructor to use when creating a Screen object.
    *
-   * @param resolution The Screen's resolution stored as a String variable.
-   * @param refreshRate The Screen's refresh rate stored as an int variable.
+   * @param resolution   The Screen's resolution stored as a String variable.
+   * @param refreshRate  The Screen's refresh rate stored as an int variable.
    * @param responseTime The Screen's response time stored as an int variable.
    */
   Screen(String resolution, int refreshRate, int responseTime) {
@@ -89,7 +89,7 @@ public class  Screen implements ScreenSpec {
    * Method that returns the Screen's information as a String.
    *
    * @return resolution, which is a private String variable, refreshRate, which is a private int
-   *     variable, and responseTime, which is a private int variable.
+   * variable, and responseTime, which is a private int variable.
    */
   public String toString() {
     return "Resolution: "

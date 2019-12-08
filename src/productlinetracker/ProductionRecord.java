@@ -35,9 +35,9 @@ public class ProductionRecord {
    * Constructor used for creating ProductionRecord objects that are stored to the database.
    *
    * @param productionNumber the int variable that the productionNumber field is assigned to.
-   * @param productID the int variable that the productID field is assigned to.
-   * @param serialNumber the String variable that the serialNumber field is assigned to.
-   * @param dateProduced the date variable that the dateProduced field is assigned to.
+   * @param productID        the int variable that the productID field is assigned to.
+   * @param serialNumber     the String variable that the serialNumber field is assigned to.
+   * @param dateProduced     the date variable that the dateProduced field is assigned to.
    */
   public ProductionRecord(
       int productionNumber, int productID, String serialNumber, Date dateProduced) {
@@ -50,7 +50,8 @@ public class ProductionRecord {
   /**
    * Constructor that generates a unique serial number for each product produced.
    *
-   * @param product a Product object that obtained the manufacturer and type for the serial number.
+   * @param product   a Product object that obtained the manufacturer and type for the serial
+   *                  number.
    * @param itemCount an int variable that is used to be incremented for every product produced.
    */
   public ProductionRecord(Product product, int itemCount) {

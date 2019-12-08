@@ -9,6 +9,7 @@ package productlinetracker;
  * @author Ramzy El-Taher
  */
 public abstract class Product implements Item {
+
   private int id;
   private String name;
   private ItemType type;
@@ -17,8 +18,8 @@ public abstract class Product implements Item {
   /**
    * Constructor for a Product object.
    *
-   * @param name The Product's name, stored as a String variable.
-   * @param type The Product's type, stored as an ItemType enum.
+   * @param name         The Product's name, stored as a String variable.
+   * @param type         The Product's type, stored as an ItemType enum.
    * @param manufacturer The Product's manufacturer, stored as a String variable.
    */
   public Product(String name, ItemType type, String manufacturer) {
@@ -31,7 +32,7 @@ public abstract class Product implements Item {
    * Method that return's the Product's information as a String.
    *
    * @return name, which is a private String field, manufacturer, which is a private String field,
-   *     and type, which is a private ItemType enum.
+   * and type, which is a private ItemType enum.
    */
   public String toString() {
     return "Name: " + name + "\nManufacturer: " + manufacturer + "\nType: " + type.getCode();

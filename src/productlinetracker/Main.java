@@ -21,7 +21,7 @@ public class Main extends Application {
    * Method that starts the JavaFX program.
    *
    * @param primaryStage The primary stage, which sets the title, scene, and ability to show the
-   *     program.
+   *                     program.
    * @throws Exception Any problem with the code.
    */
   @Override

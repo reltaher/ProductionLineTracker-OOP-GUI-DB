@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
  * @author Ramzy El-Taher
  */
 public class Employee {
+
   private StringBuilder name;
   private String username;
   private String password;
@@ -22,7 +23,7 @@ public class Employee {
    * The constructor that is used to create Employee objects. An Employee object will include a name
    * and a password.
    *
-   * @param name A string that contains an Employee's name.
+   * @param name     A string that contains an Employee's name.
    * @param password A string that contains an Employee's password.
    */
   public Employee(String name, String password) {
