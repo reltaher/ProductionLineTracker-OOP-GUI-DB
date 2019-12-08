@@ -2,8 +2,11 @@ package productlinetracker;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -456,9 +459,15 @@ public class Controller {
   public void initialize() {
     String line;
     try {
-      FileReader filereader = new FileReader("res/instructions");
-      BufferedReader bufferedReader = new BufferedReader(filereader);
+      // FileInputStream which reads the instructions file
+      InputStream fileInputStream = new FileInputStream("res/instructions");
+      // Reader which reads the FileInputStream. UTF 8 is needed for any character to be written.
+      Reader reader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
+      // BufferedReader which reads reader.
+      BufferedReader bufferedReader = new BufferedReader(reader);
+      // Reads each line from the instructions txt file
       while ((line = bufferedReader.readLine()) != null) {
+        // appends each line to the TextArea in the Info tab.
         instructionTA.appendText(line + "\n");
       }
     } catch (IOException ex) {
