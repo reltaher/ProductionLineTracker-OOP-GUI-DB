@@ -474,6 +474,7 @@ public class Controller {
       ex.printStackTrace();
     }
     instructionTA.setEditable(false);
+    instructionTA.positionCaret(0);
     productLogTA.setEditable(false);
     itemProducedTA.setEditable(false);
     employeeInfoTA.setEditable(false);
