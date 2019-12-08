@@ -4,7 +4,7 @@ The Production Line Tracker is a program that will manage tracking inventory of 
 
 ## Demonstration
 
-N/A
+![Production Line Tracker](9NshPxDVMJ.gif)
 
 ## Documentation
 
@@ -16,10 +16,24 @@ N/A
 
 ![Sprint 2 Class Diagram](diagrams/Class_Diagram_Sprint_2.pdf)
 
+Final Sprint Class Diagrams:
+
+![Sprint 3 Class Diagram - Product Classes](diagrams/Sprint3_Class_Diagram_ProductClasses.PNG)
+
+![Sprint 3 Class Diagram - Controller Classes](diagrams/Sprint3_Class_Diagram_ControllerClasses.PNG)
+
+![Sprint 3 Class Diagram - Other Classes](diagrams/Spint3_Class_Diagram_OtherClasses.PNG)
+
 
 ## Getting Started
 
-N/A
+-Fork the repository by clicking on the "Fork" button on the top right.
+
+-Clone the fork by clicking on "Clone or download"
+
+-Make a pull request. I will have to accept it before you are able to start contributing or run the program yourself on your local machine.
+
+Detailed guide provided here: https://guides.github.com/activities/forking/
 
 ## Built With
 
@@ -27,15 +41,14 @@ IntelliJ IDEA.
 
 ## Contributing
 
-N/A
+There can always be additional features to add to this project. If you would like to contribute to this project, then create a pull request for this repository, and once accepted, pull this project into your IDE and add whatever you may feel is an improvement to the current version of this software. Once you finish, commit and push back into this repository.
 
 ## Author
 
 Ramzy El-Taher
 
 ## License
-
-N/A
+[GNU General Public License v3.0](LICENSE)
 
 ## Acknowledgments
 
