@@ -11,6 +11,8 @@ The Production Line Tracker is a program that will manage tracking inventory of 
 [Link to the website of the program generated with JavaDocs](https://reltaher.github.io/ProductionLineTracker-OOP-GUI-DB/index.html)
 
 ## Diagrams
+Database Visualization Diagram:
+
 ![Databse Visualization Diagram](diagrams/Database_Visualization_Diagram.PNG)
 
 ![Sprint 1 Class Diagram](diagrams/Class_Diagram_Sprint1.pdf)
