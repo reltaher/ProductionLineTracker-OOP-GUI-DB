@@ -681,7 +681,10 @@ public class Controller {
     }
   }
 
-  /** */
+  /**
+   * Method that calls the "setupProductLineTable" method upon the button being clicked. This
+   * onAction method is used for the puspose of searching a product by name, manufacturer, or type.
+   */
   @FXML
   void onActionSearchProduct() {
     setupProductLineTable();
