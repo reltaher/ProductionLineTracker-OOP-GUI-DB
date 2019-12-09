@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="ProductLineDB" uuid="e9647138-8e1b-4e38-94f7-d4d0cd750be6">
+    <data-source name="ProductLineDB" uuid="ea5d6c31-7864-4ff2-bc58-86db398334ae">
       <database-info product="H2" version="1.4.196 (2017-06-10)" jdbc-version="4.0" driver-name="H2 JDBC Driver" driver-version="1.4.196 (2017-06-10)" dbms="H2" exact-version="1.4.196" exact-driver-version="1.4">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>

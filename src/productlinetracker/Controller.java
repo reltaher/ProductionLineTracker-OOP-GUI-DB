@@ -482,7 +482,7 @@ public class Controller {
     String line;
     try {
       // FileInputStream which reads the instructions file
-      InputStream fileInputStream = new FileInputStream("res/instructions");
+      InputStream fileInputStream = new FileInputStream("res/instructions.txt");
       // Reader which reads the FileInputStream. UTF 8 is needed for any character to be written.
       Reader reader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
       // BufferedReader which reads reader.
