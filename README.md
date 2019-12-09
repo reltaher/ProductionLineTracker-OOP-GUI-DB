@@ -15,9 +15,9 @@ Database Visualization Diagram:
 
 ![Databse Visualization Diagram](diagrams/Database_Visualization_Diagram.PNG)
 
-![Sprint 1 Class Diagram](diagrams/Class_Diagram_Sprint1.pdf)
+[Sprint 1 Class Diagram](diagrams/Class_Diagram_Sprint1.pdf)
 
-![Sprint 2 Class Diagram](diagrams/Class_Diagram_Sprint_2.pdf)
+[Sprint 2 Class Diagram](diagrams/Class_Diagram_Sprint_2.pdf)
 
 Final Sprint Class Diagrams:
 
@@ -65,7 +65,7 @@ Software Engineering Fundamentals Team: Some of the team members has helped me i
 
 ## History
 
-![Program History](program_history/README.md)
+[Program History](program_history/README.md)
 
 ## Key Programming Concepts Utilized
 
