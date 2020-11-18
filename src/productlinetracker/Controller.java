@@ -553,51 +553,63 @@ public class Controller {
    */
   @FXML
   void handleEventAddProduct() {
-    // Check if the Manufacturer TextField is empty, but the Product TextField contains valid text
-    if (manufacturerTF.getText().isEmpty() && !productNameTF.getText().isEmpty()) {
-      productNameTF.getStyleClass().remove("error");
-      manufacturerTF.getStyleClass().add("error");
-      manufacturerErrorLbl.setVisible(true);
-      productErrorLbl.setVisible(false);
-      manufacturerErrorLbl.setStyle("-fx-text-fill: red");
-      manufacturerErrorLbl.setText("Enter a manufacturer.");
+    if (manufacturerTextFieldIsEmpty() && !productTextFieldIsEmpty()) {
+      requestUserToEnterManufacturer();
     }
-    // Check if the Product TextField is empty, but the Manufacturer TextField contains valid text
-    if (productNameTF.getText().isEmpty() && !manufacturerTF.getText().isEmpty()) {
-      productNameTF.getStyleClass().add("error");
-      manufacturerTF.getStyleClass().remove("error");
-      productErrorLbl.setVisible(true);
-      manufacturerErrorLbl.setVisible(false);
-      productErrorLbl.setStyle("-fx-text-fill: red");
-      productErrorLbl.setText("Enter a Product.");
+    if (productTextFieldIsEmpty() && !manufacturerTextFieldIsEmpty()) {
+      requestUserToEnterManufacturer();
     }
-    if (productNameTF.getText().isEmpty()) { // Check if Name TextField is empty
+    if (productTextFieldIsEmpty()) {
       productNameTF.requestFocus();
-      productNameTF.getStyleClass().add("error");
-      manufacturerTF.getStyleClass().remove("error");
-      productErrorLbl.setVisible(true);
-      manufacturerErrorLbl.setVisible(false);
-      productErrorLbl.setStyle("-fx-text-fill: red");
-      productErrorLbl.setText("Enter a Product.");
-    } else if (manufacturerTF.getText().isEmpty()) { // Check if Manufacturer TextField is empty
-      productNameTF.getStyleClass().remove("error");
+      requestUserToEnterProduct();
+    } else if (manufacturerTextFieldIsEmpty()) {
       manufacturerTF.requestFocus();
-      manufacturerTF.getStyleClass().add("error");
-      manufacturerErrorLbl.setVisible(true);
-      productErrorLbl.setVisible(false);
-      manufacturerErrorLbl.setStyle("-fx-text-fill: red");
-      manufacturerErrorLbl.setText("Enter a manufacturer.");
+      requestUserToEnterManufacturer();
     } else { // Execute code if both TextFields are filled in
-      manufacturerErrorLbl.setVisible(false);
-      productErrorLbl.setVisible(false);
-      productNameTF.getStyleClass().remove("error");
-      manufacturerTF.getStyleClass().remove("error");
+      removeErrorText();
       addToProductDB();
       loadProductList();
       setupProductLineTable();
-      productNameTF.clear();
-      manufacturerTF.clear();
+      clearTextFields();
     }
+  }
+
+  public void requestUserToEnterProduct() {
+    productNameTF.getStyleClass().add("error");
+    manufacturerTF.getStyleClass().remove("error");
+    productErrorLbl.setVisible(true);
+    manufacturerErrorLbl.setVisible(false);
+    productErrorLbl.setStyle("-fx-text-fill: red");
+    productErrorLbl.setText("Enter a Product.");
+  }
+
+  public boolean manufacturerTextFieldIsEmpty() {
+    return manufacturerTF.getText().isEmpty();
+  }
+
+  public boolean productTextFieldIsEmpty() {
+    return productNameTF.getText().isEmpty();
+  }
+
+  public void removeErrorText() {
+    manufacturerErrorLbl.setVisible(false);
+    productErrorLbl.setVisible(false);
+    productNameTF.getStyleClass().remove("error");
+    manufacturerTF.getStyleClass().remove("error");
+  }
+
+  public void requestUserToEnterManufacturer() {
+    productNameTF.getStyleClass().remove("error");
+    manufacturerTF.getStyleClass().add("error");
+    manufacturerErrorLbl.setVisible(true);
+    productErrorLbl.setVisible(false);
+    manufacturerErrorLbl.setStyle("-fx-text-fill: red");
+    manufacturerErrorLbl.setText("Enter a manufacturer.");
+  }
+
+  public void clearTextFields() {
+    productNameTF.clear();
+    manufacturerTF.clear();
   }
 
   /**
