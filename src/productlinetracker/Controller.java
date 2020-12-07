@@ -8,14 +8,11 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Properties;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -52,7 +49,7 @@ public class Controller {
   private ChoiceBox<String> productFilter;
 
   @FXML
-  private ComboBox<String> productAmtComboBox;
+  private ComboBox<String> productAmount;
 
   @FXML
   private TableView<Product> tableView;
@@ -67,7 +64,7 @@ public class Controller {
   private TableColumn<?, ?> itemTypeColumn;
 
   @FXML
-  private Label errorLabel;
+  private Label itemErrorLabel;
 
   @FXML
   private Label productErrorLbl;
@@ -76,13 +73,13 @@ public class Controller {
   private Label manufacturerErrorLbl;
 
   @FXML
-  private Label empErrorLbl;
+  private Label employeeNameErrorLabel;
 
   @FXML
-  private Label pwErrorLbl;
+  private Label employeePasswordErrorLabel;
 
   @FXML
-  private ListView<Product> prodLineListView;
+  private ListView<Product> productLine;
 
   @FXML
   private TextArea instructionTA;
@@ -105,7 +102,7 @@ public class Controller {
   @FXML
   private TextArea itemProducedTA;
 
-  private Connection conn;
+  private Connection connection;
 
   /**
    * Method which initializes the Database when the program starts. When a database is initialized,
@@ -116,57 +113,8 @@ public class Controller {
    * @return void
    */
   private void initializeDB() {
-    final String JDBC_DRIVER = "org.h2.Driver";
-
-    final String DB_URL = "jdbc:h2:./res/ProductLineDB";
-
-    // Properties File
-    Properties prop = new Properties();
-    // FileInputStream could contain an IOException, so it is placed in a try/catch
-    try {
-      // Load Properties File
-      prop.load(new FileInputStream("res/data.properties"));
-      // IOException, which catches an issue from FileInputStream
-    } catch (IOException fileInputEx) {
-      fileInputEx.printStackTrace();
-      // General exception, which catches any other issue.
-    } catch (Exception ex) {
-      System.out.println("Something unusual went wrong. Check code for issues.");
-      ex.printStackTrace();
-    }
-    //  Database credentials (Username/Password are temporary)
-    final String USER = "";
-    /* Password is obtained from the Properties file in the res folder
-     * The password can be changed in the database console using "SET PASSWORD 'pwName';"
-     */
-    final String PASS = reverseString(prop.getProperty("password"));
-
-    try {
-      // STEP 1: Register JDBC driver
-      Class.forName(JDBC_DRIVER);
-      // STEP 2: Open a connection
-      System.out.println("Connecting to Database...");
-      conn = DriverManager.getConnection(DB_URL, USER, PASS);
-      Statement stmt = conn.createStatement();
-      // Checks if the created statement is not null
-      if (stmt != null) {
-        // Message will execute if stmt is not null
-        System.out.println("Successfully connected to Database.");
-      } else {
-        // A NullPointerException is thrown is the statement is null
-        throw new NullPointerException("There was a problem creating a statement.");
-      }
-      stmt.close();
-    } catch (SQLException sqlEx) {
-      System.out.println("Could not connect to the database. Check the console for issues.");
-      sqlEx.printStackTrace();
-    } catch (ClassNotFoundException cnfEx) {
-      System.out.println("Error: Class Not Found. Check the console for issues.");
-      cnfEx.printStackTrace();
-    } catch (Exception unusualEx) {
-      System.out.println("An unusual exception has occurred. Check the console for issues.");
-      unusualEx.printStackTrace();
-    }
+    Database database = new Database();
+    connection = database.getConnection();
   }
 
   /**
@@ -181,11 +129,11 @@ public class Controller {
     ObservableList<String> productQuantityList =
         FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
     // Adds numbers 1-10 in the ComboBox as a list in the "Product Record" tab
-    productAmtComboBox.setItems(productQuantityList);
+    productAmount.setItems(productQuantityList);
     // Allows users to enter other values in the ComboBox in the "Product Record" tab
-    productAmtComboBox.setEditable(true);
+    productAmount.setEditable(true);
     // Shows a default value in the ComboBox in the "Product Record" tab
-    productAmtComboBox.getSelectionModel().selectFirst();
+    productAmount.getSelectionModel().selectFirst();
   }
 
   /**
@@ -223,7 +171,7 @@ public class Controller {
       String insertIntoProduct =
           "INSERT INTO Product (NAME, MANUFACTURER, TYPE)" + "VALUES(?, ?, ?)";
       // Prepares a statement for the SQL query
-      PreparedStatement psInsertIntoProduct = conn.prepareStatement(insertIntoProduct);
+      PreparedStatement psInsertIntoProduct = connection.prepareStatement(insertIntoProduct);
       // Sets the Text obtained from the Product Name TextField
       psInsertIntoProduct.setString(1, productNameTF.getText());
       psInsertIntoProduct.setString(2, manufacturerTF.getText());
@@ -259,7 +207,7 @@ public class Controller {
       // SELECT SQL query for NAME, TYPE, and MANUFACTURER in the PRODUCT table.
       String selectProductLine = "SELECT NAME, TYPE, MANUFACTURER FROM PRODUCT";
       // Prepares a statement for the SQL query.
-      PreparedStatement psSelectProductLine = conn.prepareStatement(selectProductLine);
+      PreparedStatement psSelectProductLine = connection.prepareStatement(selectProductLine);
       // ResultSet which executes the PreparedStatement.
       ResultSet rsSelectProductLine = psSelectProductLine.executeQuery();
       // Loops through each row selected in the Product table in the database.
@@ -344,7 +292,7 @@ public class Controller {
     // Populates the Table View with the items from the ObservableList.
     tableView.setItems(data);
     // Populates the List View with the items from the ObservableList.
-    prodLineListView.setItems(data);
+    productLine.setItems(data);
   }
 
   /**
@@ -364,7 +312,7 @@ public class Controller {
           "INSERT INTO PRODUCTIONRECORD(PRODUCT_ID, SERIAL_NUM, DATE_PRODUCED)"
               + "VALUES (?, ?, ?)";
       try {
-        PreparedStatement prepareInsertQuery = conn.prepareStatement(insertIntoPR);
+        PreparedStatement prepareInsertQuery = connection.prepareStatement(insertIntoPR);
         // prepareInsertQuery.setInt(1, productLine.getProductionNumber());
         prepareInsertQuery.setInt(1, productLine.getProductID());
         prepareInsertQuery.setString(2, productLine.getSerialNumber());
@@ -390,7 +338,7 @@ public class Controller {
   private void loadProductionLog() {
     String selectAllFromPR = "SELECT * FROM PRODUCTIONRECORD";
     try {
-      PreparedStatement psSelectAllFromPR = conn.prepareStatement(selectAllFromPR);
+      PreparedStatement psSelectAllFromPR = connection.prepareStatement(selectAllFromPR);
       ResultSet rsSelectAllFromPR = psSelectAllFromPR.executeQuery();
 
       // When an item is added to the log, the TextArea is cleared to prevent duplication.
@@ -434,7 +382,7 @@ public class Controller {
     String selectNameID = "SELECT ID, NAME FROM PRODUCT";
     try {
       // PreparedStatement - Prepares to execute the SQL query
-      PreparedStatement psSelectNameID = conn.prepareStatement(selectNameID);
+      PreparedStatement psSelectNameID = connection.prepareStatement(selectNameID);
       // ResultSet - Executes the SQL query
       ResultSet rsSelectNameID = psSelectNameID.executeQuery();
       // Loops through the selected columns in the Product Table
@@ -462,23 +410,23 @@ public class Controller {
   }
 
   /**
-   * Method that reverses the order of the text stored for the database password.
-   *
-   * @param pw The String variable that contains the password.
-   * @return reversedPw, which is the reversed password obtained from the method.
-   */
-  private String reverseString(String pw) {
-    if (pw.length() <= 0) {
-      return pw;
-    }
-    return reverseString(pw.substring(1)) + pw.charAt(0);
-  }
-
-  /**
    * The initialize method is used to call other methods that are needed to be executed when the
    * program starts.
    */
   public void initialize() {
+    loadInstructionTextFile();
+    setTextAreasUneditable();
+    hideErrorText();
+    initializeDB();
+    populateComboBox();
+    populateChoiceBox();
+    setupProductLineTable();
+    loadProductList();
+    loadProductionLog();
+    testMultiMedia();
+  }
+
+  private void loadInstructionTextFile() {
     String line;
     try {
       // FileInputStream which reads the instructions file
@@ -495,23 +443,14 @@ public class Controller {
     } catch (IOException ex) {
       ex.printStackTrace();
     }
-    instructionTA.setEditable(false);
     instructionTA.positionCaret(0);
+  }
+
+  private void setTextAreasUneditable() {
+    instructionTA.setEditable(false);
     productLogTA.setEditable(false);
     itemProducedTA.setEditable(false);
     employeeInfoTA.setEditable(false);
-    errorLabel.setVisible(false);
-    productErrorLbl.setVisible(false);
-    manufacturerErrorLbl.setVisible(false);
-    empErrorLbl.setVisible(false);
-    pwErrorLbl.setVisible(false);
-    initializeDB();
-    populateComboBox();
-    populateChoiceBox();
-    setupProductLineTable();
-    loadProductList();
-    loadProductionLog();
-    testMultiMedia();
   }
 
   /**
@@ -566,7 +505,7 @@ public class Controller {
       manufacturerTF.requestFocus();
       requestUserToEnterManufacturer();
     } else { // Execute code if both TextFields are filled in
-      removeErrorText();
+      hideErrorText();
       addToProductDB();
       loadProductList();
       setupProductLineTable();
@@ -591,11 +530,14 @@ public class Controller {
     return productNameTF.getText().isEmpty();
   }
 
-  public void removeErrorText() {
+  public void hideErrorText() {
     manufacturerErrorLbl.setVisible(false);
     productErrorLbl.setVisible(false);
     productNameTF.getStyleClass().remove("error");
     manufacturerTF.getStyleClass().remove("error");
+    employeeNameErrorLabel.setVisible(false);
+    employeePasswordErrorLabel.setVisible(false);
+    itemErrorLabel.setVisible(false);
   }
 
   public void requestUserToEnterManufacturer() {
@@ -625,114 +567,83 @@ public class Controller {
    */
   @FXML
   void handleEventRecordProduction() {
-    // Create a Product Object from the item that the user selects from the List View
-    Product itemToProduce = prodLineListView.getSelectionModel().getSelectedItem();
+    Product itemToProduce = productLine.getSelectionModel().getSelectedItem();
     if (itemToProduce == null) {
-      errorLabel.setVisible(true);
-      errorLabel.setStyle("-fx-text-fill: red");
-      errorLabel.setText("Please select an item to produce.");
-      // errorLabel.getStyleClass().add("error");
-
+      askUserToSelectItemToProduce();
     } else {
-      errorLabel.setVisible(false);
-      // Get the Quantity Value from the Combo Box and convert it into an Integer
-      int amtToProduce = Integer.parseInt(productAmtComboBox.getValue());
-      // ArrayList of ProductionRecord objects
+      itemErrorLabel.setVisible(false);
+      ProductionItemCounter items = new ProductionItemCounter();
+      items.countItemsFromDatabase();
       ArrayList<ProductionRecord> productionRun = new ArrayList<>();
-      // Audio item counter
-      int au = 0;
-      // AudioMobile item counter
-      int am = 0;
-      // Visual item counter
-      int vi = 0;
-      // VisualMobile item counter
-      int vm = 0;
-      // counter variable used for a ProductionRecord object.
-      int counter = 0;
-      String selectSerialNum = "SELECT SERIAL_NUM FROM PRODUCTIONRECORD";
-      try {
-        PreparedStatement psSelectSerialNum = conn.prepareStatement(selectSerialNum);
-        ResultSet rsSelectSerialNum = psSelectSerialNum.executeQuery();
-        while (rsSelectSerialNum.next()) {
-          String serialNum = rsSelectSerialNum.getString("serial_num");
-          // auto-increment Audio counter if SERIAL_NUM table contains "AU"
-          if (serialNum.contains("AU")) {
-            au++;
-          }
-          // auto-increment AudioMobile counter if SERIAL_NUM table contains "AM"
-          if (serialNum.contains("AM")) {
-            am++;
-          }
-          // auto-increment Visual counter if SERIAL_NUM table contains "VI"
-          if (serialNum.contains("VI")) {
-            vi++;
-          }
-          // auto-increment VisualMobile counter if SERIAL_NUM table contains "VM"
-          if (serialNum.contains("VM")) {
-            vm++;
-          }
-        }
-        rsSelectSerialNum.close();
-        psSelectSerialNum.close();
-        // Assign counter variable to Audio item counter if ListView item is an AU ItemType.
-        if (itemToProduce.toString().contains("AU")) {
-          counter = au;
-        }
-        // Assign counter variable to AudioMobile item counter if ListView item is an AM ItemType.
-        if (itemToProduce.toString().contains("AM")) {
-          counter = am;
-        }
-        // Assign counter variable to Visual item counter if ListView item is a VI ItemType.
-        if (itemToProduce.toString().contains("VI")) {
-          counter = vi;
-        }
-        // Assign counter variable to VisualMobile item counter if ListView item is a VM ItemType.
-        if (itemToProduce.toString().contains("VM")) {
-          counter = vm;
-        }
+      int amountToProduce = Integer.parseInt(productAmount.getValue());
+      int productionRecordCounter = getItemCounter(items.getProductionRecordCounter(),
+          itemToProduce, items);
+      storeProductionRecordID(amountToProduce, itemToProduce, productionRecordCounter,
+          productionRun);
+      addToProductionDB(productionRun);
+      loadProductionLog();
+      String productToProduce = productLine.getSelectionModel().getSelectedItem().toString();
+      String productQuantity = productAmount.getValue();
+      printProductDetails(productToProduce, productQuantity);
+    }
+  }
 
+  public int getItemCounter(int productionRecordCounter, Product itemToProduce,
+      ProductionItemCounter items) {
+    int counter = productionRecordCounter;
+    if (itemToProduce.toString().contains("AU")) {
+      counter = items.getAudioItemCounter();
+    }
+    if (itemToProduce.toString().contains("AM")) {
+      counter = items.getAudioMobileItemCounter();
+    }
+    if (itemToProduce.toString().contains("VI")) {
+      counter = items.getVisualItemCounter();
+    }
+    if (itemToProduce.toString().contains("VM")) {
+      counter = items.getVisualMobileItemCounter();
+    }
+    return counter;
+  }
+
+  public void askUserToSelectItemToProduce() {
+    itemErrorLabel.setVisible(true);
+    itemErrorLabel.setStyle("-fx-text-fill: red");
+    itemErrorLabel.setText("Please select an item to produce.");
+  }
+
+  public void storeProductionRecordID(int amountToProduce, Product itemToProduce,
+      int productionRecordCounter, ArrayList<ProductionRecord> productionRun) {
+    for (int itemCount = 1; itemCount <= amountToProduce; itemCount++) {
+      ProductionRecord productRecord = new ProductionRecord(itemToProduce,
+          productionRecordCounter++);
+      String selectNameID = "SELECT ID, NAME FROM PRODUCT";
+      try {
+        PreparedStatement psSelectNameID = connection.prepareStatement(selectNameID);
+        ResultSet rsSelectNameID = psSelectNameID.executeQuery();
+        while (rsSelectNameID.next()) {
+          int id = rsSelectNameID.getInt("ID");
+          String name = rsSelectNameID.getString("NAME");
+          // Sets the Product ID based on the Item selected in the List View.
+          if (productLine.getSelectionModel().getSelectedItem().toString().contains(name)) {
+            productRecord.setProductID(id);
+          }
+        }
+        rsSelectNameID.close();
+        psSelectNameID.close();
       } catch (SQLException ex) {
         ex.printStackTrace();
       }
-      /* ProductionRecord object that takes in the Product object of the user selection and the
-      amount of items that is made*/
-      for (int itemCount = 1; itemCount <= amtToProduce; itemCount++) {
-        ProductionRecord pr = new ProductionRecord(itemToProduce, counter++);
-        String selectNameID = "SELECT ID, NAME FROM PRODUCT";
-        try {
-          PreparedStatement psSelectNameID = conn.prepareStatement(selectNameID);
-          ResultSet rsSelectNameID = psSelectNameID.executeQuery();
-          while (rsSelectNameID.next()) {
-            int id = rsSelectNameID.getInt("ID");
-            String name = rsSelectNameID.getString("NAME");
-            // Sets the Product ID based on the Item selected in the List View.
-            if (prodLineListView.getSelectionModel().getSelectedItem().toString().contains(name)) {
-              pr.setProductID(id);
-            }
-          }
-          rsSelectNameID.close();
-          psSelectNameID.close();
-        } catch (SQLException ex) {
-          ex.printStackTrace();
-        }
-        // Stores the ProductionRecord object that was made into the ArrayList
-        productionRun.add(pr);
-      }
-      // Passes the ArrayList of ProductionRecord objects to the "addToProductionDB" method.
-      addToProductionDB(productionRun);
-      // Calls loadProductionLog method
-      loadProductionLog();
-      // Gets the item from the Product Record tab and converts it into a string.
-      String prodToProduce = prodLineListView.getSelectionModel().getSelectedItem().toString();
-      // Gets the value of the amount of items that the user wishes to make.
-      String prodQuantity = productAmtComboBox.getValue();
-      // Prints value that was obtained from prodQuantity
-      System.out.println(
-          "Product has been made: " + "\n" + prodToProduce + "\nAmount: " + prodQuantity);
-      // Sets the item produced to the Text Area in the Produce tab.
-      itemProducedTA.setText(
-          "Product has been made: " + "\n" + prodToProduce + "\nAmount: " + prodQuantity);
+      productionRun.add(productRecord);
     }
+  }
+
+  public void printProductDetails(String productToProduce, String productQuantity) {
+    System.out.println(
+        "Product has been made: " + "\n" + productToProduce + "\nAmount: " + productQuantity);
+    // Sets the item produced to the Text Area in the Produce tab.
+    itemProducedTA.setText(
+        "Product has been made: " + "\n" + productToProduce + "\nAmount: " + productQuantity);
   }
 
   /**
@@ -751,35 +662,46 @@ public class Controller {
    */
   @FXML
   void onActionSubmitEmployeeInfo() {
-    String empName = employeeNameTF.getText();
-    String empPassword = employeePasswordTF.getText();
-    if (empName.isEmpty() && !empPassword.isEmpty()) {
-      empErrorLbl.setVisible(true);
-      pwErrorLbl.setVisible(false);
-      empErrorLbl.setStyle("-fx-text-fill: red");
-      empErrorLbl.setText("Enter Employee Name.");
-    }
+    String employeeName = employeeNameTF.getText();
+    String employeePassword = employeePasswordTF.getText();
 
-    if (empPassword.isEmpty() && !empName.isEmpty()) {
-      empErrorLbl.setVisible(false);
-      pwErrorLbl.setVisible(true);
-      pwErrorLbl.setStyle("-fx-text-fill: red");
-      pwErrorLbl.setText("Enter Password.");
+    if (employeeName.isEmpty() && !employeePassword.isEmpty()) {
+      askUserToEnterEmployeeName();
     }
-    if (empName.isEmpty()) {
-      empErrorLbl.setVisible(true);
-      empErrorLbl.setStyle("-fx-text-fill: red");
-      empErrorLbl.setText("Enter Employee Name.");
-    } else if (empPassword.isEmpty()) {
-      empErrorLbl.setVisible(false);
-      pwErrorLbl.setVisible(true);
-      pwErrorLbl.setStyle("-fx-text-fill: red");
-      pwErrorLbl.setText("Enter Password.");
+    if (employeePassword.isEmpty() && !employeeName.isEmpty()) {
+      employeePasswordErrorLabel.setVisible(false);
+      askUserToEnterEmployeePassword();
+    }
+    if (employeeName.isEmpty()) {
+      askUserToEnterEmployeeName();
+    } else if (employeePassword.isEmpty()) {
+      askUserToEnterEmployeePassword();
     } else {
-      empErrorLbl.setVisible(false);
-      pwErrorLbl.setVisible(false);
-      Employee employee = new Employee(empName, empPassword);
-      employeeInfoTA.setText(employee.toString());
+      clearEmployeeTextFieldErrorLabels();
+      displayEmployeeInformation(employeeName, employeePassword);
     }
+  }
+
+  private void askUserToEnterEmployeeName() {
+    employeeNameErrorLabel.setVisible(true);
+    employeeNameErrorLabel.setStyle("-fx-text-fill: red");
+    employeeNameErrorLabel.setText("Enter Employee Name.");
+  }
+
+  private void askUserToEnterEmployeePassword() {
+    employeeNameErrorLabel.setVisible(false);
+    employeePasswordErrorLabel.setVisible(true);
+    employeePasswordErrorLabel.setStyle("-fx-text-fill: red");
+    employeePasswordErrorLabel.setText("Enter Password.");
+  }
+
+  private void clearEmployeeTextFieldErrorLabels() {
+    employeeNameErrorLabel.setVisible(false);
+    employeePasswordErrorLabel.setVisible(false);
+  }
+
+  private void displayEmployeeInformation(String employeeName, String employeePassword) {
+    Employee employee = new Employee(employeeName, employeePassword);
+    employeeInfoTA.setText(employee.toString());
   }
 }
