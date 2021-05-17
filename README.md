@@ -1,4 +1,4 @@
-# ProductionLineTracker-OOP-GUI-DB
+# Production Line Tracker
 
 The Production Line Tracker is a program that will manage tracking inventory of what products are produced. This becomes essential for production workers because otherwise they will have to be physically producing items and write them down in a production log book. This program was made indiviually by Ramzy El-Taher, who has previously made different versions of the Production Line Tracker program in C++ and in Java. This project was started at August 19th as a semester long assignment for my Object Oriented Programming class at FGCU, and at this point of time, I have a decent amount of experience with Java, but no experience with JavaFX or databases. The project was finished in December of 2019, and refactorings were applied to it during the fall of 2020. The reason why I am making this is not only because it is an assignment, but it is also because working on projects like these are something that I am very passionate about and is enjoyable for me to work on daily.
 
